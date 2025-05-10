@@ -1,0 +1,182 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Londrina+Sketch&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+:root {
+  font-family: 'Inter', sans-serif !important;
+  line-height: 1.5;
+  font-size: 14.5px;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 400;
+  text-decoration: inherit;
+  cursor: pointer;
+}
+
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  background-color: #000000;
+  color: #ffffff;
+  overflow-x: hidden !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: 0;
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
+* {
+  -webkit-user-select: none;
+  /* For Safari */
+  -moz-user-select: none;
+  /* For Firefox */
+  -ms-user-select: none;
+  /* For Internet Explorer/Edge */
+  user-select: none;
+  /* Standard syntax */
+}
+
+.mobileOnly {
+  display: none;
+}
+
+@media (max-width: 450px) {
+  .mobile-justify {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 900px) {
+  body {
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 25px;
+    line-height: 1.2;
+  }
+
+  .heightAuto {
+    height: auto;
+  }
+
+  .nodisplay {
+    display: none;
+  }
+
+  .mobile-width-full {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mobile-width {
+    width: 100px;
+  }
+
+  .mobile-flex-col {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .mobile-flex-Rcol {
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+
+  .paddingMobile {
+    width: fit-content;
+  }
+
+  .padding-No {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .ml-Noml {
+    margin: auto;
+  }
+
+  .mobile-35 {
+    width: 35%;
+  }
+
+  .mobile-45 {
+    width: 42%;
+  }
+
+  .marginTop-no {
+    margin-top: 0;
+  }
+
+  .justity {
+    justify-content: flex-start;
+  }
+
+  .paddingLeft-min {
+    padding-left: 30px;
+  }
+
+  .ml-yesml {
+    margin-left: -150px;
+  }
+
+  .paddingY-less {
+    padding-top: 20px;
+  }
+
+  .noMarginL {
+    margin-left: auto;
+    margin: auto;
+    margin-bottom: auto;
+  }
+
+  .mobileOnly {
+    display: block;
+  }
+
+  .mobile-flex-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .noM10 {
+    margin-top: -40px !important;
+  }
+
+  .mobile-Dfull {
+    width: 100% !important;
+  }
+
+  .mobilemt10 {
+    margin-top: 40px;
+  }
+}
