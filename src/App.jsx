@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { useEffect } from "react";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
+import ProductDetails from "./pages/ProductDetails";
 
 
 // ScrollToTop logic directly in App.jsx
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/product_details" element={<ProductDetails />} />
       </Routes>
     </Router>
   );

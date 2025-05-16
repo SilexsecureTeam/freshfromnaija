@@ -13,6 +13,25 @@ import applepay from '../assets/applepay.png';
 function Footer() {
     return (
         <div>
+            <div className='bg-[#009144] px-16 py-2 text-white flex justify-between fontPoppins'>
+                <div>
+                    <p className='font-light text-[44px] text-center'>54+</p>
+                    <p className='font-bold text-center'>Registered Riders</p>
+                </div>
+                <div>
+                    <p className='font-light text-[44px] text-center'>789,900+</p>
+                    <p className='font-bold text-center'>
+                        Orders Delivered</p>
+                </div>
+                <div>
+                    <p className='font-light text-[44px] text-center'>690+</p>
+                    <p className='font-bold text-center'>Vendors Patnered</p>
+                </div>
+                <div>
+                    <p className='font-light text-[44px] text-center'>17,457+</p>
+                    <p className='font-bold text-center'>Food items</p>
+                </div>
+            </div>
             <div className="px-16 py-14 text-[#333D4C] text-[14px] flex justify-between">
                 <div className="!space-y-2">
                     <p className="text-[#181D25] font-bold !mb-3">Categories</p>

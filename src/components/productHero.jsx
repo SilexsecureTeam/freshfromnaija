@@ -3,7 +3,8 @@ import {
     ChevronDownIcon,
     ChevronUpIcon,
     StarIcon,
-} from '@heroicons/react/24/outline'
+} from '@heroicons/react/24/outline';
+import HeroBody from './heroBody';
 
 // import orderImg from '../assets/order.png';
 import frozen from '../assets/frozen.png';
@@ -27,20 +28,6 @@ import place1 from '../assets/place1.png';
 import place2 from '../assets/place2.png';
 import place3 from '../assets/place3.png';
 
-const order = [
-    {
-        no: '1',
-        status: 'pending',
-    },
-    {
-        no: '2',
-        status: 'accepted',
-    },
-    {
-        no: '3',
-        status: 'rider',
-    }
-]
 const client = [
     {
         name: 'Robert Fox',
@@ -129,32 +116,7 @@ function ProductHero() {
 
     return (
         <div>
-            <div className='flex justify-between w-full bg-first mt-30 pt-40 pb-20 px-16'>
-                <div className="text-[#ffffff] !space-y-2.5">
-                    <h1 className="font-bold text-[17px]">Fresh From Naija – Delivering Afro Taste Worldwide</h1>
-                    <p className="font-semibold text-[42px] leading-[1.25]">Enjoy Naija Flavors <br /> Anywhere, Anytime</p>
-                    <p className="font-normal text-[12.5px] !mt-6">Enter an Item to see what we deliver</p>
-                    <div className="flex">
-                        <input type="search" placeholder="e.g Kilishi" className="bg-[#ffffff] rounded-[20px] text-[#000000CC] py-2.5 px-4" />
-                        <button className="bg-[#42BC00] py-3 px-9 text-[14px] rounded-3xl -ml-30">Search</button>
-                    </div>
-                </div>
-                <div className='w-[41%]'>
-                    {order.map((order, index) => (
-                        <div key={index} className={`${order.no === '2' ? 'ml-16' : order.no === '3' ? 'ml-8' : ''} w-[75%] flex flex-col`}>
-                            <p className='flex justify-end fontPoppins text-white text-[33px]'>{order.no} </p>
-                            <div className='text-black w-full bg-white space-y-2 rounded-xl px-2 py-2'>
-                                <div className='flex justify-between'>
-                                    <p className='font-semibold'>{order.status === 'pending' ? "Order Placed" : order.status === 'rider' ? "Order Shipped" : "Ready for Shipping"}!</p>
-                                    <span className='text-[#000000CC]'>now</span>
-                                </div>
-                                <p className='font-semibold'>{order.status === 'pending' ? "We've received your order" : order.status === 'rider' ? "Your order is on the way!" : "Vendors delivered to FFN.d"}!</p>
-                                <p className='text-[#000000CC]'>{order.status === 'pending' ? "Waiting for vendors to confirm." : order.status === 'rider' ? "Track your delivery in real time." : "We’re sorting items by cargo type."}!</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+            <HeroBody />
             <div className='px-16'>
                 <h2 className="text-black font-bold text-[20px] !my-4">Category</h2>
                 <div className='grid grid-cols-1 md:grid-cols-3 w-full gap-[1%]'>
@@ -594,25 +556,6 @@ function ProductHero() {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className='bg-[#009144] px-16 py-2 text-white flex justify-between fontPoppins'>
-                <div>
-                    <p className='font-light text-[44px] text-center'>54+</p>
-                    <p className='font-bold text-center'>Registered Riders</p>
-                </div>
-                <div>
-                    <p className='font-light text-[44px] text-center'>789,900+</p>
-                    <p className='font-bold text-center'>
-                        Orders Delivered</p>
-                </div>
-                <div>
-                    <p className='font-light text-[44px] text-center'>690+</p>
-                    <p className='font-bold text-center'>Vendors Patnered</p>
-                </div>
-                <div>
-                    <p className='font-light text-[44px] text-center'>17,457+</p>
-                    <p className='font-bold text-center'>Food items</p>
                 </div>
             </div>
         </div>
