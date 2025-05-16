@@ -33,8 +33,8 @@ function Header() {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-center gap-7 items-center text-[14px] text-[#333333] mt-1.5'>
-                <p className='cursor-pointer'>Shop</p>
+            <div className='flex justify-center gap-14 items-center text-[14px] text-[#333333] mt-1.5'>
+                <Link to="/product"><p className='cursor-pointer'>Shop</p></Link>
                 <p className='cursor-pointer'>Vendors</p>
                 <p className='cursor-pointer'>How it Works</p>
                 <p className='cursor-pointer'>Resources</p>

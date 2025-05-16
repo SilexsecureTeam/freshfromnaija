@@ -129,7 +129,7 @@ function ProductHero() {
 
     return (
         <div>
-            <div className='flex justify-between w-full bg-first md:h-[84vh] mt-30 py-40 px-16'>
+            <div className='flex justify-between w-full bg-first mt-30 pt-40 pb-20 px-16'>
                 <div className="text-[#ffffff] !space-y-2.5">
                     <h1 className="font-bold text-[17px]">Fresh From Naija – Delivering Afro Taste Worldwide</h1>
                     <p className="font-semibold text-[42px] leading-[1.25]">Enjoy Naija Flavors <br /> Anywhere, Anytime</p>

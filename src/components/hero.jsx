@@ -67,7 +67,7 @@ function HomeHero() {
 
     return (
         <div>
-            <div className='flex justify-between w-full bg-first md:h-[84vh] mt-30 py-40 px-16'>
+            <div className='flex justify-between w-full bg-first !md:h-fit mt-30 pt-40 pb-20 px-16'>
                 <div className="text-[#ffffff] !space-y-2.5">
                     <h1 className="font-bold text-[17px]">Fresh From Naija – Delivering Afro Taste Worldwide</h1>
                     <p className="font-semibold text-[42px] leading-[1.25]">Enjoy Naija Flavors <br /> Anywhere, Anytime</p>
@@ -296,7 +296,7 @@ function HomeHero() {
             </div>
             <div className='px-16'>
                 <div className='px-10 py-10 bg-[#F2F2F2] text-[#4D4D4D] mt-16'>
-                    <p className='text-white font-medium text-[12px] text-center !mb-1'>CLIENT TESTIMONIALS</p>
+                    <p className='text-[#999999] font-medium text-[12px] text-center !mb-1'>CLIENT TESTIMONIALS</p>
                     <p className='text-[#F8931F] font-semibold text-2xl text-center'>What our Client Says</p>
                     <div className='grid grid-cols-1 md:grid-cols-3 gap-7 mt-8'>
                         {client.map((c, index) => (
