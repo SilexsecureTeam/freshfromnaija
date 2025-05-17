@@ -4,6 +4,8 @@ import {
     ChevronUpIcon,
     StarIcon,
 } from '@heroicons/react/24/outline';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from '../store/cartSlice';
 import HeroBody from './heroBody';
 
 // import orderImg from '../assets/order.png';
@@ -28,6 +30,23 @@ import place1 from '../assets/place1.png';
 import place2 from '../assets/place2.png';
 import place3 from '../assets/place3.png';
 
+const products = [
+    {
+        id: 0,
+        image: crayfish,
+        title: 'Cray Fish',
+        price: 'N20,000',
+        subtitle: 'Types of Crayfish available', category: 'vegetables',
+    },
+    { id: 1, image: crayfish1, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 2, image: crayfish2, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 3, image: crayfish3, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 4, image: crayfish4, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 5, image: crayfish5, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 6, image: crayfish6, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 7, image: crayfish7, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+]
+
 const client = [
     {
         name: 'Robert Fox',
@@ -47,6 +66,22 @@ const client = [
 ]
 
 function ProductHero() {
+    const dispatch = useDispatch()
+    const cartItems = useSelector(state => state.cart)
+
+    const handleAdd = (product) => {
+        dispatch(addItem({
+          id: product.id,
+          name: product.title, // maps 'title' to 'name'
+          imageUrl: product.image, // maps 'image' to 'imageUrl'
+          category: product.category || 'N/A',
+          shippingType: product.shippingType || 'Standard',
+          shippingAgent: product.shippingAgent || 'Default Agent',
+          price: product.price || '₦0',
+          quantity: 1,
+        }));
+      };
+
     const faqs = [
         { q: 'How does Ordering work?', a: 'Fresh From Naija simplifies the food ordering process. Browse through our diverse menu, select your favourite food items, and proceed to checkout. Your items will be on its way to you.' },
         { q: 'What payment methods are accepted?', a: 'We accept credit, debit, and mobile wallet payments.' },
@@ -379,183 +414,42 @@ function ProductHero() {
                         )}
                     </div>
                 </aside>
-                <div className='grid grid-cols-2 md:grid-cols-3 w-full gap-[3%] mb-40'>
-                    <div class="bg-white rounded-[15px] shadow relative">
-                        <div class="absolute flex items-center gap-2 right-2 top-2">
-                            <div class="bg-[white] p-1.5 rounded-[50%] cursor-pointer">
-                                <img src={heart} alt="" className='w-[30px] h-[30px]' />
+                <div className="grid grid-cols-2 md:grid-cols-3 w-full gap-[2%] mb-24">
+                {products.map((p) => {
+                        const inCart = cartItems.some(item => item.id === p.id)
+                        return (
+                            <div key={p.id} className="bg-white rounded-[15px] shadow relative">
+                                <div className="absolute flex items-center gap-2 right-2 top-2">
+                                    <div className="bg-[white] p-1.5 rounded-[50%] cursor-pointer">
+                                        <img src={heart} alt="Favorite" className="w-[30px] h-[30px]" />
+                                    </div>
+                                </div>
+                                <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
+                                    <img src={p.image} alt={p.title} className="w-full" />
+                                </div>
+                                <div className="p-2 pt-5 px-3 text-[#98A2B3]">
+                                    <div className="flex justify-between items-center w-[94%]">
+                                        <p className="text-[#98A2B3] font-bold">{p.title}</p>
+                                        <p className="text-[#344054] font-bold mt-3">{p.price}</p>
+                                    </div>
+                                    <p className="text-[14px] font-normal text-[#98A2B3] mt-3">{p.subtitle}</p>
+                                    <img src={starImg} alt="Rating" className="mt-3" />
+                                    <div className="flex justify-between mt-3 whitespace-nowrap text-[14px]">
+                                        <button
+                                            onClick={() => handleAdd(p)}
+                                            disabled={inCart}
+                                            className={`rounded-[18px] px-5 py-2 text-white ${inCart ? 'bg-gray-400 cursor-default' : 'bg-[#009144]'}`}
+                                        >
+                                            {inCart ? 'Added' : 'Add To Cart'}
+                                        </button>
+                                        <button className="text-black border-[rgb(51,51,51)] border rounded-[18px] px-4.5 py-2">
+                                            Add Shortlist
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
-                            <img src={crayfish} alt="Product" class="w-full" />
-                        </div>
-                        <div class="p-2 pt-5 px-3 text-[#98A2B3]">
-                            <div class="flex justify-between items-center w-[94%]">
-                                <p class="text-[#98A2B3] font-bold">Cray Fish</p>
-                                <p class="text-[#344054] font-bold mt-3">N20,000</p>
-                            </div>
-                            <p class="text-[14px] font-normal text-[#98A2B3] mt-3">Types of Crayfish available</p>
-                            <img src={starImg} alt="" className='mt-3' />
-                            <div className='flex justify-between mt-3 text-nowrap text-[14px]'>
-                                <button className='bg-[#009144] text-white rounded-[18px] px-5 py-2'>Add To Cart</button>
-                                <button className='text-black !border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2'>Add Shortlist</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-[15px] shadow relative">
-                        <div class="absolute flex items-center gap-2 right-2 top-2">
-                            <div class="bg-[white] p-1.5 rounded-[50%] cursor-pointer">
-                                <img src={heart} alt="" className='w-[30px] h-[30px]' />
-                            </div>
-                        </div>
-                        <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
-                            <img src={crayfish1} alt="Product" class="w-full" />
-                        </div>
-                        <div class="p-2 pt-5 px-3 text-[#98A2B3]">
-                            <div class="flex justify-between items-center w-[94%]">
-                                <p class="text-[#98A2B3] font-bold">Cray Fish</p>
-                                <p class="text-[#344054] font-bold mt-3">N20,000</p>
-                            </div>
-                            <p class="text-[14px] font-normal text-[#98A2B3] mt-3">Types of Crayfish available</p>
-                            <img src={starImg} alt="" className='mt-3' />
-                            <div className='flex justify-between mt-3 text-nowrap text-[14px]'>
-                                <button className='bg-[#009144] text-white rounded-[18px] px-5 py-2'>Add To Cart</button>
-                                <button className='text-black !border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2'>Add Shortlist</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-[15px] shadow relative">
-                        <div class="absolute flex items-center gap-2 right-2 top-2">
-                            <div class="bg-[white] p-1.5 rounded-[50%] cursor-pointer">
-                                <img src={heart} alt="" className='w-[30px] h-[30px]' />
-                            </div>
-                        </div>
-                        <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
-                            <img src={crayfish2} alt="Product" class="w-full" />
-                        </div>
-                        <div class="p-2 pt-5 px-3 text-[#98A2B3]">
-                            <div class="flex justify-between items-center w-[94%]">
-                                <p class="text-[#98A2B3] font-bold">Cray Fish</p>
-                                <p class="text-[#344054] font-bold mt-3">N20,000</p>
-                            </div>
-                            <p class="text-[14px] font-normal text-[#98A2B3] mt-3">Types of Crayfish available</p>
-                            <img src={starImg} alt="" className='mt-3' />
-                            <div className='flex justify-between mt-3 text-nowrap text-[14px]'>
-                                <button className='bg-[#009144] text-white rounded-[18px] px-5 py-2'>Add To Cart</button>
-                                <button className='text-black !border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2'>Add Shortlist</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-[15px] shadow relative">
-                        <div class="absolute flex items-center gap-2 right-2 top-2">
-                            <div class="bg-[white] p-1.5 rounded-[50%] cursor-pointer">
-                                <img src={heart} alt="" className='w-[30px] h-[30px]' />
-                            </div>
-                        </div>
-                        <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
-                            <img src={crayfish3} alt="Product" class="w-full" />
-                        </div>
-                        <div class="p-2 pt-5 px-3 text-[#98A2B3]">
-                            <div class="flex justify-between items-center w-[94%]">
-                                <p class="text-[#98A2B3] font-bold">Cray Fish</p>
-                                <p class="text-[#344054] font-bold mt-3">N20,000</p>
-                            </div>
-                            <p class="text-[14px] font-normal text-[#98A2B3] mt-3">Types of Crayfish available</p>
-                            <img src={starImg} alt="" className='mt-3' />
-                            <div className='flex justify-between mt-3 text-nowrap text-[14px]'>
-                                <button className='bg-[#009144] text-white rounded-[18px] px-5 py-2'>Add To Cart</button>
-                                <button className='text-black !border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2'>Add Shortlist</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-[15px] shadow relative">
-                        <div class="absolute flex items-center gap-2 right-2 top-2">
-                            <div class="bg-[white] p-1.5 rounded-[50%] cursor-pointer">
-                                <img src={heart} alt="" className='w-[30px] h-[30px]' />
-                            </div>
-                        </div>
-                        <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
-                            <img src={crayfish4} alt="Product" class="w-full" />
-                        </div>
-                        <div class="p-2 pt-5 px-3 text-[#98A2B3]">
-                            <div class="flex justify-between items-center w-[94%]">
-                                <p class="text-[#98A2B3] font-bold">Cray Fish</p>
-                                <p class="text-[#344054] font-bold mt-3">N20,000</p>
-                            </div>
-                            <p class="text-[14px] font-normal text-[#98A2B3] mt-3">Types of Crayfish available</p>
-                            <img src={starImg} alt="" className='mt-3' />
-                            <div className='flex justify-between mt-3 text-nowrap text-[14px]'>
-                                <button className='bg-[#009144] text-white rounded-[18px] px-5 py-2'>Add To Cart</button>
-                                <button className='text-black !border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2'>Add Shortlist</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-[15px] shadow relative">
-                        <div class="absolute flex items-center gap-2 right-2 top-2">
-                            <div class="bg-[white] p-1.5 rounded-[50%] cursor-pointer">
-                                <img src={heart} alt="" className='w-[30px] h-[30px]' />
-                            </div>
-                        </div>
-                        <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
-                            <img src={crayfish5} alt="Product" class="w-full" />
-                        </div>
-                        <div class="p-2 pt-5 px-3 text-[#98A2B3]">
-                            <div class="flex justify-between items-center w-[94%]">
-                                <p class="text-[#98A2B3] font-bold">Cray Fish</p>
-                                <p class="text-[#344054] font-bold mt-3">N20,000</p>
-                            </div>
-                            <p class="text-[14px] font-normal text-[#98A2B3] mt-3">Types of Crayfish available</p>
-                            <img src={starImg} alt="" className='mt-3' />
-                            <div className='flex justify-between mt-3 text-nowrap text-[14px]'>
-                                <button className='bg-[#009144] text-white rounded-[18px] px-5 py-2'>Add To Cart</button>
-                                <button className='text-black !border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2'>Add Shortlist</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-[15px] shadow relative">
-                        <div class="absolute flex items-center gap-2 right-2 top-2">
-                            <div class="bg-[white] p-1.5 rounded-[50%] cursor-pointer">
-                                <img src={heart} alt="" className='w-[30px] h-[30px]' />
-                            </div>
-                        </div>
-                        <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
-                            <img src={crayfish6} alt="Product" class="w-full" />
-                        </div>
-                        <div class="p-2 pt-5 px-3 text-[#98A2B3]">
-                            <div class="flex justify-between items-center w-[94%]">
-                                <p class="text-[#98A2B3] font-bold">Cray Fish</p>
-                                <p class="text-[#344054] font-bold mt-3">N20,000</p>
-                            </div>
-                            <p class="text-[14px] font-normal text-[#98A2B3] mt-3">Types of Crayfish available</p>
-                            <img src={starImg} alt="" className='mt-3' />
-                            <div className='flex justify-between mt-3 text-nowrap text-[14px]'>
-                                <button className='bg-[#009144] text-white rounded-[18px] px-5 py-2'>Add To Cart</button>
-                                <button className='text-black !border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2'>Add Shortlist</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-[15px] shadow relative">
-                        <div class="absolute flex items-center gap-2 right-2 top-2">
-                            <div class="bg-[white] p-1.5 rounded-[50%] cursor-pointer">
-                                <img src={heart} alt="" className='w-[30px] h-[30px]' />
-                            </div>
-                        </div>
-                        <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
-                            <img src={crayfish7} alt="Product" class="w-full" />
-                        </div>
-                        <div class="p-2 pt-5 px-3 text-[#98A2B3]">
-                            <div class="flex justify-between items-center w-[94%]">
-                                <p class="text-[#98A2B3] font-bold">Cray Fish</p>
-                                <p class="text-[#344054] font-bold mt-3">N20,000</p>
-                            </div>
-                            <p class="text-[14px] font-normal text-[#98A2B3] mt-3">Types of Crayfish available</p>
-                            <img src={starImg} alt="" className='mt-3' />
-                            <div className='flex justify-between mt-3 text-nowrap text-[14px]'>
-                                <button className='bg-[#009144] text-white rounded-[18px] px-5 py-2'>Add To Cart</button>
-                                <button className='text-black !border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2'>Add Shortlist</button>
-                            </div>
-                        </div>
-                    </div>
+                        )
+                    })}
                 </div>
             </div>
         </div>

@@ -1,8 +1,11 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import './index.css';
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
+import Shipping from "./pages/Shipping";
 
 
 // ScrollToTop logic directly in App.jsx
@@ -28,6 +31,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Product />} />
         <Route path="/product_details" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/shipping" element={<Shipping />} />
       </Routes>
     </Router>
   );
