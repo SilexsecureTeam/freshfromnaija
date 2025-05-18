@@ -156,7 +156,7 @@ function ProductDetailsHero() {
                     </div>
                 </div>
             </section>
-            <div className='px-24 mb-10'>
+            <div className='px-4 md:px-24 mb-10'>
                 <h2 className="text-black font-bold text-[20px] !mt-8 !mb-6 text-center">Related Products</h2>
                 <div className='grid grid-cols-2 md:grid-cols-4 w-full gap-[2%]'>
                     <div class="bg-white rounded-[15px] shadow relative">
@@ -175,7 +175,7 @@ function ProductDetailsHero() {
                             </div>
                             <p class="text-[14px] font-normal text-[#98A2B3] mt-3">Types of Crayfish available</p>
                             <img src={starImg} alt="" className='mt-3' />
-                            <div className='flex justify-between mt-3 text-nowrap text-[14px]'>
+                            <div className='flex flex-col md:flex-row gap-y-2 justify-between mt-3 text-nowrap text-[14px]'>
                                 <button className='bg-[#009144] text-white rounded-[18px] px-5 py-2'>Add To Cart</button>
                                 <button className='text-black !border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2'>Add Shortlist</button>
                             </div>
@@ -197,7 +197,7 @@ function ProductDetailsHero() {
                             </div>
                             <p class="text-[14px] font-normal text-[#98A2B3] mt-3">Types of Crayfish available</p>
                             <img src={starImg} alt="" className='mt-3' />
-                            <div className='flex justify-between mt-3 text-nowrap text-[14px]'>
+                            <div className='flex flex-col md:flex-row gap-y-2 justify-between mt-3 text-nowrap text-[14px]'>
                                 <button className='bg-[#009144] text-white rounded-[18px] px-5 py-2'>Add To Cart</button>
                                 <button className='text-black !border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2'>Add Shortlist</button>
                             </div>
@@ -219,7 +219,7 @@ function ProductDetailsHero() {
                             </div>
                             <p class="text-[14px] font-normal text-[#98A2B3] mt-3">Types of Crayfish available</p>
                             <img src={starImg} alt="" className='mt-3' />
-                            <div className='flex justify-between mt-3 text-nowrap text-[14px]'>
+                            <div className='flex flex-col md:flex-row gap-y-2 justify-between mt-3 text-nowrap text-[14px]'>
                                 <button className='bg-[#009144] text-white rounded-[18px] px-5 py-2'>Add To Cart</button>
                                 <button className='text-black !border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2'>Add Shortlist</button>
                             </div>
@@ -241,7 +241,7 @@ function ProductDetailsHero() {
                             </div>
                             <p class="text-[14px] font-normal text-[#98A2B3] mt-3">Types of Crayfish available</p>
                             <img src={starImg} alt="" className='mt-3' />
-                            <div className='flex justify-between mt-3 text-nowrap text-[14px]'>
+                            <div className='flex flex-col md:flex-row gap-y-2 justify-between mt-3 text-nowrap text-[14px]'>
                                 <button className='bg-[#009144] text-white rounded-[18px] px-5 py-2'>Add To Cart</button>
                                 <button className='text-black !border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2'>Add Shortlist</button>
                             </div>

@@ -3,6 +3,8 @@ import {
     ChevronDownIcon,
     ChevronUpIcon,
     StarIcon,
+    Bars3Icon,
+    XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../store/cartSlice';
@@ -68,19 +70,20 @@ const client = [
 function ProductHero() {
     const dispatch = useDispatch()
     const cartItems = useSelector(state => state.cart)
+    const [filterOpen, setFilterOpen] = useState(false)
 
     const handleAdd = (product) => {
         dispatch(addItem({
-          id: product.id,
-          name: product.title, // maps 'title' to 'name'
-          imageUrl: product.image, // maps 'image' to 'imageUrl'
-          category: product.category || 'N/A',
-          shippingType: product.shippingType || 'Standard',
-          shippingAgent: product.shippingAgent || 'Default Agent',
-          price: product.price || '₦0',
-          quantity: 1,
+            id: product.id,
+            name: product.title, // maps 'title' to 'name'
+            imageUrl: product.image, // maps 'image' to 'imageUrl'
+            category: product.category || 'N/A',
+            shippingType: product.shippingType || 'Standard',
+            shippingAgent: product.shippingAgent || 'Default Agent',
+            price: product.price || '₦0',
+            quantity: 1,
         }));
-      };
+    };
 
     const faqs = [
         { q: 'How does Ordering work?', a: 'Fresh From Naija simplifies the food ordering process. Browse through our diverse menu, select your favourite food items, and proceed to checkout. Your items will be on its way to you.' },
@@ -118,7 +121,7 @@ function ProductHero() {
         ['Meats', 12],
         ['Pots', 23],
         ['Food items', 67],
-        ['Micze', 34],
+        ['Mixed', 34],
         ['Pots', 12],
         // add more here...
     ]
@@ -152,7 +155,7 @@ function ProductHero() {
     return (
         <div>
             <HeroBody />
-            <div className='px-16'>
+            <div className='px-4 md:px-16'>
                 <h2 className="text-black font-bold text-[20px] !my-4">Category</h2>
                 <div className='grid grid-cols-1 md:grid-cols-3 w-full gap-[1%]'>
                     <div className='font-bold relative'>
@@ -160,20 +163,27 @@ function ProductHero() {
                         <img src={frozen} alt="" className="rounded-[8px]" />
                         <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Frozen goods</p>
                     </div>
-                    <div className='font-bold relative'>
+                    <div className='font-bold relative mt-2 md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
                         <img src={meat} alt="" className="rounded-[8px]" />
                         <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Meat Produce</p>
                     </div>
-                    <div className='font-bold relative'>
+                    <div className='font-bold relative mt-2 md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
                         <img src={regular} alt="" className="rounded-[8px]" />
                         <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Regular goods</p>
                     </div>
                 </div>
             </div>
-            <div className='px-16 mt-20 flex justify-between gap-5'>
-                <aside className="w-[28%] p-4 bg-white">
+            <button
+                className="md:hidden flex items-center mb-4 p-2 ml-3 font-semibold mt-20 text-[#000000] rounded"
+                onClick={() => setFilterOpen(true)}
+            >
+                <Bars3Icon className="h-6 w-6 mr-2" /> Filters
+            </button>
+            <div className='px-4 md:px-16 mt-2 flex justify-between gap-5'>
+
+                <aside className="hidden md:block w-[28%] p-4 bg-white sticky top-30">
                     {/** All Products */}
                     <div className="border-b pb-4 mb-4">
                         <button
@@ -414,8 +424,8 @@ function ProductHero() {
                         )}
                     </div>
                 </aside>
-                <div className="grid grid-cols-2 md:grid-cols-3 w-full gap-[2%] mb-24">
-                {products.map((p) => {
+                <div className="grid grid-cols-2 md:grid-cols-3 w-full gap-[2%] mb-30 md:mb-24">
+                    {products.map((p) => {
                         const inCart = cartItems.some(item => item.id === p.id)
                         return (
                             <div key={p.id} className="bg-white rounded-[15px] shadow relative">
@@ -434,7 +444,7 @@ function ProductHero() {
                                     </div>
                                     <p className="text-[14px] font-normal text-[#98A2B3] mt-3">{p.subtitle}</p>
                                     <img src={starImg} alt="Rating" className="mt-3" />
-                                    <div className="flex justify-between mt-3 whitespace-nowrap text-[14px]">
+                                    <div className="flex flex-col md:flex-row justify-between mt-3 whitespace-nowrap text-[14px]">
                                         <button
                                             onClick={() => handleAdd(p)}
                                             disabled={inCart}
@@ -451,6 +461,267 @@ function ProductHero() {
                         )
                     })}
                 </div>
+                {filterOpen && (
+                    <div className="fixed inset-0 z-50 flex">
+                        {/* backdrop */}
+                        <div
+                            className="fixed inset-0 bg-[rgb(0,0,0,0.8)] bg-opacity-50"
+                            onClick={() => setFilterOpen(false)}
+                        />
+
+                        {/* drawer panel */}
+                        <div className="relative bg-white w-3/4 max-w-xs h-full p-4 overflow-auto">
+                            <button
+                                className="absolute top-4 right-2 p-2"
+                                onClick={() => setFilterOpen(false)}
+                            >
+                                <XMarkIcon className="h-6 w-6" />
+                            </button>
+                            <h2 className="text-lg font-semibold !mb-4">Filters</h2>
+                            <div>
+                                {/** All Products */}
+                                <div className="border-b pb-4 mb-4">
+                                    <button
+                                        onClick={() => toggleSection('products')}
+                                        className="flex justify-between w-full items-center mb-3"
+                                    >
+                                        <h3 className="font-semibold">All Products</h3>
+                                        {open.products ? (
+                                            <ChevronUpIcon className="w-5 h-5" />
+                                        ) : (
+                                            <ChevronDownIcon className="w-5 h-5" />
+                                        )}
+                                    </button>
+                                    {open.products && (
+                                        <>
+                                            <ul className="space-y-2 text-sm">
+                                                {(showMore.products ? PRODUCTS : PRODUCTS.slice(0, 5)).map(
+                                                    ([label, count], i) => (
+                                                        <li key={i} className="flex items-center">
+                                                            <input
+                                                                type="checkbox"
+                                                                id={`prod-${i}`}
+                                                                className="mr-2"
+                                                            />
+                                                            <label htmlFor={`prod-${i}`} className="flex-1">
+                                                                {label}
+                                                            </label>
+                                                            <span className="text-gray-500">({count})</span>
+                                                        </li>
+                                                    )
+                                                )}
+                                            </ul>
+                                            <button
+                                                onClick={() => toggleShowMore('products')}
+                                                className="mt-2 text-sm text-green-600"
+                                            >
+                                                {showMore.products ? 'Show less' : 'Show more'}
+                                            </button>
+                                        </>
+                                    )}
+                                </div>
+
+                                {/** Location */}
+                                <div className="border-b pb-4 mb-4">
+                                    <button
+                                        onClick={() => toggleSection('location')}
+                                        className="flex justify-between w-full items-center mb-3"
+                                    >
+                                        <h3 className="font-semibold">Location</h3>
+                                        {open.location ? (
+                                            <ChevronUpIcon className="w-5 h-5" />
+                                        ) : (
+                                            <ChevronDownIcon className="w-5 h-5" />
+                                        )}
+                                    </button>
+                                    {open.location && (
+                                        <ul className="space-y-2 text-sm">
+                                            <li className="flex items-center">
+                                                <input type="checkbox" id="loc-0" className="mr-2" />
+                                                <label htmlFor="loc-0">Nigeria</label>
+                                            </li>
+                                        </ul>
+                                    )}
+                                </div>
+
+                                {/** Ratings */}
+                                <div className="border-b pb-4 mb-4">
+                                    <button
+                                        onClick={() => toggleSection('ratings')}
+                                        className="flex justify-between w-full items-center mb-3"
+                                    >
+                                        <h3 className="font-semibold">Ratings</h3>
+                                        {open.ratings ? (
+                                            <ChevronUpIcon className="w-5 h-5" />
+                                        ) : (
+                                            <ChevronDownIcon className="w-5 h-5" />
+                                        )}
+                                    </button>
+                                    {open.ratings && (
+                                        <ul className="space-y-2 text-sm">
+                                            {RATINGS.map(([r, c], i) => (
+                                                <li key={i} className="flex items-center">
+                                                    <input
+                                                        type="radio"
+                                                        name="rating"
+                                                        id={`rate-${i}`}
+                                                        className="mr-2"
+                                                    />
+                                                    <label htmlFor={`rate-${i}`} className="flex items-center justify-between w-full">
+                                                        <div className="flex">
+                                                            {[...Array(5)].map((_, k) => (
+                                                                <StarIcon
+                                                                    key={k}
+                                                                    className={`w-4 h-4 ${k < Math.floor(r) ? 'text-yellow-400' : 'text-gray-300'
+                                                                        }`}
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                        <span className="ml-2">{r} & up</span>
+                                                        <span className="ml-auto mr-0 text-gray-500">({c})</span>
+                                                    </label>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
+
+                                {/** Vendor */}
+                                <div className="border-b pb-4 mb-4">
+                                    <button
+                                        onClick={() => toggleSection('vendor')}
+                                        className="flex justify-between w-full items-center mb-3"
+                                    >
+                                        <h3 className="font-semibold">Vendor</h3>
+                                        {open.vendor ? (
+                                            <ChevronUpIcon className="w-5 h-5" />
+                                        ) : (
+                                            <ChevronDownIcon className="w-5 h-5" />
+                                        )}
+                                    </button>
+                                    {open.vendor && (
+                                        <>
+                                            <ul className="space-y-2 text-sm">
+                                                {(showMore.vendor ? VENDORS : VENDORS.slice(0, 4)).map(
+                                                    ([name, count], i) => (
+                                                        <li key={i} className="flex items-center">
+                                                            <input
+                                                                type="checkbox"
+                                                                id={`vend-${i}`}
+                                                                className="mr-2"
+                                                            />
+                                                            <label htmlFor={`vend-${i}`} className="flex-1">
+                                                                {name}
+                                                            </label>
+                                                            <span className="text-gray-500">({count})</span>
+                                                        </li>
+                                                    )
+                                                )}
+                                            </ul>
+                                            <button
+                                                onClick={() => toggleShowMore('vendor')}
+                                                className="mt-2 text-sm text-green-600"
+                                            >
+                                                {showMore.vendor ? 'Show less' : 'Show more'}
+                                            </button>
+                                        </>
+                                    )}
+                                </div>
+
+                                {/** Price */}
+                                <div className="border-b pb-4 mb-4">
+                                    <button
+                                        onClick={() => toggleSection('price')}
+                                        className="flex justify-between w-full items-center mb-3"
+                                    >
+                                        <h3 className="font-semibold">Price</h3>
+                                        {open.price ? (
+                                            <ChevronUpIcon className="w-5 h-5" />
+                                        ) : (
+                                            <ChevronDownIcon className="w-5 h-5" />
+                                        )}
+                                    </button>
+                                    {open.price && (
+                                        <div className="space-y-3 text-sm">
+                                            <div className="flex justify-between">
+                                                <span>0</span>
+                                                <span>₦{price}</span>
+                                            </div>
+                                            <input
+                                                type="range"
+                                                min={0}
+                                                max={200}
+                                                value={price}
+                                                onChange={(e) => setPrice(e.target.value)}
+                                                className="w-full"
+                                            />
+                                            <div className="flex gap-2">
+                                                {[5, 10].map((sz) => (
+                                                    <button
+                                                        key={sz}
+                                                        onClick={() => toggleSize(sz)}
+                                                        className={`border px-3 py-1 rounded ${sizes.includes(sz)
+                                                            ? 'bg-green-600 text-white'
+                                                            : 'bg-white text-black'
+                                                            }`}
+                                                    >
+                                                        {sz}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                    )}
+                                </div>
+
+                                {/** Size */}
+                                <div>
+                                    <button
+                                        onClick={() => toggleSection('size')}
+                                        className="flex justify-between w-full items-center mb-3"
+                                    >
+                                        <h3 className="font-semibold">Size</h3>
+                                        {open.size ? (
+                                            <ChevronUpIcon className="w-5 h-5" />
+                                        ) : (
+                                            <ChevronDownIcon className="w-5 h-5" />
+                                        )}
+                                    </button>
+                                    {open.size && (
+                                        <div className="space-y-3 text-sm">
+                                            <div className="flex justify-between">
+                                                <span>0</span>
+                                                <span>₦{price}</span>
+                                            </div>
+                                            <input
+                                                type="range"
+                                                min={0}
+                                                max={200}
+                                                value={price}
+                                                onChange={(e) => setPrice(e.target.value)}
+                                                className="w-full"
+                                            />
+                                            <div className="flex gap-2">
+                                                {[5, 10].map((sz) => (
+                                                    <button
+                                                        key={sz}
+                                                        onClick={() => toggleSize(sz)}
+                                                        className={`border px-3 py-1 rounded ${sizes.includes(sz)
+                                                            ? 'bg-green-600 text-white'
+                                                            : 'bg-white text-black'
+                                                            }`}
+                                                    >
+                                                        {sz}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

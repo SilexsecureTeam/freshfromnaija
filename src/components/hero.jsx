@@ -89,27 +89,27 @@ function HomeHero() {
     return (
         <div>
             <HeroBody />
-            <div className='px-16'>
+            <div className='px-4 md:px-16'>
                 <h2 className="text-black font-bold text-[20px] !my-4">Category</h2>
-                <div className='grid grid-cols-1 md:grid-cols-3 w-full gap-[1%]'>
+                <div className='grid grid-cols-1 md:grid-cols-3 !gap-y-3 w-full gap-[1%]'>
                     <div className='font-bold relative'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
                         <img src={frozen} alt="" className="rounded-[8px]" />
                         <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Frozen goods</p>
                     </div>
-                    <div className='font-bold relative'>
+                    <div className='font-bold relative mt-2 md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
                         <img src={meat} alt="" className="rounded-[8px]" />
                         <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Meat Produce</p>
                     </div>
-                    <div className='font-bold relative'>
+                    <div className='font-bold relative mt-2 md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
                         <img src={regular} alt="" className="rounded-[8px]" />
                         <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Regular goods</p>
                     </div>
                 </div>
             </div>
-            <div className="px-16">
+            <div className="px-4 md:px-16">
                 <h2 className="text-black font-bold text-[20px] !mt-8 !mb-2">Latest Products</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 w-full gap-[2%]">
                     {products.map((p) => {
@@ -131,7 +131,7 @@ function HomeHero() {
                                     </div>
                                     <p className="text-[14px] font-normal text-[#98A2B3] mt-3">{p.subtitle}</p>
                                     <img src={starImg} alt="Rating" className="mt-3" />
-                                    <div className="flex justify-between mt-3 whitespace-nowrap text-[14px]">
+                                    <div className="flex flex-col md:flex-row justify-between mt-3 whitespace-nowrap text-[14px]">
                                         <button
                                             onClick={() => handleAdd(p)}
                                             disabled={inCart}
@@ -149,8 +149,8 @@ function HomeHero() {
                     })}
                 </div>
             </div>
-            <div className='px-16'>
-                <div className='px-10 py-10 bg-[#F2F2F2] text-[#4D4D4D] mt-16'>
+            <div className='px-4 md:px-16'>
+                <div className='px-10 py-10 bg-[#F2F2F2] text-[#4D4D4D] mt-30 md:mt-16'>
                     <p className='text-[#999999] font-medium text-[12px] text-center !mb-1'>CLIENT TESTIMONIALS</p>
                     <p className='text-[#F8931F] font-semibold text-2xl text-center'>What our Client Says</p>
                     <div className='grid grid-cols-1 md:grid-cols-3 gap-7 mt-8'>
@@ -172,10 +172,10 @@ function HomeHero() {
                     </div>
                 </div>
             </div>
-            <div className='px-16 py-10'>
+            <div className='px-4 md:px-16 py-10'>
                 <div className='flex justify-between items-center'>
                     <p className='text-[#333333] font-bold text-[24px]'>Know more about us!</p>
-                    <div className='flex gap-7 items-center'>
+                    <div className='flex flex-col md:flex-row gap-7 items-center'>
                         <button className='border-[#215829] !border rounded-[25px] font-bold px-3 py-3'>
                             Frequent Questions
                         </button>
@@ -184,8 +184,8 @@ function HomeHero() {
                         <p>Help & Support</p>
                     </div>
                 </div>
-                <div className='flex !justify-between mt-10'>
-                    <div className='w-[35%]'>
+                <div className='flex flex-col md:flex-row !justify-between mt-10'>
+                    <div className='w-full md:w-[35%]'>
                         {faqs.map((item, index) => (
                             <div key={index} className=''>
                                 <div className='space-y-3.5 text-center'>
@@ -197,26 +197,26 @@ function HomeHero() {
                             </div>
                         ))}
                     </div>
-                    <div className='max-w-[65%]'>
-                        <div className='flex justify-end gap-5 text-white'>
-                            <div className=' max-w-[230px] bg-[#215829] rounded-[8px] px-5 py-8 font-semibold text-center'>
+                    <div className='w-full md:max-w-[65%]'>
+                        <div className='flex justify-end gap-2 md:gap-5 text-white overflow-x-auto'>
+                            <div className='w-[230px] bg-[#215829] rounded-[8px] px-5 py-8 font-semibold text-center'>
                                 <p>Place and Order!</p>
                                 <img src={place1} alt="" className='w-[60px] h-[60px] mt-8 mb-10 mx-auto' />
                                 <p>Place order through our website</p>
                             </div>
-                            <div className='max-w-[230px] bg-[#215829] rounded-[8px] px-5 py-8 font-semibold text-center'>
+                            <div className='w-[230px] bg-[#215829] rounded-[8px] px-5 py-8 font-semibold text-center'>
                                 <p>Track Progress</p>
                                 <img src={place2} alt="" className='w-[60px] h-[60px] mt-8 mb-10 mx-auto' />
                                 <p>Your can track your order status with delivery time</p>
                             </div>
-                            <div className='max-w-[230px] bg-[#215829] rounded-[8px] px-5 py-8 font-semibold text-center'>
+                            <div className='w-[230px] bg-[#215829] rounded-[8px] px-5 py-8 font-semibold text-center'>
                                 <p>Get your Order!</p>
                                 <img src={place3} alt="" className='w-[60px] h-[60px] mt-8 mb-10 mx-auto' />
                                 <p>Receive your order at a lighting fast speed!</p>
                             </div>
                         </div>
                         {openIndex !== null && (
-                            <p className="px-5 text-gray-700' !ml-30 !mt-5 text-center">
+                            <p className="px-5 text-gray-700' md:!ml-30 !mt-5 text-center">
                                 {faqs[openIndex].a}
                             </p>
                         )}

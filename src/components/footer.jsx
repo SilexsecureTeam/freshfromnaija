@@ -13,26 +13,26 @@ import applepay from '../assets/applepay.png';
 function Footer() {
     return (
         <div>
-            <div className='bg-[#009144] px-16 py-2 text-white flex justify-between fontPoppins'>
+            <div className='bg-[#009144] px-4 md:px-16 py-2 text-white flex justify-between fontPoppins'>
                 <div>
-                    <p className='font-light text-[44px] text-center'>54+</p>
-                    <p className='font-bold text-center'>Registered Riders</p>
+                    <p className='font-light text-[23px] md:text-[40px] text-center'>54+</p>
+                    <p className='font-bold text-center text-[13px] md:text-[15px]'>Registered Riders</p>
                 </div>
                 <div>
-                    <p className='font-light text-[44px] text-center'>789,900+</p>
-                    <p className='font-bold text-center'>
+                    <p className='font-light text-[23px] md:text-[40px] text-center'>789,900+</p>
+                    <p className='font-bold text-center text-[13px] md:text-[15px]'>
                         Orders Delivered</p>
                 </div>
                 <div>
-                    <p className='font-light text-[44px] text-center'>690+</p>
-                    <p className='font-bold text-center'>Vendors Patnered</p>
+                    <p className='font-light text-[23px] md:text-[40px] text-center'>690+</p>
+                    <p className='font-bold text-center text-[13px] md:text-[15px]'>Vendors Patnered</p>
                 </div>
                 <div>
-                    <p className='font-light text-[44px] text-center'>17,457+</p>
-                    <p className='font-bold text-center'>Food items</p>
+                    <p className='font-light text-[23px] md:text-[40px] text-center'>17,457+</p>
+                    <p className='font-bold text-center text-[13px] md:text-[15px]'>Food items</p>
                 </div>
             </div>
-            <div className="px-16 py-14 text-[#333D4C] text-[14px] flex justify-between">
+            <div className="px-8 md:px-16 py-14 text-[#333D4C] text-[14px] flex flex-wrap gap-y-5 justify-between">
                 <div className="!space-y-2">
                     <p className="text-[#181D25] font-bold !mb-3">Categories</p>
                     <p>Perishables</p>
@@ -59,7 +59,7 @@ function Footer() {
                     <p>Support center</p>
                     <p>Shipping</p>
                 </div>
-                <div className="!space-y-3 w-[32%]">
+                <div className="!space-y-3 w-[70%] md:w-[32%] text-nowrap">
                     <p className="text-[#181D25] font-bold !mb-3">Join us and stay up to date</p>
                     <div className="flex items-center gap-5">
                         <div className="flex items-center gap-1">
@@ -81,7 +81,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="px-16 flex gap-2">
+            <div className="px-4 md:px-16 flex gap-2 -mt-10 md:mt-0">
                 <img src={facebook} alt="" />
                 <img src={insta} alt="" />
                 <img src={pint} alt="" />
@@ -89,7 +89,7 @@ function Footer() {
                 <img src={telegram} alt="" />
             </div>
             <div className='w-[80%] h-0.5 bg-[#E0E5EB] mt-3 ml-16' />
-            <div className='text-[10px] text-[#181D25] flex items-center justify-between max-w-[80%] mt-3 mb-4 px-16'>
+            <div className='text-[10px] text-[#181D25] flex flex-col md:flex-row gap-y-5 text-nowrap items-center justify-between max-w-[80%] mt-3 mb-4 px-4 md:px-16'>
                 <div className='flex gap-3'>
                     <p>© All rights reserved. Made by Createx Studio</p>
                     <p>Privacy</p>

@@ -15,7 +15,7 @@ export default function ShoppingCart() {
   }
 
   return (
-    <div className="max-w-[80%] mx-auto p-6 mt-40">
+    <div className="w-full md:max-w-[80%] mx-auto p-6 mt-40">
       <button
         onClick={() => dispatch(clearCart())}
         className="text-left font-bold border-[rgb(208,207,207,0.5)] w-full py-4 !border-t !border-b text-gray-600 mb-4 flex items-center"
@@ -26,7 +26,7 @@ export default function ShoppingCart() {
       <p className="text-gray-500 !mb-6">You have {items.length} items in your cart</p>
 
       {items.map(item => (
-        <div key={item.id} className="relative flex bg-white p-4 mb-4 rounded-[10px] shadow">
+        <div key={item.id} className="relative flex bg-white p-4 pb-6 mb-4 rounded-[10px] shadow">
           <button
             onClick={() => dispatch(removeItem(item.id))}
             className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
@@ -54,7 +54,7 @@ export default function ShoppingCart() {
             <p className="text-sm text-gray-500"><span className="text-[#1E1E1E]">Shipping Agent:</span> {item.shippingAgent}</p>
           </div>
 
-          <div className="flex flex-col items-end absolute right-4 bottom-4">
+          <div className="flex flex-col items-end absolute left-4 mt-3 md:right-4 bottom-0 md:bottom-4">
             <span className="text-sm text-gray-800">Pick up fee: {item.price}</span>
           </div>
         </div>
