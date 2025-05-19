@@ -157,7 +157,7 @@ function ProductHero() {
             <HeroBody />
             <div className='px-4 md:px-16'>
                 <h2 className="text-black font-bold text-[20px] !my-4">Category</h2>
-                <div className='grid grid-cols-1 md:grid-cols-3 w-full gap-[1%]'>
+                <div className='grid grid-cols-1 md:grid-cols-3 w-full gap-[1%] md:mb-7'>
                     <div className='font-bold relative'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
                         <img src={frozen} alt="" className="rounded-[8px]" />

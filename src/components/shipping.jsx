@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 import carrier1 from '../assets/carrier1.png';
 import carrier2 from '../assets/carrier2.png';
@@ -122,6 +123,10 @@ export default function ShippingOptions() {
           </div>
         </div>
       )}
+      <Link to='/billing'><button className="w-[120px] mt-3 bg-green-600 text-white py-3 rounded-lg">
+        Proceed
+      </button>
+      </Link>
     </div>
   )
 }

@@ -6,6 +6,8 @@ import Product from "./pages/Product";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import Shipping from "./pages/Shipping";
+import Billing from "./pages/Billing";
+import TrackOrder from "./pages/TrackOrder";
 
 
 // ScrollToTop logic directly in App.jsx
@@ -33,6 +35,8 @@ function App() {
         <Route path="/product_details" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/shipping" element={<Shipping />} />
+        <Route path="/billing" element={<Billing />} />
+        <Route path="/track_order" element={<TrackOrder />} />
       </Routes>
     </Router>
   );

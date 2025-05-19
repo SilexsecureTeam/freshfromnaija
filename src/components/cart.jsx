@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { removeItem, changeQuantity, clearCart } from '../store/cartSlice'
 import { TrashIcon, MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
 
@@ -16,12 +17,13 @@ export default function ShoppingCart() {
 
   return (
     <div className="w-full md:max-w-[80%] mx-auto p-6 mt-40">
-      <button
-        onClick={() => dispatch(clearCart())}
+      <Link to='/product'><button
+
         className="text-left font-bold border-[rgb(208,207,207,0.5)] w-full py-4 !border-t !border-b text-gray-600 mb-4 flex items-center"
       >
         &lt; Add Products
       </button>
+      </Link>
       <h2 className="font-medium !mb-1">Shopping cart</h2>
       <p className="text-gray-500 !mb-6">You have {items.length} items in your cart</p>
 
@@ -59,6 +61,10 @@ export default function ShoppingCart() {
           </div>
         </div>
       ))}
+      <Link to='/shipping'><button className="w-[200px] mt-3 bg-green-600 text-white py-3 rounded-lg">
+        Proceed to Checkout
+      </button>
+      </Link>
     </div>
   )
 }
