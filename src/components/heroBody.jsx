@@ -21,7 +21,7 @@ function HeroBody() {
     }, [visibleCount])
 
     return (
-        <div className='flex flex-col md:flex-row justify-between w-full bg-first !md:h-fit mt-30 pt-20 md:pt-40 pb-20 px-4 md:px-16'>
+        <div className='flex flex-col md:flex-row justify-between w-full bg-first !md:h-fit mt-14 md:mt-30 pt-20 md:pt-40 pb-20 px-4 md:px-16'>
             <div className="text-[#ffffff] !space-y-2.5">
                 <h1 className="font-bold text-[17px]">Fresh From Naija – Delivering Afro Taste Worldwide</h1>
                 <p className="font-semibold text-[30px] md:text-[42px] leading-[1.25]">Enjoy Naija Flavors <br /> Anywhere, Anytime</p>

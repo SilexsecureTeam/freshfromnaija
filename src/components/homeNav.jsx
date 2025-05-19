@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function HomeNav() {
     return (
-        <div className='mt-44 bg-[#F2F4F5] px-[17.5%] flex items-center gap-2 py-4 text-[14px]'>
+        <div className='mt-28 md:mt-44 bg-[#F2F4F5] px-[8%] md:px-[17.5%] flex items-center gap-2 py-4 text-[14px]'>
             <Link to='/'><div className='flex gap-0.5 items-center'>
                 <img src={house} alt="" className='w-4 h-4' />
                 Home

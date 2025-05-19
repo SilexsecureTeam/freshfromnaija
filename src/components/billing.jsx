@@ -50,7 +50,7 @@ export default function BillingSection() {
     };
 
     return (
-        <div className="px-4 md:px-24 py-8 grid grid-cols-1 md:grid-cols-3 gap-8 mt-34">
+        <div className="px-4 md:px-24 py-8 grid grid-cols-1 md:grid-cols-3 gap-8 mt-24 md:mt-34">
             {/* Left form */}
             <form className="md:col-span-2 !space-y-6" onSubmit={handleSubmit}>
                 <h2 className="text-lg font-semibold">Billing Information</h2>

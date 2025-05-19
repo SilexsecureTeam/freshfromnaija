@@ -16,10 +16,10 @@ export default function ShoppingCart() {
   }
 
   return (
-    <div className="w-full md:max-w-[80%] mx-auto p-6 mt-40">
+    <div className="w-full md:max-w-[80%] mx-auto p-6 mt-24 md:mt-40">
       <Link to='/product'><button
 
-        className="text-left font-bold border-[rgb(208,207,207,0.5)] w-full py-4 !border-t !border-b text-gray-600 mb-4 flex items-center"
+        className="text-left font-bold border-[rgb(208,207,207,0.2)] w-full py-4 !border-t !border-b text-gray-600 mb-4 flex items-center"
       >
         &lt; Add Products
       </button>

@@ -8,6 +8,12 @@ import Cart from "./pages/Cart";
 import Shipping from "./pages/Shipping";
 import Billing from "./pages/Billing";
 import TrackOrder from "./pages/TrackOrder";
+import TrackOrderMap from "./pages/TrackMap";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Welcome from "./pages/Welcome";
+import Question from "./pages/Question";
+import Fun from "./pages/Fun";
 
 // ScrollToTop logic directly in App.jsx
 function ScrollToTop() {
@@ -36,6 +42,12 @@ function App() {
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/billing" element={<Billing />} />
         <Route path="/track_order" element={<TrackOrder />} />
+        <Route path="/track_map" element={<TrackOrderMap />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/welcome" element={<Welcome />} />
+        <Route path="/question" element={<Question />} />
+        <Route path="/fun_part" element={<Fun />} />
       </Routes>
     </Router>
   );

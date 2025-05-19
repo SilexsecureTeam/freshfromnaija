@@ -5,6 +5,7 @@ import account from '../assets/account.png';
 import help from '../assets/help.png';
 import cart from '../assets/cart.png';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Menu } from '@headlessui/react'
 
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -12,16 +13,41 @@ function Header() {
     return (
         <div className='px-[6%] py-2 fixed w-[100%] top-0 z-50 bg-[#ffffff] shadow'>
             <div className='flex justify-between items-center pt-2'>
-                <Link to="/"><img src={logo} alt="" /></Link>
+                <Link to="/"><img src={logo} alt="" className='w-[120px] h-auto md:w-auto' /></Link>
                 <input type='search' placeholder='Search the products' className='border-[#00B31B] border px-4 py-2 rounded-[6px] md:w-[30%] hidden md:block' />
                 <div className='gap-7 text-[14px] hidden md:flex'>
                     <div className='flex items-center gap-1'>
-                        <img src={account} alt="" className='w-[19px] h-[19px]' />
-                        <select>
-                            <option className='flex items-center gap-1'>Account</option>
-                            <Link to="/login"><option>Login</option></Link>
-                            <Link to="/register"><option>Sign Up</option></Link>
-                        </select>
+                        {/* <img src={account} alt="" className='w-[19px] h-[19px]' /> */}
+                        <Menu as="div" className="relative inline-block text-left">
+                            <div>
+                                <Menu.Button className="flex items-center gap-1">
+                                    <img src={account} className="w-5 h-5" alt="Account" />
+                                    Account
+                                </Menu.Button>
+                            </div>
+                            <Menu.Items className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md focus:outline-none">
+                                <Menu.Item>
+                                    {() => (
+                                        <Link
+                                            to="/login"
+                                            className="block px-4 py-2 text-sm hover:bg-green-50 font-semibold"
+                                        >
+                                            Login
+                                        </Link>
+                                    )}
+                                </Menu.Item>
+                                <Menu.Item>
+                                    {() => (
+                                        <Link
+                                            to="/register"
+                                            className="block px-4 py-2 text-sm hover:bg-green-50 font-semibold"
+                                        >
+                                            Sign Up
+                                        </Link>
+                                    )}
+                                </Menu.Item>
+                            </Menu.Items>
+                        </Menu>
                     </div>
                     <div className='flex items-center gap-1'>
                         <img src={help} alt="" className='w-[19px] h-[19px]' />

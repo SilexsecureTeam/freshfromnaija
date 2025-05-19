@@ -42,7 +42,7 @@ export default function ShippingOptions() {
 
 
   return (
-    <div className="max-w-6xl mx-auto p-6 mt-40">
+    <div className="max-w-6xl mx-auto p-6 mt-24 md:mt-40">
       <table className="min-w-[600px] md:min-w-full overflow-x-auto divide-gray-200">
         <thead>
           <tr className="text-left text-sm font-semibold !border-t pt-5 border-gray-100 text-gray-600">
