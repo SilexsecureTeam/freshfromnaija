@@ -32,13 +32,13 @@ const products = [
         price: 'N20,000',
         subtitle: 'Types of Crayfish available', category: 'vegetables',
     },
-    { id: 1, image: crayfish1, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 2, image: crayfish2, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 3, image: crayfish3, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 4, image: crayfish4, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 5, image: crayfish5, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 6, image: crayfish6, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 7, image: crayfish7, title: 'Cray Fish', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 1, image: crayfish1, title: 'Peels', price: 'N18,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 2, image: crayfish2, title: 'Peppers', price: 'N23,000', subtitle: 'Types of Crayfish available', category: 'Peppers' },
+    { id: 3, image: crayfish3, title: 'Groundnut', price: 'N29,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 4, image: crayfish4, title: 'Potatoes', price: 'N13,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 5, image: crayfish5, title: 'Banga Fruit', price: 'N25,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 6, image: crayfish6, title: 'Fish & Meats', price: 'N30,000', subtitle: 'Types of Crayfish available', category: 'Meats' },
+    { id: 7, image: crayfish7, title: 'Corn', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'Fruits' },
 ]
 
 const client = [
