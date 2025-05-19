@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import './index.css';
 import Home from "./pages/Home";
@@ -8,7 +8,6 @@ import Cart from "./pages/Cart";
 import Shipping from "./pages/Shipping";
 import Billing from "./pages/Billing";
 import TrackOrder from "./pages/TrackOrder";
-
 
 // ScrollToTop logic directly in App.jsx
 function ScrollToTop() {
