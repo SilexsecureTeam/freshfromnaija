@@ -7,7 +7,7 @@ function Question() {
         <div>
             <Header />
             <QuestionComponent /> 
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

@@ -7,7 +7,7 @@ function Fun() {
         <div>
             <Header />
             <FunComponent /> 
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

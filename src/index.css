@@ -49,6 +49,10 @@ button {
   border: 0;
 }
 
+button:disabled{
+  cursor: not-allowed;
+}
+
 button:focus,
 button:focus-visible {
   outline: none;

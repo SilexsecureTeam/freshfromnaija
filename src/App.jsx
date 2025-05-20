@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import Welcome from "./pages/Welcome";
 import Question from "./pages/Question";
 import Fun from "./pages/Fun";
+import Questonaire from "./pages/Questionaire";
 
 // ScrollToTop logic directly in App.jsx
 function ScrollToTop() {
@@ -48,6 +49,7 @@ function App() {
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/question" element={<Question />} />
         <Route path="/fun_part" element={<Fun />} />
+        <Route path="/form" element={<Questonaire />} />
       </Routes>
     </Router>
   );

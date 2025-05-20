@@ -7,7 +7,7 @@ function Register() {
         <div>
             <Header />
             <RegisterComponent /> 
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

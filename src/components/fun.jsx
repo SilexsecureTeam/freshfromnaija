@@ -10,7 +10,7 @@ function FunComponent() {
             <div className='text-[#333333] !space-y-3 text-left w-full md:w-[50%] text-[14px] px-0 md:px-10 flex items-start flex-col'>
                 <p className='text-[23px] font-medium'>Now time for the Fun Part!</p>
                 <p>We will help guide you to success, whether you are a pro or brand new to selling.</p>
-                <Link to='/fun_part'><button className='text-[#ffffff] bg-[#009144] font-semibold px-7 py-2 rounded-[20px]'>Get a Space</button></Link>
+                <Link to='/form'><button className='text-[#ffffff] bg-[#009144] font-semibold px-7 py-2 rounded-[20px]'>Get a Space</button></Link>
 
             </div>
 

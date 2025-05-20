@@ -7,7 +7,7 @@ function Welcome() {
         <div>
             <Header />
             <WelcomeComponent /> 
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }
