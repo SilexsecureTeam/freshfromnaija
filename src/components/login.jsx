@@ -22,7 +22,7 @@ function LoginComponent() {
                 <div className='flex gap-3 items-center justify-items-start'>
                     <input type='checkbox' /><span>I agree to the terms & policy</span>
                 </div>
-                <Link to='/welcome' className='w-full'><button className='bg-[#009144] py-2 w-[90%] md:w-[80%] rounded-[16px] text-white font-semibold'>SignIn</button></Link>
+                <Link to='/dashboard' className='w-full'><button className='bg-[#009144] py-2 w-[90%] md:w-[80%] rounded-[16px] text-white font-semibold'>SignIn</button></Link>
                 <p className='!mt-10 !mb-10 w-full'>Or</p>
                 <div className='flex justify-between gap-8'>
                     <div className='flex items-center gap-2 border cursor-pointer border-[#D9D9D9] text-black px-5 rounded-[10px] py-1'>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import physical from '../assets/physical.png';
 import digital from '../assets/digital.png';
+import { Link } from 'react-router-dom';
 
 const steps = [
   'Store preferences',
@@ -218,9 +219,11 @@ export default function ShopPreferences() {
               <button onClick={back} className="px-9 py-2 text-green-600 !border border-green-600 rounded-[25px] hover:bg-green-50">
                 Cancel
               </button>
-              <button onClick={next} className="px-9 py-2 bg-green-600 text-white rounded-[25px] hover:bg-green-700" disabled={!storeName}>
-                Create your Store
-              </button>
+              <Link to='/dashboard'>
+                <button className="px-9 py-2 bg-green-600 text-white rounded-[25px] hover:bg-green-700" disabled={!storeName}>
+                  Create your Store
+                </button>
+              </Link>
             </div>
           </div>
         </div>
