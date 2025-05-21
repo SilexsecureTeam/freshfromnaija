@@ -13,14 +13,15 @@ export default function DashHeader({ onHamburgerClick }) {
     const getTitle = () => {
         if (pathname === '/dashboard') return 'Main Dashboard';
         if (pathname === '/my_products') return 'My Products';
+        if (pathname === '/add_product') return 'Add Product';
         return 'Main Dashboard';
     };
 
     return (
         <>
-            <div className="fixed top-0 lg:hidden flex items-center !w-full justify-between bg-[#ffffff] p-4 z-50">
+            <div className="fixed top-0 lg:hidden flex items-center !w-full justify-between bg-[#ffffff] p-4 px-8 z-50">
                 <button onClick={onHamburgerClick}>
-                    <Menu className="w-6 h-6" />
+                    <Menu className="w-6 h-6 text-black" />
                 </button>
                 <img src={logo} alt="Logo" className="w-24" />
             </div>
@@ -37,9 +38,9 @@ export default function DashHeader({ onHamburgerClick }) {
                     />
                     <img src={searchIcon} alt="" className="w-[14px] h-[14px] absolute top-[10px] right-3" />
                 </div>
-                <div className="flex items-center space-x-3 text-[#54657E]">
-                    <img src={message} alt="Notification" className="h-6 w-6 cursor-pointer" />
-                    <img src={notification} alt="Notification" className="h-6 w-6 cursor-pointer" />
+                <div className="flex items-center space-x-3.5 text-[#54657E]">
+                    <img src={message} alt="Notification" className="h-7 w-7 cursor-pointer" />
+                    <img src={notification} alt="Notification" className="h-7 w-7 cursor-pointer" />
                     <div className='flex items-center gap-2'>
                         <img src={avatar} alt="Profile" className="h-9 w-9 rounded-full" />
                         <select name="" id="">
