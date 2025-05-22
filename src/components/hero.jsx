@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../store/cartSlice';
+import { Link } from 'react-router-dom';
 import HeroBody from './heroBody';
 import orderImg from '../assets/order.png';
 import frozen from '../assets/frozen.png';
@@ -24,21 +25,21 @@ import place1 from '../assets/place1.png';
 import place2 from '../assets/place2.png';
 import place3 from '../assets/place3.png';
 
-const products = [
+export const products = [
     {
         id: 0,
         image: crayfish,
         title: 'Cray Fish',
-        price: 'N20,000',
+        price: '20,000',
         subtitle: 'Types of Crayfish available', category: 'vegetables',
     },
-    { id: 1, image: crayfish1, title: 'Peels', price: 'N18,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 2, image: crayfish2, title: 'Peppers', price: 'N23,000', subtitle: 'Types of Crayfish available', category: 'Peppers' },
-    { id: 3, image: crayfish3, title: 'Groundnut', price: 'N29,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 4, image: crayfish4, title: 'Potatoes', price: 'N13,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 5, image: crayfish5, title: 'Banga Fruit', price: 'N25,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 6, image: crayfish6, title: 'Fish & Meats', price: 'N30,000', subtitle: 'Types of Crayfish available', category: 'Meats' },
-    { id: 7, image: crayfish7, title: 'Corn', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'Fruits' },
+    { id: 1, image: crayfish1, title: 'Peels', price: '18,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 2, image: crayfish2, title: 'Peppers', price: '23,000', subtitle: 'Types of Crayfish available', category: 'Peppers' },
+    { id: 3, image: crayfish3, title: 'Groundnut', price: '29,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 4, image: crayfish4, title: 'Potatoes', price: '13,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 5, image: crayfish5, title: 'Banga Fruit', price: '25,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 6, image: crayfish6, title: 'Fish & Meats', price: '30,000', subtitle: 'Types of Crayfish available', category: 'Meats' },
+    { id: 7, image: crayfish7, title: 'Corn', price: '20,000', subtitle: 'Types of Crayfish available', category: 'Fruits' },
 ]
 
 const client = [
@@ -65,16 +66,16 @@ function HomeHero() {
 
     const handleAdd = (product) => {
         dispatch(addItem({
-          id: product.id,
-          name: product.title, // maps 'title' to 'name'
-          imageUrl: product.image, // maps 'image' to 'imageUrl'
-          category: product.category || 'N/A',
-          shippingType: product.shippingType || 'Standard',
-          shippingAgent: product.shippingAgent || 'Default Agent',
-          price: product.price || '₦0',
-          quantity: 1,
+            id: product.id,
+            name: product.title, // maps 'title' to 'name'
+            imageUrl: product.image, // maps 'image' to 'imageUrl'
+            category: product.category || 'N/A',
+            shippingType: product.shippingType || 'Standard',
+            shippingAgent: product.shippingAgent || 'Default Agent',
+            price: product.price || '₦0',
+            quantity: 1,
         }));
-      };
+    };
 
     const faqs = [
         { q: 'How does Ordering work?', a: 'Fresh From Naija simplifies the food ordering process. Browse through our diverse menu, select your favourite food items, and proceed to checkout. Your items will be on its way to you.' },
@@ -111,19 +112,22 @@ function HomeHero() {
             </div>
             <div className="px-4 md:px-16">
                 <h2 className="text-black font-bold text-[20px] !mt-8 !mb-2">Latest Products</h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 w-full gap-[2%]">
-                    {products.map((p) => {
-                        const inCart = cartItems.some(item => item.id === p.id)
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-[2%]">
+                    {products.map(p => {
+                        const inCart = cartItems.some(item => item.id === p.id);
                         return (
-                            <div key={p.id} className="bg-white rounded-[15px] shadow relative">
+                            <div key={p.id} className="bg-white rounded-lg shadow relative">
                                 <div className="absolute flex items-center gap-2 right-2 top-2">
                                     <div className="bg-[white] p-1.5 rounded-[50%] cursor-pointer">
                                         <img src={heart} alt="Favorite" className="w-[30px] h-[30px]" />
                                     </div>
                                 </div>
-                                <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
-                                    <img src={p.image} alt={p.title} className="w-full" />
-                                </div>
+                                <Link to={`/product_details/${p.id}`}>
+                                    <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
+                                        <img src={p.image} alt={p.title} className="w-full" />
+                                    </div>
+                                </Link>
+
                                 <div className="p-2 pt-5 px-3 text-[#98A2B3]">
                                     <div className="flex justify-between items-center w-[94%]">
                                         <p className="text-[#98A2B3] font-bold">{p.title}</p>
@@ -131,6 +135,7 @@ function HomeHero() {
                                     </div>
                                     <p className="text-[14px] font-normal text-[#98A2B3] mt-3">{p.subtitle}</p>
                                     <img src={starImg} alt="Rating" className="mt-3" />
+
                                     <div className="flex flex-col md:flex-row justify-between mt-3 whitespace-nowrap text-[14px]">
                                         <button
                                             onClick={() => handleAdd(p)}
@@ -139,13 +144,13 @@ function HomeHero() {
                                         >
                                             {inCart ? 'Added' : 'Add To Cart'}
                                         </button>
-                                        <button className="text-black border-[rgb(51,51,51)] border rounded-[18px] px-4.5 py-2">
+                                        <button className="text-black border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2">
                                             Add Shortlist
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                        )
+                        );
                     })}
                 </div>
             </div>

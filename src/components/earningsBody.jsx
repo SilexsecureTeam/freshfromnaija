@@ -74,7 +74,7 @@ export default function EarningsBody() {
             {/* Filters bar */}
             <div className="flex items-center !space-x-10">
                 <h2 className="text-2xl font-semibold text-[#009144]">Summary</h2>
-                <div className="flex !space-x-2 border border-[#D5D5D5] text-[#202224] bg-[#F9F9FB] px-3 py-2 rounded-[10px] text-sm">
+                <div className="flex !space-x-2 border border-[#D5D5D5] text-[#202224] bg-[#F9F9FB] px-3 pr-10 py-2 rounded-[10px] text-sm">
                     <select value={year} onChange={e => setYear(e.target.value)} className="rounded px-2 py-1">
                         <option>Year</option>
                         <option>2025</option>
@@ -87,13 +87,15 @@ export default function EarningsBody() {
                         <option>Jan</option>
                         <option>Feb</option>
                     </select>
-                    <div className="flex items-center rounded px-2 py-1">
+                    <div className="flex items-center rounded px-2 py-1 relative">
                         {/* <img src={calendarIcon} alt="from" className="w-4 h-4 mr-1" /> */}
-                        <input type="date" value={from} onChange={e => setFrom(e.target.value)} className="outline-none" />
+                        <p className='absolute right-0'>From</p>
+                        <input type="date" value={from} onChange={e => setFrom(e.target.value)} className="outline-none opacity-0 w-10" />
                     </div>
-                    <div className="flex items-center rounded px-2 py-1">
+                    <div className="flex items-center rounded px-2 py-1 relative">
                         {/* <img src={calendarIcon} alt="to" className="w-4 h-4 mr-1" /> */}
-                        <input type="date" value={to} onChange={e => setTo(e.target.value)} className="outline-none" />
+                        <p className='absolute right-0'>To</p>
+                        <input type="date" value={from} onChange={e => setFrom(e.target.value)} className="outline-none opacity-0 w-10" />
                     </div>
                 </div>
             </div>
@@ -119,11 +121,11 @@ export default function EarningsBody() {
                         <p className='font-semibold'>Estimated Earning</p>
                         <div className='flex gap-3'>
                             <div>
-                                <p className='font-normal text-[13px]'><span className='font-black text-[20px]'>.</span>Net Income</p>
+                                <p className='font-normal text-[13px]'><span className='font-black text-[20px]'></span>Net Income</p>
                                 <p className='font-semibold text-[13px]'>100</p>
                             </div>
                             <div>
-                                <p className='font-normal text-[13px]'><span className='font-black text-[20px]'>.</span>Customer Spend</p>
+                                <p className='font-normal text-[13px]'><span className='font-black text-[20px]'></span>Customer Spend</p>
                                 <p className='font-semibold text-[13px]'>100</p>
                             </div>
                         </div>

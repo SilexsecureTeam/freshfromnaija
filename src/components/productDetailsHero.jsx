@@ -8,7 +8,11 @@ import {
     ShoppingCartIcon,
     HeartIcon,
     ShareIcon,
-} from '@heroicons/react/24/outline'
+} from '@heroicons/react/24/outline';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from '../store/cartSlice';
+import { products } from '../components/hero';
 import heart from '../assets/heart.png';
 import crayfish from '../assets/crayfish.png';
 import crayfish1 from '../assets/crayfish1.png';
@@ -33,8 +37,31 @@ import HeroBody from './heroBody';
 
 
 function ProductDetailsHero() {
-    const thumbnails = [thumb1, thumb2, thumb3, thumb4, thumb5]
-    const [mainImage, setMainImage] = useState(thumbnails[0])
+    
+
+    const { id } = useParams();
+    const product = products.find(p => p.id === +id);
+
+    const dispatch = useDispatch();
+    const cartItems = useSelector(state => state.cart);
+    const inCart = cartItems.some(item => item.id === product.id);
+
+    const handleAdd = () => {
+        dispatch(addItem({
+            id: product.id,
+            name: product.title,
+            imageUrl: product.image,
+            category: product.category,
+            // ...other fields required by your slice
+            price: product.price,
+            quantity: 1,
+        }));
+    };
+
+    if (!product) return <p>Product not found</p>;
+
+    const thumbnails = Array(5).fill(product.image);
+    const [mainImage, setMainImage] = useState(product.image);
     const [qty, setQty] = useState(1)
 
     return (
@@ -49,7 +76,7 @@ function ProductDetailsHero() {
                             <img
                                 key={i}
                                 src={src}
-                                alt={`thumb-${i}`}
+                                alt={`${product.title} thumb ${i}`}
                                 onClick={() => setMainImage(src)}
                                 className={`w-16 h-16 object-cover rounded cursor-pointer border-2 ${mainImage === src ? 'border-green-600' : 'border-transparent'
                                     }`}
@@ -57,6 +84,7 @@ function ProductDetailsHero() {
                         ))}
                         <button><ChevronDownIcon className="w-6 h-6 text-gray-500" /></button>
                     </div>
+
 
                     <div className="ml-6">
                         <img
@@ -70,7 +98,7 @@ function ProductDetailsHero() {
                 {/* Right: Details */}
                 <div className="space-y-4">
                     <div className="flex items-center !space-x-1">
-                        <h2 className="text-3xl font-bold text-[#1A1A1A]">Chinese Cabbage</h2>
+                        <h2 className="text-3xl font-bold text-[#1A1A1A]">{product.title}</h2>
                         <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-sm">In Stock</span>
                     </div>
 
@@ -89,8 +117,8 @@ function ProductDetailsHero() {
                     </div>
 
                     <div className="flex items-center space-x-4">
-                        <span className="line-through text-gray-400">₦48.00</span>
-                        <span className="text-2xl font-semibold text-green-600">₦17.28</span>
+                        <span className="line-through text-gray-400">₦48000.00</span>
+                        <span className="text-2xl font-semibold text-green-600">₦{product.price}</span>
                         <span className="px-2 py-1 bg-red-100 text-red-600 rounded-[30px] text-sm">64% Off</span>
                     </div>
 
@@ -129,9 +157,12 @@ function ProductDetailsHero() {
                         >
                             <PlusIcon className="w-5 h-5" />
                         </button>
-                        <button className="flex-1 bg-green-600 text-white px-6 py-3 rounded flex items-center justify-center space-x-2 hover:bg-green-700">
+                        <button
+                            onClick={handleAdd}
+                            disabled={inCart}
+                            className="flex-1 bg-green-600 text-white px-6 py-3 rounded flex items-center justify-center space-x-2 hover:bg-green-700">
                             <ShoppingCartIcon className="w-5 h-5" />
-                            <span>Add to Cart</span>
+                            <span>{inCart ? 'Added' : 'Add to Cart'}</span>
                         </button>
                         <button className="p-3 border rounded-full hover:bg-gray-100">
                             <HeartIcon className="w-5 h-5 text-gray-600" />

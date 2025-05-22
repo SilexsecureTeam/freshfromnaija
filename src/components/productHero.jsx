@@ -9,7 +9,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../store/cartSlice';
 import HeroBody from './heroBody';
-
+import { products } from './hero';
+import { Link } from 'react-router-dom';
 // import orderImg from '../assets/order.png';
 import frozen from '../assets/frozen.png';
 import meat from '../assets/meat.png';
@@ -32,22 +33,6 @@ import place1 from '../assets/place1.png';
 import place2 from '../assets/place2.png';
 import place3 from '../assets/place3.png';
 
-const products = [
-    {
-        id: 0,
-        image: crayfish,
-        title: 'Cray Fish',
-        price: 'N20,000',
-        subtitle: 'Types of Crayfish available', category: 'vegetables',
-    },
-    { id: 1, image: crayfish1, title: 'Peels', price: 'N18,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 2, image: crayfish2, title: 'Peppers', price: 'N23,000', subtitle: 'Types of Crayfish available', category: 'Peppers' },
-    { id: 3, image: crayfish3, title: 'Groundnut', price: 'N29,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 4, image: crayfish4, title: 'Potatoes', price: 'N13,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 5, image: crayfish5, title: 'Banga Fruit', price: 'N25,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
-    { id: 6, image: crayfish6, title: 'Fish & Meats', price: 'N30,000', subtitle: 'Types of Crayfish available', category: 'Meats' },
-    { id: 7, image: crayfish7, title: 'Corn', price: 'N20,000', subtitle: 'Types of Crayfish available', category: 'Fruits' },
-]
 
 const client = [
     {
@@ -434,9 +419,11 @@ function ProductHero() {
                                         <img src={heart} alt="Favorite" className="w-[30px] h-[30px]" />
                                     </div>
                                 </div>
-                                <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
-                                    <img src={p.image} alt={p.title} className="w-full" />
-                                </div>
+                                <Link to={`/product_details/${p.id}`}>
+                                    <div className="bg-[#F7F5F7] p-6 !rounded-t-[10px]">
+                                        <img src={p.image} alt={p.title} className="w-full" />
+                                    </div>
+                                </Link>
                                 <div className="p-2 pt-5 px-3 text-[#98A2B3]">
                                     <div className="flex justify-between items-center w-[94%]">
                                         <p className="text-[#98A2B3] font-bold">{p.title}</p>
@@ -452,7 +439,7 @@ function ProductHero() {
                                         >
                                             {inCart ? 'Added' : 'Add To Cart'}
                                         </button>
-                                        <button className="text-black border-[rgb(51,51,51)] border rounded-[18px] px-4.5 py-2">
+                                        <button className="text-black border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2">
                                             Add Shortlist
                                         </button>
                                     </div>
