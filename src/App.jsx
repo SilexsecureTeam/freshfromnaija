@@ -18,6 +18,8 @@ import Questonaire from "./pages/Questionaire";
 import Dashboard from "./pages/Dashboard";
 import MyProducts from "./pages/MyProducts";
 import AddProduct from "./pages/AddProduct";
+import OrdersReceived from "./pages/OrdersReceived";
+import Earnings from "./pages/Earnings";
 
 // ScrollToTop logic directly in App.jsx
 function ScrollToTop() {
@@ -56,6 +58,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/my_products" element={<MyProducts />} />
         <Route path="/add_product" element={<AddProduct />} />
+        <Route path="/orders_received" element={<OrdersReceived />} />
+        <Route path="/earnings&payouts" element={<Earnings />} />
       </Routes>
     </Router>
   );

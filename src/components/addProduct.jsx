@@ -5,8 +5,6 @@ import addWhite from '../assets/add-white.png';
 import addOrange from '../assets/add-orange.png';
 import aRight from '../assets/arrow-right.png';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import { Link } from 'react-router-dom';
 
 const categoryOptions = ['Vegetables', 'Fruits', 'Meats', 'Seafood'];

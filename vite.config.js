@@ -8,4 +8,7 @@ export default defineConfig({
     fastRefresh: false
   })],
   clearScreen: false,               // ← don’t clear the console
+  optimizeDeps: {
+    include: ['recharts']
+  }
 })

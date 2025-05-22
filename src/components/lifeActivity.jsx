@@ -23,7 +23,7 @@ export default function LifeActivity() {
                                 <p className="text-[14px] text-[#151C28]">{label}</p>
                             </div>
                             <div className='flex justify-between items-center mt-4'>
-                                <p className="text-sm text-green-500">{trend}</p>
+                                <p className={`text-sm ${trend === '-5%' ? 'text-[#F34A7C]' :'text-[#009144]'}`}>{trend}</p>
                                 <h2 className="text-xl font-semibold">{value}{label.includes('Earnings') ? '₦' : ''}</h2>
                             </div>
                         </div>

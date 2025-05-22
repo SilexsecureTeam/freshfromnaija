@@ -29,8 +29,8 @@ export default function Sidebar({ isOpen, onClose }) {
     { label: 'Dashboard', icon: dashImg, activeIcon: dashAct, route: '/dashboard' },
     { label: 'My Products', icon: prodImg, activeIcon: prodAct, route: '/my_products' },
     { label: 'Add New Product', icon: addImg, activeIcon: addAct, route: '/add_product' },
-    { label: 'Orders Received', icon: ordImg, activeIcon: ordAct, route: '/order_received' },
-    { label: 'Earnings & Payouts', icon: earnImg, activeIcon: earnAct, route: '/earnings' },
+    { label: 'Orders Received', icon: ordImg, activeIcon: ordAct, route: '/orders_received' },
+    { label: 'Earnings & Payouts', icon: earnImg, activeIcon: earnAct, route: '/earnings&payouts' },
     { label: 'Profile Settings', icon: profileImg, activeIcon: profileAct, route: '/profile' },
     { label: 'Log Out', icon: outImg, activeIcon: outImg, route: '/login' }, // Same icon for logout
   ];
