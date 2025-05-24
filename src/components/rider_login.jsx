@@ -22,7 +22,7 @@ function RiderLoginComponent() {
                 <div className='flex gap-3 items-center justify-items-start'>
                     <input type='checkbox' /><span>I agree to the terms & policy</span>
                 </div>
-                <Link to='/dashboard' className='w-full'><button className='bg-[#009144] py-2 w-[90%] md:w-[80%] rounded-[16px] text-white font-semibold'>SignIn</button></Link>
+                <Link to='/rider_dashboard' className='w-full'><button className='bg-[#F8931F] py-2 w-[90%] md:w-[80%] rounded-[16px] text-white font-semibold'>SignIn</button></Link>
                 <p className='!mt-10 !mb-10 w-full'>Or</p>
                 <div className='flex justify-between gap-8'>
                     <div className='flex items-center gap-2 border cursor-pointer border-[#D9D9D9] text-black px-5 rounded-[10px] py-1'>
@@ -34,7 +34,7 @@ function RiderLoginComponent() {
                         <p>Sign in with Apple</p>
                     </div>
                 </div>
-                <p className='font-semibold text-black'>Don't have an Account? <Link to='/register'><span className='text-[#009144] font-semibold'>Sign Up</span></Link></p>
+                <p className='font-semibold text-black'>Don't have an Account? <Link to='/rider_register'><span className='text-[#009144] font-semibold'>Sign Up</span></Link></p>
             </div>
 
         </div>

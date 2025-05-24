@@ -161,7 +161,7 @@ export default function EarningsBody() {
                     <p className="font-semibold">Your pending Payout</p>
                     <ResponsiveContainer width="100%" height={150}>
                         <PieChart>
-                            <Pie data={pieData} dataKey="value" innerRadius={40} outerRadius={60}>
+                            <Pie data={pieData} dataKey="value" innerRadius={40} outerRadius={60} className='!text-black'>
                                 {pieData.map((entry, idx) => (
                                     <Cell key={idx} fill={COLORS[idx]} />
                                 ))}

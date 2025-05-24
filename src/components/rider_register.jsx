@@ -2,6 +2,7 @@ import loginImg from '../assets/rider.png';
 import google from '../assets/google.png';
 import apple from '../assets/apple.png';
 import { Link } from 'react-router-dom';
+import whiteStar from '../assets/white-star.png';
 
 function RiderRegisterComponent() {
     return (
@@ -9,6 +10,7 @@ function RiderRegisterComponent() {
             <div className='w-[52%] hidden md:block -mt-5 relative'>
                 <img src={loginImg} alt="" className='relative' />
                 <div className='text-white absolute z-30 top-30 px-16 !space-y-5'>
+                    <img src={whiteStar} alt='' />
                     <p className='text-[40px] leading-[1.3] text-white'>Become an FFN <br /> Logistics Partner</p>
                     <p className='text-[15px]'>Register as a Logistics Partner and grow your delivery business. Individual riders and logistics companies welcome.</p>
                 </div>
@@ -45,7 +47,7 @@ function RiderRegisterComponent() {
                         <p>Sign in with Apple</p>
                     </div>
                 </div>
-                <p className='font-semibold text-black md:pr-20'>Have an Account? <Link to='/login'><span className='text-[#009144] font-semibold'>Sign In</span></Link></p>
+                <p className='font-semibold text-black md:pr-20'>Have an Account? <Link to='/rider_login'><span className='text-[#009144] font-semibold'>Sign In</span></Link></p>
             </div>
 
         </div>

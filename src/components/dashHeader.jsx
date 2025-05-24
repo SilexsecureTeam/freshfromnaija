@@ -12,6 +12,7 @@ export default function DashHeader({ onHamburgerClick }) {
 
     const getTitle = () => {
         if (pathname === '/dashboard') return 'Main Dashboard';
+        if (pathname === '/rider_dashboard') return 'Dashboard';
         if (pathname === '/my_products') return 'My Products';
         if (pathname === '/add_product') return 'Add Product';
         if (pathname === '/orders_received') return 'Orders Received';
