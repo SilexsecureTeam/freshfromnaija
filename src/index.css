@@ -57,7 +57,7 @@ button:focus,
 button:focus-visible {
   outline: none;
 }
-select, input, select:focus, select:focus-visible{
+select, input, select:focus, select:focus-visible, textarea, textarea:focus{
   outline: none;
 }
 select, select:focus, select:focus-visible{

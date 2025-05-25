@@ -14,7 +14,9 @@ export default function DashHeader({ onHamburgerClick }) {
         if (pathname === '/dashboard') return 'Main Dashboard';
         if (pathname === '/rider_dashboard') return 'Dashboard';
         if (pathname === '/my_products') return 'My Products';
+        if (pathname === '/rider_shipments') return 'My Shipments';
         if (pathname === '/add_product') return 'Add Product';
+        if (pathname === '/proof_of_delivery') return 'Proof Of Delivery';
         if (pathname === '/orders_received') return 'Orders Received';
         if (pathname === '/earnings&payouts') return 'Earnings & Payouts';
         if (pathname === '/profile') return 'Profile Settings';

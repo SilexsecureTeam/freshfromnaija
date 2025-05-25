@@ -29,8 +29,8 @@ export default function RiderSidebar({ isOpen, onClose }) {
 
   const navItems = [
     { label: 'Dashboard', icon: dashImg, activeIcon: dashAct, route: '/rider_dashboard' },
-    { label: 'My Shipments', icon: prodImg, activeIcon: prodAct, route: '/my_products' },
-    { label: 'Proof of Delivery', icon: proofImg, activeIcon: proofAct, route: '/add_product' },
+    { label: 'My Shipments', icon: prodImg, activeIcon: prodAct, route: '/rider_shipments' },
+    { label: 'Proof of Delivery', icon: proofImg, activeIcon: proofAct, route: '/proof_of_delivery' },
     { label: 'Notifications', icon: notificationImg, activeIcon: notificationAct, route: '/orders_received' },
     { label: 'Earnings & Payouts', icon: earnImg, activeIcon: earnAct, route: '/earnings&payouts' },
     { label: 'Profile Settings', icon: profileImg, activeIcon: profileAct, route: '/profile' },
