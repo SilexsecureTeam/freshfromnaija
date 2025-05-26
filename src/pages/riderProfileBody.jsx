@@ -1,68 +1,79 @@
 import React, { useState, useRef } from 'react'
-import { RadioGroup } from '@headlessui/react'
 import accessLogo from '../assets/accessImg.png'
 import defaultAvatar from '../assets/avatar.png'
 
 export default function RiderProfileSettings() {
-    // Verification
-    const [verified, setVerified] = useState(true)
-    // Profile photo
-    const fileInputRef = useRef()
-    const [photoUrl, setPhotoUrl] = useState(defaultAvatar)
+  // Verification
+  const [verified, setVerified] = useState(true)
+  // Profile photo
+  const fileInputRef = useRef()
+  const [photoUrl, setPhotoUrl] = useState(defaultAvatar)
+  // Personal details
+  const [details, setDetails] = useState({
+    fullName: '', company: '', address: '', phone: '', email: '', location: ''
+  })
+  // Bank accounts
+  const [accounts, setAccounts] = useState([
+    { id: 1, bank: 'Access', number: '0123 4567 89', name: 'Kelvin Logistics Ltd', isDefault: true }
+  ])
+  const [showAccountModal, setShowAccountModal] = useState(false)
+  const [newAccount, setNewAccount] = useState({ bank: '', number: '', name: '' })
 
-    // Personal details
-    const [details, setDetails] = useState({
-        fullName: '', company: '', address: '', phone: '', email: '', location: ''
-    })
+  const handlePhotoChange = e => {
+    const file = e.target.files[0]
+    if (file) setPhotoUrl(URL.createObjectURL(file))
+  }
 
-    // Bank accounts
-    const [accounts, setAccounts] = useState([
-        { id: 1, bank: 'Access', number: '0123 4567 89', name: 'Kelvin Logistics Ltd', isDefault: true }
-    ])
-    const [showAccountModal, setShowAccountModal] = useState(false)
-    const [newAccount, setNewAccount] = useState({ bank: '', number: '', name: '' })
+  const handleDetailChange = e => {
+    const { name, value } = e.target
+    setDetails(prev => ({ ...prev, [name]: value }))
+  }
 
-    const handlePhotoChange = e => {
-        const file = e.target.files[0]
-        if (file) setPhotoUrl(URL.createObjectURL(file))
-    }
+  const saveDetails = () => {
+    console.log('Saved', details)
+  }
 
-    const handleDetailChange = e => {
-        const { name, value } = e.target
-        setDetails(prev => ({ ...prev, [name]: value }))
-    }
+  const addAccount = () => {
+    const id = Date.now()
+    setAccounts(prev => [...prev, { ...newAccount, id, isDefault: false }])
+    setNewAccount({ bank: '', number: '', name: '' })
+    setShowAccountModal(false)
+  }
+  const deleteAccount = id => setAccounts(prev => prev.filter(a => a.id !== id))
+  const setDefault = id => setAccounts(prev => prev.map(a => ({ ...a, isDefault: a.id === id })))
 
-    const saveDetails = () => {
-        console.log('Saved', details)
-    }
+  return (
+    <div className="mx-auto p-6 space-y-8 mt-24 text-[#333]">
 
-    const addAccount = () => {
-        const id = Date.now()
-        setAccounts(prev => [...prev, { ...newAccount, id, isDefault: false }])
-        setNewAccount({ bank: '', number: '', name: '' })
-        setShowAccountModal(false)
-    }
+      {/* Verification */}
+      <div className="border border-[#3333334D] p-4 rounded flex items-center space-x-20">
+        <span className="w-[100px] font-semibold">Verification</span>
+        <div className="flex items-center space-x-8">
+          <label className="flex items-center space-x-2">
+            <input
+              type="radio"
+              name="verification"
+              checked={verified === true}
+              onChange={() => setVerified(true)}
+              className="h-4 w-4 text-green-500 border-gray-300"
+            />
+            <span className={verified ? 'text-black' : 'opacity-60'}>Identity Verified</span>
+          </label>
+          <label className="flex items-center space-x-2">
+            <input
+              type="radio"
+              name="verification"
+              checked={verified === false}
+              onChange={() => setVerified(false)}
+              className="h-4 w-4 text-green-500 border-gray-300"
+            />
+            <span className={!verified ? 'text-black' : 'opacity-60'}>Identity not verified</span>
+          </label>
+        </div>
+      </div>
 
-    const deleteAccount = id => setAccounts(prev => prev.filter(a => a.id !== id))
-    const setDefault = id => setAccounts(prev => prev.map(a => ({ ...a, isDefault: a.id === id })))
-
-    return (
-        <div className="mx-auto p-6 space-y-8 mt-24 text-[#333333]">
-            {/* Verification */}
-            <div className="border border-[#3333334D] p-4 rounded flex items-center space-x-20">
-                <span className='w-[100px] font-semibold'>Verification</span>
-                <RadioGroup value={verified} onChange={setVerified} className="flex space-x-4">
-                    <RadioGroup.Option value={true} className={({ active, checked }) => `flex items-center space-x-1 ${checked ? '' : 'opacity-60'}`}>
-                        {({ checked }) => <><div className={`${checked ? 'bg-green-500' : ''} w-4 h-4 rounded-full border border-gray-400`} /><RadioGroup.Label>Identity Verified</RadioGroup.Label></>}
-                    </RadioGroup.Option>
-                    <RadioGroup.Option value={false} className={({ active, checked }) => `flex items-center space-x-1 ${checked ? '' : 'opacity-60'}`}>
-                        {({ checked }) => <><div className={`${checked ? 'bg-green-500' : ''} w-4 h-4 rounded-full border border-gray-400`} /><RadioGroup.Label>Identity not verified</RadioGroup.Label></>}
-                    </RadioGroup.Option>
-                </RadioGroup>
-            </div>
-
-            {/* Photo */}
-            <div className="border border-[#3333334D] p-4 rounded flex items-center space-x-20">
+      {/* Photo */}
+      <div className="border border-[#3333334D] p-4 rounded flex items-center space-x-20">
                 <span className='w-[100px] font-semibold'>Profile Photo</span>
                 <div className='flex items-center space-x-4'>
                     <img src={photoUrl} alt="avatar" className="w-12 h-12 rounded-full object-cover" />
