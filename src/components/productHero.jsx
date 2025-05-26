@@ -9,8 +9,13 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../store/cartSlice';
 import HeroBody from './heroBody';
+import HeroSliderNew from './homeHeroNew';
 import { products } from './hero';
 import { Link } from 'react-router-dom';
+import cate1 from '../assets/cate1.png';
+import cate2 from '../assets/cate2.png';
+import cate3 from '../assets/cate3.png';
+import cate4 from '../assets/cate4.png';
 // import orderImg from '../assets/order.png';
 import frozen from '../assets/frozen.png';
 import meat from '../assets/meat.png';
@@ -139,24 +144,29 @@ function ProductHero() {
 
     return (
         <div>
-            <HeroBody />
-            <div className='px-4 md:px-16'>
+            <HeroSliderNew />
+            <div className='px-4 md:px-16 mb-10'>
                 <h2 className="text-black font-bold text-[20px] !my-4">Category</h2>
-                <div className='grid grid-cols-1 md:grid-cols-3 w-full gap-[1%] md:mb-7'>
+                <div className='grid grid-cols-1 md:grid-cols-4 !gap-y-3 w-full gap-[1.5%]'>
                     <div className='font-bold relative'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={frozen} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Frozen goods</p>
+                        <img src={cate1} alt="" className="rounded-[8px]" />
+                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Food & Groceries</p>
                     </div>
                     <div className='font-bold relative mt-2 md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={meat} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Meat Produce</p>
+                        <img src={cate2} alt="" className="rounded-[8px]" />
+                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Fashion & Accessories</p>
                     </div>
                     <div className='font-bold relative mt-2 md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={regular} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Regular goods</p>
+                        <img src={cate3} alt="" className="rounded-[8px]" />
+                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Health & Beauty</p>
+                    </div>
+                    <div className='font-bold relative mt-2 md:mt-0'>
+                        <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
+                        <img src={cate4} alt="" className="rounded-[8px]" />
+                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Home & Living</p>
                     </div>
                 </div>
             </div>

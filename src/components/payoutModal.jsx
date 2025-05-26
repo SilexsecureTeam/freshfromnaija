@@ -62,7 +62,7 @@ export default function PayoutModal({ isOpen, onClose, payout }) {
             <div className="text-black font-medium">Bank Account</div>
             <div className="text-gray-500">****456789</div>
           </div>
-          <img src={accessLogo} alt="Bank" className="h-8 object-contain" />
+          <img src={accessLogo} alt="Bank" className="object-contain" />
         </div>
       </div>
     </div>
