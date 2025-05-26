@@ -291,11 +291,9 @@ const RiderEarningsBody = () => {
                                             : 'text-[#FFC600]'
                                             }`}>{order.status}</span>
                                     </td>
-                                    <td className="px-4 py-2 text-sm z-20 text-[#0F60FF] cursor-pointer"
-                                        onClick={() => openModal(order)}>
-                                        View Details
+                                    <td className="px-4 py-2 text-sm z-20 text-[#0F60FF]">
+                                        <p className='cursor-pointer' onClick={() => openModal(order)}>View Details</p>
                                     </td>
-
                                 </tr>
                             ))}
                         </tbody>

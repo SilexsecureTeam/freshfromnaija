@@ -3,7 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../store/cartSlice';
 import { Link } from 'react-router-dom';
 import HeroBody from './heroBody';
+import HeroSliderNew from './homeHeroNew';
 import orderImg from '../assets/order.png';
+import vendor11 from '../assets/vendor11.png';
+import vendor12 from '../assets/vendor12.png';
+import cate1 from '../assets/cate1.png';
+import cate2 from '../assets/cate2.png';
+import cate3 from '../assets/cate3.png';
+import cate4 from '../assets/cate4.png';
 import frozen from '../assets/frozen.png';
 import meat from '../assets/meat.png';
 import regular from '../assets/regular.png';
@@ -24,6 +31,7 @@ import cl3 from '../assets/cl3.png';
 import place1 from '../assets/place1.png';
 import place2 from '../assets/place2.png';
 import place3 from '../assets/place3.png';
+
 
 export const products = [
     {
@@ -89,29 +97,34 @@ function HomeHero() {
 
     return (
         <div>
-            <HeroBody />
+            <HeroSliderNew />
             <div className='px-4 md:px-16'>
                 <h2 className="text-black font-bold text-[20px] !my-4">Category</h2>
-                <div className='grid grid-cols-1 md:grid-cols-3 !gap-y-3 w-full gap-[1%]'>
+                <div className='grid grid-cols-1 md:grid-cols-4 !gap-y-3 w-full gap-[1.5%]'>
                     <div className='font-bold relative'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={frozen} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Frozen goods</p>
+                        <img src={cate1} alt="" className="rounded-[8px]" />
+                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Food & Groceries</p>
                     </div>
                     <div className='font-bold relative mt-2 md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={meat} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Meat Produce</p>
+                        <img src={cate2} alt="" className="rounded-[8px]" />
+                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Fashion & Accessories</p>
                     </div>
                     <div className='font-bold relative mt-2 md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={regular} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Regular goods</p>
+                        <img src={cate3} alt="" className="rounded-[8px]" />
+                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Health & Beauty</p>
+                    </div>
+                    <div className='font-bold relative mt-2 md:mt-0'>
+                        <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
+                        <img src={cate4} alt="" className="rounded-[8px]" />
+                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Home & Living</p>
                     </div>
                 </div>
-            </div>
-            <div className="px-4 md:px-16">
-                <h2 className="text-black font-bold text-[20px] !mt-8 !mb-2">Latest Products</h2>
+            </div> 
+            <div className="px-4 md:px-16 mt-20">
+                <h2 className="text-black font-bold text-[20px] !mt-8 !mb-4">Latest Products</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-[2%]">
                     {products.map(p => {
                         const inCart = cartItems.some(item => item.id === p.id);
@@ -152,6 +165,27 @@ function HomeHero() {
                             </div>
                         );
                     })}
+                </div>
+            </div>
+            <div className="px-4 md:px-16 mt-20">
+                <h2 className="text-black font-bold text-[20px] !mt-8 !mb-4">Featured Nigerian Vendors</h2>
+                <div className='border border-[#33333333] rounded-[8px] px-4 py-10 grid grid-cols-2 md:gap-x-10'>
+                    <div className='bg-[#F6F6F6] flex gap-10 px-7 py-10'>
+                        <img src={vendor11} alt="" className='w-[130px]' />
+                        <div className='!space-y-1.5'>
+                            <p className='text-[20px] font-semibold text-[#333333]'>Jummy’s Traditionals</p>
+                            <p>Bold, handcrafted home décor made with traditional Northern techniques. </p>
+                            <button className='bg-[#009144] text-white px-6 py-1.5 rounded-[6px]'>Shop Now</button>
+                        </div>
+                    </div>
+                    <div className='bg-[#F6F6F6] flex gap-10 px-7 py-10'>
+                        <img src={vendor12} alt="" className='w-[130px]' />
+                        <div className='!space-y-1.5'>
+                            <p className='text-[20px] font-semibold text-[#333333]'>Zubairu Arts & Crafts</p>
+                            <p>Bold, handcrafted home décor made with traditional Northern techniques. </p>
+                            <button className='bg-[#009144] text-white px-6 py-1.5 rounded-[6px]'>Shop Now</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className='px-4 md:px-16'>
