@@ -31,10 +31,10 @@ export default function RiderSidebar({ isOpen, onClose }) {
     { label: 'Dashboard', icon: dashImg, activeIcon: dashAct, route: '/rider_dashboard' },
     { label: 'My Shipments', icon: prodImg, activeIcon: prodAct, route: '/rider_shipments' },
     { label: 'Proof of Delivery', icon: proofImg, activeIcon: proofAct, route: '/proof_of_delivery' },
-    { label: 'Notifications', icon: notificationImg, activeIcon: notificationAct, route: '/orders_received' },
-    { label: 'Earnings & Payouts', icon: earnImg, activeIcon: earnAct, route: '/earnings&payouts' },
+    { label: 'Notifications', icon: notificationImg, activeIcon: notificationAct, route: '/rider_notifications' },
+    { label: 'Earnings & Payouts', icon: earnImg, activeIcon: earnAct, route: '/rider_earnings' },
     { label: 'Profile Settings', icon: profileImg, activeIcon: profileAct, route: '/profile' },
-    { label: 'Log Out', icon: outImg, activeIcon: outImg, route: '/login' },
+    { label: 'Log Out', icon: outImg, activeIcon: outImg, route: '/rider_login' },
   ];
 
   return (

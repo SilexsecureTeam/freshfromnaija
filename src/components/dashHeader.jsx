@@ -13,8 +13,10 @@ export default function DashHeader({ onHamburgerClick }) {
     const getTitle = () => {
         if (pathname === '/dashboard') return 'Main Dashboard';
         if (pathname === '/rider_dashboard') return 'Dashboard';
+        if (pathname === '/rider_notifications') return 'Notifications';
         if (pathname === '/my_products') return 'My Products';
         if (pathname === '/rider_shipments') return 'My Shipments';
+        if (pathname === '/rider_earnings') return 'Earnings & Payouts';
         if (pathname === '/add_product') return 'Add Product';
         if (pathname === '/proof_of_delivery') return 'Proof Of Delivery';
         if (pathname === '/orders_received') return 'Orders Received';
