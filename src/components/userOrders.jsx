@@ -9,6 +9,7 @@ import item6 from '../assets/crayfish5.png';
 import item7 from '../assets/crayfish6.png';
 import item8 from '../assets/crayfish7.png';
 import item9 from '../assets/crayfish1.png';
+import starImg from '../assets/starYellow.png';
 
 const sampleOrders = [
     {
@@ -18,12 +19,12 @@ const sampleOrders = [
         amount: '₦45,000',
         status: 'Completed',
         products: [
-            { id: 1, image: item1 },
-            { id: 2, image: item2 },
-            { id: 3, image: item3 },
-            { id: 4, image: item4 },
-            { id: 5, image: item5 },
-            { id: 6, image: item6 },
+            { id: 1, image: item1, title: 'Cray Fish', price: 20000, subtitle: 'Types of Crayfish available', category: 'Vegetables', date: '14/04/2025', time: '8:00 Am' },
+            { id: 2, image: item2, title: 'Cray Fish', price: 20000, subtitle: 'Types of Crayfish available', category: 'Vegetables', date: '14/04/2025', time: '8:00 Am' },
+            { id: 3, image: item3, title: 'Cray Fish', price: 20000, subtitle: 'Types of Crayfish available', category: 'Vegetables', date: '14/04/2025', time: '8:00 Am' },
+            { id: 4, image: item4, title: 'Cray Fish', price: 20000, subtitle: 'Types of Crayfish available', category: 'Vegetables', date: '14/04/2025', time: '8:00 Am' },
+            { id: 5, image: item5, title: 'Cray Fish', price: 20000, subtitle: 'Types of Crayfish available', category: 'Vegetables', date: '14/04/2025', time: '8:00 Am' },
+            { id: 6, image: item6, title: 'Cray Fish', price: 20000, subtitle: 'Types of Crayfish available', category: 'Vegetables', date: '14/04/2025', time: '8:00 Am' },
         ],
     },
     {
@@ -33,12 +34,12 @@ const sampleOrders = [
         amount: '₦45,000',
         status: 'Awaiting Tracking',
         products: [
-            { id: 1, image: item7 },
-            { id: 2, image: item8 },
-            { id: 3, image: item9 },
-            { id: 4, image: item3 },
-            { id: 5, image: item4 },
-            { id: 5, image: item5 },
+            { id: 1, image: item7, title: 'Cray Fish', price: 20000, subtitle: 'Types of Crayfish available', category: 'Vegetables', date: '14/04/2025', time: '8:00 Am' },
+            { id: 2, image: item8, title: 'Cray Fish', price: 20000, subtitle: 'Types of Crayfish available', category: 'Vegetables', date: '14/04/2025', time: '8:00 Am' },
+            { id: 3, image: item9, title: 'Cray Fish', price: 20000, subtitle: 'Types of Crayfish available', category: 'Vegetables', date: '14/04/2025', time: '8:00 Am' },
+            { id: 4, image: item3, title: 'Cray Fish', price: 20000, subtitle: 'Types of Crayfish available', category: 'Vegetables', date: '14/04/2025', time: '8:00 Am' },
+            { id: 5, image: item4, title: 'Cray Fish', price: 20000, subtitle: 'Types of Crayfish available', category: 'Vegetables', date: '14/04/2025', time: '8:00 Am' },
+            { id: 5, image: item5, title: 'Cray Fish', price: 20000, subtitle: 'Types of Crayfish available', category: 'Vegetables', date: '14/04/2025', time: '8:00 Am' },
         ],
     },
 ];
@@ -47,7 +48,7 @@ export default function UserOrdersBody() {
     const [activeTab, setActiveTab] = useState('Orders');
 
     return (
-        <div className="max-w-6xl mx-auto px-6 py-10 mt-40">
+        <div className="max-w-6xl mx-auto px-6 py-10 mt-34">
             <AccountTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
             <div className='flex justify-between items-center'>
@@ -99,17 +100,27 @@ export default function UserOrdersBody() {
                             </div>
                         </div>
                         <div className='flex justify-between items-center'>
-                            <div className="flex items-center justify-between w-[65%] space-x-2 mt-4 overflow-x-auto">
+                            <div className="flex items-start justify-between w-[65%] space-x-2 mt-4 overflow-x-auto">
                                 {order.products.slice(0, 5).map(p => (
-                                    <img
-                                        key={p.id}
-                                        src={p.image}
-                                        alt=""
-                                        className="w-25 h-25 object-cover"
-                                    />
+                                    <div className='text-[10px] text-[#667085]'>
+                                        <img
+                                            key={p.id}
+                                            src={p.image}
+                                            alt=""
+                                            className="w-[130px] h-[120px] object-cover bg-[#F7F5F7] p-2.5 rounded-[5px]"
+                                        />
+                                        <div className='!space-y-1'>
+                                            <div className='flex justify-between pr-1'>
+                                                <p className='font-bold'>{p.title}</p>
+                                                <p className='text-black font-semibold'>₦{p.price}</p>
+                                            </div>
+                                            <p>{p.subtitle}</p>
+                                            <img src={starImg} alt="" className='w-auto h-3'/>
+                                        </div>
+                                    </div>
                                 ))}
                                 {order.products.length > 5 && (
-                                    <div className="w-25 h-25 rounded bg-gray-100 flex items-center justify-center text-gray-700 text-sm">
+                                    <div className="w-[130px] h-[120px] rounded bg-gray-100 flex items-center justify-center text-gray-700 text-sm">
                                         +{order.products.length - 5}
                                     </div>
                                 )}

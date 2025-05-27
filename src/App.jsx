@@ -33,6 +33,7 @@ import RiderProfile from "./pages/RiderProfile";
 import UserSignUp from "./pages/UserSignUp";
 import UserLogin from "./pages/UserLogin";
 import UserOrders from "./pages/UserOrders";
+import UserMessages from "./pages/UserMessages";
 
 // ScrollToTop logic directly in App.jsx
 function ScrollToTop() {
@@ -86,6 +87,7 @@ function App() {
         <Route path="/user_register" element={<UserSignUp />} />
         <Route path="/user_login" element={<UserLogin />} />
         <Route path="/user_orders" element={<UserOrders />} />
+        <Route path="/user_messages" element={<UserMessages />} />
       </Routes>
     </Router>
   );
