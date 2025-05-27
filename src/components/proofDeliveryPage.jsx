@@ -8,7 +8,7 @@ import sample3 from '../assets/sample3.png';
 import sample4 from '../assets/sample4.png';
 import sample5 from '../assets/sample5.png';
 import cameraIcon from '../assets/camera.png';
-import { BiRefresh } from 'react-icons/bi';
+//import { BiRefresh } from 'react-icons/bi';
 import { RefreshCcw } from 'lucide-react';
 
 export default function ProofDeliveryPage() {
