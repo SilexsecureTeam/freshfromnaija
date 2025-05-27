@@ -7,7 +7,6 @@ import smClock from '../assets/sm-clock.png';
 import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon';
 import ChevronRightIcon from '@heroicons/react/24/outline/ChevronRightIcon';
 import { EyeIcon } from '@heroicons/react/24/outline';
-// import classNames from 'classnames';
 
 const SAMPLE = [
     {
@@ -111,12 +110,12 @@ export default function NotificationsPage() {
             <button
               key={t}
               onClick={() => { setTab(t); setPage(1); }}
-              className={(
-                'pb-2 font-medium',
-                t === tab
+              className={
+                `pb-2 font-medium
+                ${t === tab
                   ? '!border-b-2 border-[#009144] text-[#009144]'
-                  : 'text-gray-600'
-              )}
+                  : 'text-gray-600'}`
+              }
             >
               {t === 'all' ? 'All' : 'Unread'}
             </button>
