@@ -30,6 +30,9 @@ import ProofOfDelivery from "./pages/ProofDelivery";
 import RiderNotification from "./pages/RiderNotification";
 import RiderEarnings from "./pages/RiderEarning";
 import RiderProfile from "./pages/RiderProfile";
+import UserSignUp from "./pages/UserSignUp";
+import UserLogin from "./pages/UserLogin";
+import UserOrders from "./pages/UserOrders";
 
 // ScrollToTop logic directly in App.jsx
 function ScrollToTop() {
@@ -80,6 +83,9 @@ function App() {
         <Route path="/rider_notifications" element={<RiderNotification />} />
         <Route path="/rider_earnings" element={<RiderEarnings />} />
         <Route path="/rider_profile" element={<RiderProfile />} />
+        <Route path="/user_register" element={<UserSignUp />} />
+        <Route path="/user_login" element={<UserLogin />} />
+        <Route path="/user_orders" element={<UserOrders />} />
       </Routes>
     </Router>
   );
