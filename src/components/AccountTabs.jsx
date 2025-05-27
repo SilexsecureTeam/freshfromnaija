@@ -23,7 +23,7 @@ export default function AccountTabs() {
           end
           className={({ isActive }) =>
             classNames(
-              'pb-1 !font-semibold',
+              'pb-1 !font-medium',
               isActive
                 ? 'text-[#009144] border-b-2 border-[#009144]'
                 : 'text-[#333333]'
