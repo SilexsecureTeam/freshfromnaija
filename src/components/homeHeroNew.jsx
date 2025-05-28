@@ -34,7 +34,7 @@ export default function HeroSliderNew() {
             />
 
             {/* Dark overlay */}
-            <div className="absolute inset-0 bg-[rgb(0,0,0,0.1)]" />
+            <div className="absolute inset-0 bg-[rgb(0,0,0,0.2)]" />
 
             {/* Content + side images */}
             <div className="relative z-10 flex h-full">
