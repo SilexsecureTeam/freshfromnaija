@@ -8,7 +8,7 @@ const tabs = [
   { label: 'Orders',     to: '/user_orders' },
   { label: 'Messages',   to: '/user_messages' },
   { label: 'Addresses',  to: '/user_address' },
-  { label: 'Wish lists', to: '/user_wishlists' },
+  { label: 'Wish lists', to: '/user_wishlist' },
   { label: 'Recently viewed', to: '/user_recent' },
   { label: 'Account settings', to: '/user_settings' },
 ]
