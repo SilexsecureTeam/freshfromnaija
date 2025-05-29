@@ -149,7 +149,7 @@ function HomeHero() {
                                     <p className="text-[14px] font-normal text-[#98A2B3] mt-3">{p.subtitle}</p>
                                     <img src={starImg} alt="Rating" className="mt-3" />
 
-                                    <div className="flex flex-col md:flex-row justify-between space-y-3 mt-3 whitespace-nowrap text-[14px]">
+                                    <div className="flex flex-col md:flex-row gap-y-3 justify-between mt-3 whitespace-nowrap text-[14px]">
                                         <button
                                             onClick={() => handleAdd(p)}
                                             disabled={inCart}

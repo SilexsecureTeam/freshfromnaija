@@ -11,8 +11,8 @@ export default function Header() {
   const [acctOpen, setAcctOpen] = useState(false)
 
   return (
-    <header className="px-[6%] py-2 fixed w-[100%] top-0 z-50 bg-[#ffffff] shadow">
-      <div className="px-6 py-2 flex justify-between items-center">
+    <header className="px-[6%] pt-4 fixed w-[100%] top-0 z-50 bg-[#ffffff] shadow">
+      <div className="px-6 py-0 flex justify-between items-center">
         <Link to="/">
           <img src={logo} alt="Logo" className='w-[120px] h-auto md:w-auto' />
         </Link>
@@ -73,7 +73,7 @@ export default function Header() {
       </div>
 
       {/* Desktop main nav */}
-      <nav className="hidden md:flex justify-center gap-14 mt-0 mb-3 text-[14.5px] text-[#333333]">
+      <nav className="hidden md:flex justify-center gap-14 mt-0 mb-2 text-[14.5px] text-[#333333]">
         <Link to="/product">Shop</Link>
         <Link to="/vendors">Vendors</Link>
         <Link to="/how-it-works">How it Works</Link>
