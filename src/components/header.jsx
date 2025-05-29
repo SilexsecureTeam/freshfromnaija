@@ -104,7 +104,7 @@ export default function Header() {
           <Link to="/how-it-works" className="block text-gray-700">How it Works</Link>
           <Link to="/resources" className="block text-gray-700">Resources</Link>
           <Link to="/contact" className="block text-gray-700">Contact Us</Link>
-          <div className="border-t border-gray-200 pt-4 space-y-2">
+          <div className="border-t border-gray-200 pt-4 space-y-3">
             <Link to="/login" className="block text-gray-700">Login</Link>
             <Link to="/register" className="block text-gray-700">Sign Up</Link>
             <Link to="/help" className="block text-gray-700">Help</Link>
