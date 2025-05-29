@@ -1,18 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/logo.png'
-import { Link } from 'react-router-dom'
 import accountIcon from '../assets/account.png'
 import help from '../assets/help.png'
 import cart from '../assets/cart.png'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export default function Header() {
+  const location = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
   const [acctOpen, setAcctOpen] = useState(false)
 
+  useEffect(() => {
+    setMenuOpen(false)    // Close the mobile menu
+    setAcctOpen(false)    // Optional: close account dropdown too
+  }, [location.pathname])
+
   return (
-    <header className="px-[6%] pt-4 fixed w-[100%] top-0 z-50 bg-[#ffffff] shadow">
-      <div className="px-6 py-0 flex justify-between items-center">
+    <header className="px-4 md:px-[6%] pt-4 pb-2 md:pb-0 fixed w-[100%] top-0 z-50 bg-[#ffffff] shadow">
+      <div className="md:px-6 py-0 flex justify-between items-center">
         <Link to="/">
           <img src={logo} alt="Logo" className='w-[120px] h-auto md:w-auto' />
         </Link>
