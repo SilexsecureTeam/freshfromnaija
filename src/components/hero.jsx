@@ -100,29 +100,29 @@ function HomeHero() {
             <HeroSliderNew />
             <div className='px-4 md:px-16'>
                 <h2 className="text-black font-bold text-[20px] !my-4">Category</h2>
-                <div className='grid grid-cols-1 md:grid-cols-4 !gap-y-3 w-full gap-[1.5%]'>
+                <div className='grid grid-cols-2 md:grid-cols-4 !gap-y-3 space-y-3 w-full !gap-x-[1.5%]'>
                     <div className='font-bold relative'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={cate1} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Food & Groceries</p>
+                        <img src={cate1} alt="" className="rounded-[8px] w-full" />
+                        <p className="text-white text-[15px] md:text-[16.5px] font-bold !-mt-10 !ml-2 md:!ml-7">Food & Groceries</p>
                     </div>
-                    <div className='font-bold relative mt-2 md:mt-0'>
+                    <div className='font-bold relative md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={cate2} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Fashion & Accessories</p>
+                        <img src={cate2} alt="" className="rounded-[8px] w-full" />
+                        <p className="text-white text-[15px] md:text-[16.5px] font-bold !-mt-10 !ml-2 md:!ml-7">Fashion & Accessories</p>
                     </div>
-                    <div className='font-bold relative mt-2 md:mt-0'>
+                    <div className='font-bold relative md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={cate3} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Health & Beauty</p>
+                        <img src={cate3} alt="" className="rounded-[8px] w-full" />
+                        <p className="text-white text-[15px] md:text-[16.5px] font-bold !-mt-10 !ml-2 md:!ml-7">Health & Beauty</p>
                     </div>
-                    <div className='font-bold relative mt-2 md:mt-0'>
+                    <div className='font-bold relative md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={cate4} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Home & Living</p>
+                        <img src={cate4} alt="" className="rounded-[8px] w-full" />
+                        <p className="text-white text-[15px] md:text-[16.5px] font-bold !-mt-10 !ml-2 md:!ml-7">Home & Living</p>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div className="px-4 md:px-16 mt-20">
                 <h2 className="text-black font-bold text-[20px] !mt-8 !mb-4">Latest Products</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-[2%]">
@@ -144,12 +144,12 @@ function HomeHero() {
                                 <div className="p-2 pt-5 px-3 text-[#98A2B3]">
                                     <div className="flex justify-between items-center w-[94%]">
                                         <p className="text-[#98A2B3] font-bold">{p.title}</p>
-                                        <p className="text-[#344054] font-bold mt-3">{p.price}</p>
+                                        <p className="text-[#344054] font-bold mt-3">₦{p.price}</p>
                                     </div>
                                     <p className="text-[14px] font-normal text-[#98A2B3] mt-3">{p.subtitle}</p>
                                     <img src={starImg} alt="Rating" className="mt-3" />
 
-                                    <div className="flex flex-col md:flex-row justify-between mt-3 whitespace-nowrap text-[14px]">
+                                    <div className="flex flex-col md:flex-row justify-between space-y-3 mt-3 whitespace-nowrap text-[14px]">
                                         <button
                                             onClick={() => handleAdd(p)}
                                             disabled={inCart}
@@ -167,11 +167,13 @@ function HomeHero() {
                     })}
                 </div>
             </div>
-            <div className="px-4 md:px-16 mt-20">
+            <div className="px-4 md:px-16 mt-40 md:mt-20">
                 <h2 className="text-black font-bold text-[20px] !mt-8 !mb-4">Featured Nigerian Vendors</h2>
-                <div className='border border-[#33333333] rounded-[8px] px-4 py-10 grid grid-cols-2 md:gap-x-10'>
+                <div className='border border-[#33333333] rounded-[8px] px-4 py-4 grid grid-cols-1 md:grid-cols-2 md:gap-x-10'>
                     <div className='bg-[#F6F6F6] flex gap-10 px-7 py-10'>
-                        <img src={vendor11} alt="" className='w-[130px]' />
+                        <div className='w-[200px]'>
+                            <img src={vendor11} alt=""  />
+                        </div>
                         <div className='!space-y-1.5'>
                             <p className='text-[20px] font-semibold text-[#333333]'>Jummy’s Traditionals</p>
                             <p>Bold, handcrafted home décor made with traditional Northern techniques. </p>
@@ -179,7 +181,9 @@ function HomeHero() {
                         </div>
                     </div>
                     <div className='bg-[#F6F6F6] flex gap-10 px-7 py-10'>
-                        <img src={vendor12} alt="" className='w-[130px]' />
+                    <div className='w-[200px]'>
+                            <img src={vendor12} alt=""  />
+                        </div>
                         <div className='!space-y-1.5'>
                             <p className='text-[20px] font-semibold text-[#333333]'>Zubairu Arts & Crafts</p>
                             <p>Bold, handcrafted home décor made with traditional Northern techniques. </p>
@@ -189,7 +193,7 @@ function HomeHero() {
                 </div>
             </div>
             <div className='px-4 md:px-16'>
-                <div className='px-10 py-10 bg-[#F2F2F2] text-[#4D4D4D] mt-30 md:mt-16'>
+                <div className='px-10 py-10 bg-[#F2F2F2] text-[#4D4D4D] mt-10 md:mt-16'>
                     <p className='text-[#999999] font-medium text-[12px] text-center !mb-1'>CLIENT TESTIMONIALS</p>
                     <p className='text-[#F8931F] font-semibold text-2xl text-center'>What our Client Says</p>
                     <div className='grid grid-cols-1 md:grid-cols-3 gap-7 mt-8'>
@@ -212,7 +216,7 @@ function HomeHero() {
                 </div>
             </div>
             <div className='px-4 md:px-16 py-10'>
-                <div className='flex justify-between items-center'>
+                <div className='flex flex-col md:flex-row gap-y-6 justify-between md:items-center'>
                     <p className='text-[#333333] font-bold text-[24px]'>Know more about us!</p>
                     <div className='flex flex-col md:flex-row gap-7 items-center'>
                         <button className='border-[#215829] !border rounded-[25px] font-bold px-3 py-3'>
@@ -223,7 +227,7 @@ function HomeHero() {
                         <p>Help & Support</p>
                     </div>
                 </div>
-                <div className='flex flex-col md:flex-row !justify-between mt-10'>
+                <div className='flex flex-col md:flex-row !justify-between mt-10 gap-y-4'>
                     <div className='w-full md:w-[35%]'>
                         {faqs.map((item, index) => (
                             <div key={index} className=''>

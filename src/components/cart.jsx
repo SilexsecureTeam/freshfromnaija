@@ -57,7 +57,7 @@ export default function ShoppingCart() {
           </div>
 
           <div className="flex flex-col items-end absolute left-4 mt-3 md:right-4 bottom-0 md:bottom-4">
-            <span className="text-sm text-gray-800">Pick up fee: {item.price}</span>
+            <span className="text-sm text-gray-800">Pick up fee: ₦{item.price}</span>
           </div>
         </div>
       ))}

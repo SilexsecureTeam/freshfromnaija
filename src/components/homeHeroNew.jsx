@@ -26,7 +26,7 @@ export default function HeroSliderNew() {
     }, [])
 
     return (
-        <div className="relative w-full md:h-[100vh] overflow-hidden">
+        <div className="relative w-full md:h-[100vh] py-20  overflow-hidden">
             {/* Background */}
             <div
                 className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
@@ -46,7 +46,7 @@ export default function HeroSliderNew() {
                     <h1 className="text-xl md:text-4xl uppercase text-white font-bold leading-tight">
                         The Best Place to Shop <span className="text-[#009144]">Naija</span>
                     </h1>
-                    <p className="mt-4 text-sm text-[#E5E5E5] md:text-base max-w-[50%]">
+                    <p className="mt-4 text-sm text-[#E5E5E5] md:text-base md:max-w-[50%]">
                         From fashion to food, discover proudly made in-Nigeria items. Get
                         exclusive diaspora picks, delivered to your doorstep.
                     </p>

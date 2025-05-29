@@ -145,28 +145,28 @@ function ProductHero() {
     return (
         <div>
             <HeroSliderNew />
-            <div className='px-4 md:px-16 mb-10'>
+            <div className='px-4 md:px-16'>
                 <h2 className="text-black font-bold text-[20px] !my-4">Category</h2>
-                <div className='grid grid-cols-1 md:grid-cols-4 !gap-y-3 w-full gap-[1.5%]'>
+                <div className='grid grid-cols-2 md:grid-cols-4 !gap-y-3 space-y-3 w-full !gap-x-[1.5%]'>
                     <div className='font-bold relative'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={cate1} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Food & Groceries</p>
+                        <img src={cate1} alt="" className="rounded-[8px] w-full" />
+                        <p className="text-white text-[15px] md:text-[16.5px] font-bold !-mt-10 !ml-2 md:!ml-7">Food & Groceries</p>
                     </div>
-                    <div className='font-bold relative mt-2 md:mt-0'>
+                    <div className='font-bold relative md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={cate2} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Fashion & Accessories</p>
+                        <img src={cate2} alt="" className="rounded-[8px] w-full" />
+                        <p className="text-white text-[15px] md:text-[16.5px] font-bold !-mt-10 !ml-2 md:!ml-7">Fashion & Accessories</p>
                     </div>
-                    <div className='font-bold relative mt-2 md:mt-0'>
+                    <div className='font-bold relative md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={cate3} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Health & Beauty</p>
+                        <img src={cate3} alt="" className="rounded-[8px] w-full" />
+                        <p className="text-white text-[15px] md:text-[16.5px] font-bold !-mt-10 !ml-2 md:!ml-7">Health & Beauty</p>
                     </div>
-                    <div className='font-bold relative mt-2 md:mt-0'>
+                    <div className='font-bold relative md:mt-0'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
-                        <img src={cate4} alt="" className="rounded-[8px]" />
-                        <p className="text-white text-[16.5px] font-bold !-mt-10 !ml-7">Home & Living</p>
+                        <img src={cate4} alt="" className="rounded-[8px] w-full" />
+                        <p className="text-white text-[15px] md:text-[16.5px] font-bold !-mt-10 !ml-2 md:!ml-7">Home & Living</p>
                     </div>
                 </div>
             </div>
@@ -437,7 +437,7 @@ function ProductHero() {
                                 <div className="p-2 pt-5 px-3 text-[#98A2B3]">
                                     <div className="flex justify-between items-center w-[94%]">
                                         <p className="text-[#98A2B3] font-bold">{p.title}</p>
-                                        <p className="text-[#344054] font-bold mt-3">{p.price}</p>
+                                        <p className="text-[#344054] font-bold mt-3">₦{p.price}</p>
                                     </div>
                                     <p className="text-[14px] font-normal text-[#98A2B3] mt-3">{p.subtitle}</p>
                                     <img src={starImg} alt="Rating" className="mt-3" />
