@@ -86,10 +86,11 @@ export default function Header() {
 
       {/* Desktop main nav */}
       <nav className="hidden md:flex justify-center gap-14 mt-0 mb-2 text-[14.5px] text-[#333333]">
-        <Link to="/product">Shop</Link>
-        <Link to="/vendors">Vendors</Link>
-        <Link to="/how-it-works">How it Works</Link>
-        <Link to="/resources">Resources</Link>
+        <Link to="/product">Shop by Categories</Link>
+        <Link to="/vendors">Discover</Link>
+        <Link to="/how-it-works">About Nigeria</Link>
+        <Link to="/resources"> Become a Vendor</Link>
+        <Link to="/resources"> How it works</Link>
         <Link to="/contact">Contact Us</Link>
       </nav>
 
@@ -103,11 +104,12 @@ export default function Header() {
             placeholder="Search the products"
             className="block w-full border border-green-500 px-4 py-2 rounded-md"
           />
-          <Link to="/product" onClick={() => setMenuOpen(false)} className="block text-gray-700">Shop</Link>
-          <Link to="/vendors" className="block text-gray-700">Vendors</Link>
-          <Link to="/how-it-works" className="block text-gray-700">How it Works</Link>
-          <Link to="/resources" className="block text-gray-700">Resources</Link>
-          <Link to="/contact" className="block text-gray-700">Contact Us</Link>
+          <Link to="/product" onClick={() => setMenuOpen(false)} className="block text-gray-700">Shop by Categories</Link>
+          <Link to="/vendors" className="block text-gray-700">Discover</Link>
+          <Link to="/vendors" className="block text-gray-700">About Nigeria</Link>
+          <Link to="/vendors" className="block text-gray-700">Become a Vendor</Link>
+          <Link to="/vendors" className="block text-gray-700">How it works</Link>
+          <Link to="/vendors" className="block text-gray-700">Contact us</Link>
           <div className="border-t border-gray-200 pt-4 space-y-3">
             <Link to="/user_login" className="block text-gray-700">Login</Link>
             <Link to="/user_register" className="block text-gray-700">Sign Up</Link>
