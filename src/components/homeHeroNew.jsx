@@ -52,7 +52,7 @@ export default function HeroSliderNew() {
   }
 
   return (
-    <div className="relative w-full md:h-[80vh] overflow-hidden mt-38">
+    <div className="relative w-full h-[500px] md:h-[80vh] overflow-hidden mt-24 md:mt-38">
       {/* Background Image (fades) */}
       <div
         className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
@@ -63,7 +63,7 @@ export default function HeroSliderNew() {
 
       {/* Hero Text Content */}
       <div className="relative z-10 flex h-full">
-        <div className="flex-1 flex flex-col space-y-2 -mt-50 justify-center px-6 md:px-24 text-white">
+        <div className="flex-1 flex flex-col space-y-2 -mt-40 md:-mt-50 justify-center px-6 md:px-24 text-white">
           <span className="text-[15px] mb-2 text-gray-200 font-medium tracking-wider">
             Authentic Nigerian Products
           </span>

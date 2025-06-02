@@ -419,7 +419,7 @@ function ProductHero() {
                         )}
                     </div>
                 </aside>
-                <div className="grid grid-cols-2 md:grid-cols-4 w-full gap-[2%] mb-34 md:mb-30">
+                <div className="grid grid-cols-2 md:grid-cols-4 w-full gap-y-4 gap-[2%] mb-10 md:mb-30">
                 {products.map(p => {
                         const inCart = cartItems.some(item => item.id === p.id);
                         return (

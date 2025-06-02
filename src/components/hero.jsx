@@ -139,7 +139,7 @@ function HomeHero() {
             </div> */}
             <div className="px-4 md:px-16 mt-20">
                 <h2 className="text-black font-bold text-[20px] !mt-8 !mb-4">Our Best Selling</h2>
-                <div className="grid grid-cols-3 md:grid-cols-6 gap-[1.5%]">
+                <div className="grid grid-cols-2 md:grid-cols-6 gap-y-4 gap-[1.5%]">
                     {products.map(p => {
                         const inCart = cartItems.some(item => item.id === p.id);
                         return (
@@ -181,10 +181,10 @@ function HomeHero() {
                     })}
                 </div>
             </div>
-            <div className="px-4 md:px-16 mt-40 md:mt-20">
+            <div className="px-4 md:px-16 mt-10 md:mt-20">
                 <h2 className="text-black font-bold text-[20px] !mt-8 !mb-4">Featured Nigerian Vendors</h2>
                 <div className='border border-[#33333333] rounded-[8px] px-4 py-4 grid grid-cols-1 md:grid-cols-2 md:gap-x-10'>
-                    <div className='bg-[#F6F6F6] flex gap-10 px-7 py-10'>
+                    <div className='bg-[#F6F6F6] flex gap-3 md:gap-10 px-7 py-10'>
                         <div className='w-[200px]'>
                             <img src={vendor11} alt=""  />
                         </div>
@@ -194,7 +194,7 @@ function HomeHero() {
                             <button className='bg-[#009144] text-white px-6 py-1.5 rounded-[6px]'>Shop Now</button>
                         </div>
                     </div>
-                    <div className='bg-[#F6F6F6] flex gap-10 px-7 py-10'>
+                    <div className='bg-[#F6F6F6] flex gap-3 md:gap-10 px-7 py-10'>
                     <div className='w-[200px]'>
                             <img src={vendor12} alt=""  />
                         </div>
