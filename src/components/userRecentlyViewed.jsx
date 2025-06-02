@@ -74,7 +74,7 @@ export default function RecentlyViewedBody() {
                         className="bg-white rounded-lg shadow relative"
                     >
                         {/* heart icon */}
-                        <button className="absolute top-1 right-0 md:top-3 md:right-3 p-1">
+                        <button className="absolute top-1 right-0 md:top-0 md:right-4 p-1">
                             <HeartIcon className="w-7 h-7 text-orange-400" />
                         </button>
 
