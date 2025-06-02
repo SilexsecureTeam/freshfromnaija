@@ -145,7 +145,7 @@ function ProductHero() {
     return (
         <div>
             <HeroSliderNew />
-            <div className='px-4 md:px-16'>
+            {/* <div className='px-4 md:px-16'>
                 <h2 className="text-black font-bold text-[20px] !my-4">Category</h2>
                 <div className='grid grid-cols-2 md:grid-cols-4 !gap-y-3 space-y-3 w-full !gap-x-[1.5%]'>
                     <div className='font-bold relative'>
@@ -169,14 +169,14 @@ function ProductHero() {
                         <p className="text-white text-[15px] md:text-[16.5px] font-bold !-mt-10 !ml-2 md:!ml-7">Home & Living</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <button
                 className="md:hidden flex items-center mb-4 p-2 ml-3 font-semibold mt-20 text-[#000000] rounded"
                 onClick={() => setFilterOpen(true)}
             >
                 <Bars3Icon className="h-6 w-6 mr-2" /> Filters
             </button>
-            <div className='px-4 md:px-16 mt-2 flex justify-between gap-5'>
+            <div className='px-4 md:px-16 mt-2 md:mt-5 flex justify-between gap-5'>
 
                 <aside className="hidden md:block w-[28%] p-4 bg-white sticky top-30">
                     {/** All Products */}
@@ -419,11 +419,11 @@ function ProductHero() {
                         )}
                     </div>
                 </aside>
-                <div className="grid grid-cols-2 md:grid-cols-3 w-full gap-[2%] mb-30 md:mb-24">
-                    {products.map((p) => {
-                        const inCart = cartItems.some(item => item.id === p.id)
+                <div className="grid grid-cols-2 md:grid-cols-4 w-full gap-[2%] mb-34 md:mb-30">
+                {products.map(p => {
+                        const inCart = cartItems.some(item => item.id === p.id);
                         return (
-                            <div key={p.id} className="bg-white rounded-[15px] shadow relative">
+                            <div key={p.id} className="bg-white rounded-lg shadow relative">
                                 <div className="absolute flex items-center gap-2 right-2 top-2">
                                     <div className="bg-[white] p-1.5 rounded-[50%] cursor-pointer">
                                         <img src={heart} alt="Favorite" className="w-[30px] h-[30px]" />
@@ -434,28 +434,30 @@ function ProductHero() {
                                         <img src={p.image} alt={p.title} className="w-full" />
                                     </div>
                                 </Link>
-                                <div className="p-2 pt-5 px-3 text-[#98A2B3]">
+
+                                <div className="p-2 pt-5 px-3 text-[#98A2B3] !text-sm">
                                     <div className="flex justify-between items-center w-[94%]">
                                         <p className="text-[#98A2B3] font-bold">{p.title}</p>
                                         <p className="text-[#344054] font-bold mt-3">₦{p.price}</p>
                                     </div>
                                     <p className="text-[14px] font-normal text-[#98A2B3] mt-3">{p.subtitle}</p>
                                     <img src={starImg} alt="Rating" className="mt-3" />
-                                    <div className="flex flex-col md:flex-row justify-between mt-3 whitespace-nowrap text-[14px]">
+
+                                    <div className="flex flex-col md:flex-row gap-y-3 justify-between mt-3 whitespace-nowrap text-[12px]">
                                         <button
                                             onClick={() => handleAdd(p)}
                                             disabled={inCart}
-                                            className={`rounded-[18px] px-5 py-2 text-white ${inCart ? 'bg-gray-400 cursor-default' : 'bg-[#009144]'}`}
+                                            className={`rounded-[18px] px-3 py-2 text-white ${inCart ? 'bg-gray-400 cursor-default' : 'bg-[#009144]'}`}
                                         >
                                             {inCart ? 'Added' : 'Add To Cart'}
                                         </button>
-                                        <button className="text-black border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2">
+                                        <button className="text-black !border !border-[#D0D5DD] rounded-[18px] px-3 py-2">
                                             Add Shortlist
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                        )
+                        );
                     })}
                 </div>
                 {filterOpen && (

@@ -48,6 +48,20 @@ export const products = [
     { id: 5, image: crayfish5, title: 'Banga Fruit', price: '25,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
     { id: 6, image: crayfish6, title: 'Fish & Meats', price: '30,000', subtitle: 'Types of Crayfish available', category: 'Meats' },
     { id: 7, image: crayfish7, title: 'Corn', price: '20,000', subtitle: 'Types of Crayfish available', category: 'Fruits' },
+    {
+        id: 8,
+        image: crayfish,
+        title: 'Cray Fish',
+        price: '20,000',
+        subtitle: 'Types of Crayfish available', category: 'vegetables',
+    },
+    { id: 9, image: crayfish1, title: 'Peels', price: '18,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 10, image: crayfish2, title: 'Peppers', price: '23,000', subtitle: 'Types of Crayfish available', category: 'Peppers' },
+    { id: 11, image: crayfish3, title: 'Groundnut', price: '29,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 12, image: crayfish4, title: 'Potatoes', price: '13,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 13, image: crayfish5, title: 'Banga Fruit', price: '25,000', subtitle: 'Types of Crayfish available', category: 'vegetables' },
+    { id: 14, image: crayfish6, title: 'Fish & Meats', price: '30,000', subtitle: 'Types of Crayfish available', category: 'Meats' },
+    { id: 15, image: crayfish7, title: 'Corn', price: '20,000', subtitle: 'Types of Crayfish available', category: 'Fruits' },
 ]
 
 const client = [
@@ -98,9 +112,9 @@ function HomeHero() {
     return (
         <div>
             <HeroSliderNew />
-            <div className='px-4 md:px-16'>
-                <h2 className="text-black font-bold text-[20px] !my-4">Category</h2>
-                <div className='grid grid-cols-2 md:grid-cols-4 !gap-y-3 space-y-3 w-full !gap-x-[1.5%]'>
+            {/* <div className='px-4 md:px-16'>
+                <h2 className="text-black font-bold text-[20px] !my-4">Our Best Selling</h2>
+                <div className='grid grid-cols-4 md:grid-cols-6 !gap-y-3 space-y-3 w-full !gap-x-[1.5%]'>
                     <div className='font-bold relative'>
                         <p className='bg-[#F8931F] text-white px-4 py-4 right-7 rounded-b-[5px] absolute'>440</p>
                         <img src={cate1} alt="" className="rounded-[8px] w-full" />
@@ -122,10 +136,10 @@ function HomeHero() {
                         <p className="text-white text-[15px] md:text-[16.5px] font-bold !-mt-10 !ml-2 md:!ml-7">Home & Living</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div className="px-4 md:px-16 mt-20">
-                <h2 className="text-black font-bold text-[20px] !mt-8 !mb-4">Latest Products</h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-[2%]">
+                <h2 className="text-black font-bold text-[20px] !mt-8 !mb-4">Our Best Selling</h2>
+                <div className="grid grid-cols-3 md:grid-cols-6 gap-[1.5%]">
                     {products.map(p => {
                         const inCart = cartItems.some(item => item.id === p.id);
                         return (
@@ -141,7 +155,7 @@ function HomeHero() {
                                     </div>
                                 </Link>
 
-                                <div className="p-2 pt-5 px-3 text-[#98A2B3]">
+                                <div className="p-2 pt-5 px-3 text-[#98A2B3] !text-sm">
                                     <div className="flex justify-between items-center w-[94%]">
                                         <p className="text-[#98A2B3] font-bold">{p.title}</p>
                                         <p className="text-[#344054] font-bold mt-3">₦{p.price}</p>
@@ -149,15 +163,15 @@ function HomeHero() {
                                     <p className="text-[14px] font-normal text-[#98A2B3] mt-3">{p.subtitle}</p>
                                     <img src={starImg} alt="Rating" className="mt-3" />
 
-                                    <div className="flex flex-col md:flex-row gap-y-3 justify-between mt-3 whitespace-nowrap text-[14px]">
+                                    <div className="flex flex-col md:flex-row gap-y-3 justify-between mt-3 whitespace-nowrap text-[11px]">
                                         <button
                                             onClick={() => handleAdd(p)}
                                             disabled={inCart}
-                                            className={`rounded-[18px] px-5 py-2 text-white ${inCart ? 'bg-gray-400 cursor-default' : 'bg-[#009144]'}`}
+                                            className={`rounded-[18px] px-2 py-2 text-white ${inCart ? 'bg-gray-400 cursor-default' : 'bg-[#009144]'}`}
                                         >
                                             {inCart ? 'Added' : 'Add To Cart'}
                                         </button>
-                                        <button className="text-black border-[rgb(51,51,51)] !border rounded-[18px] px-4.5 py-2">
+                                        <button className="text-black !border !border-[#D0D5DD] rounded-[18px] px-2 py-2">
                                             Add Shortlist
                                         </button>
                                     </div>
