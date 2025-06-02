@@ -39,7 +39,7 @@ export default function UserLoginBody() {
     <div className="min-h-screen flex items-center justify-center p-4 mt-16">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-3xl p-8 rounded"
+        className="w-full md:max-w-3xl p-8 rounded"
       >
         <h2 className="text-3xl font-bold text-[#333333] !mb-6">Log in</h2>
 
@@ -75,13 +75,13 @@ export default function UserLoginBody() {
               className="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-green-500 focus:border-green-500"
             />
           </div>
-          <div className='flex justify-between font-semibold'>
-            <div className='flex gap-2 items-center text-[#F8931F]'>
+          <div className='flex flex-col md:flex-row justify-between gap-y-4 font-semibold'>
+            <div className='flex gap-2 items-center text-[#F8931F] w-fit'>
               <input type="checkbox" className='!bg-[#F8931F]' />
               <p>Keep me logged in</p>
             </div>
-            <div className='flex gap-2 items-center text-[#F8931F]'>
-              <p className='underline'>Forgot your password?</p>
+            <div className='flex gap-2 items-center text-[#F8931F] w-fit p-0'>
+              <p className='underline !w-fit'>Forgot your password?</p>
             </div>
           </div>
         </div>

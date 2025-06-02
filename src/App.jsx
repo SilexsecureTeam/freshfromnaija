@@ -36,6 +36,8 @@ import UserOrders from "./pages/UserOrders";
 import UserMessages from "./pages/UserMessages";
 import UserAddresses from "./pages/UserAddresses";
 import UserWishList from "./pages/UserWishlist";
+import UserRecentlyViewed from "./pages/UserRecentlyViewed";
+import UserAccountSettings from "./pages/UserAccountSettings";
 
 // ScrollToTop logic directly in App.jsx
 function ScrollToTop() {
@@ -92,6 +94,8 @@ function App() {
         <Route path="/user_messages" element={<UserMessages />} />
         <Route path="/user_address" element={<UserAddresses />} />
         <Route path="/user_wishlist" element={<UserWishList />} />
+        <Route path="/user_recently-viewed" element={<UserRecentlyViewed />} />
+        <Route path="/user_account-settings" element={<UserAccountSettings />} />
       </Routes>
     </Router>
   );

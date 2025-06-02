@@ -33,7 +33,7 @@ export default function AddressBody() {
                 {Addresses.map((add, index) => (
                     <div key={index} className='!space-y-1.5 py-5 border-b border-[#CFD8DC]'>
                         <p className='font-semibold'>{add.default ? 'Default' : ''}</p>
-                        <p className='max-w-[15%]'>{add.address}</p>
+                        <p className='w-[75%] md:max-w-[15%]'>{add.address}</p>
                         <div className='flex gap-2 !mt-4'>
                             <button className='text-[#009144] !border border-[#009144] px-6 py-1 rounded-[8px]'>
                                 Edit

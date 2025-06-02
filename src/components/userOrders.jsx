@@ -69,7 +69,7 @@ export default function UserOrdersBody() {
         <div className="max-w-6xl mx-auto px-6 py-10 mt-34">
             <AccountTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
-            <div className="flex justify-between items-center mb-6 mt-4">
+            <div className="flex  flex-col md:flex-row justify-between md:items-center gap-y-3 mb-6 mt-4">
                 <h2 className="font-semibold text-[19px] text-[#333333]">My Orders</h2>
                 <div className="flex gap-4 items-center text-[#8B909A]">
                     <input
@@ -99,7 +99,7 @@ export default function UserOrdersBody() {
                             </span>
                         </div>
 
-                        <div className="grid grid-cols-4 text-sm text-gray-700">
+                        <div className="grid grid-cols-3 md:grid-cols-4 gap-y-3 text-sm text-gray-700">
                             <div>
                                 <div className="text-xs text-gray-500">Order No</div>
                                 <div className="font-semibold">{o.id}</div>
@@ -118,10 +118,10 @@ export default function UserOrdersBody() {
                             </div>
                         </div>
 
-                        <div className="flex justify-between items-center">
+                        <div className="flex flex-col md:flex-row gap-y-5 justify-between md:items-center">
                             <div className="flex space-x-2 overflow-x-auto">
                                 {o.products.slice(0, 5).map(p => (
-                                    <div key={p.id} className="text-[10px] text-[#667085]">
+                                    <div key={p.id} className="text-[10px] text-[#667085] min-w-[100px] md:w-auto">
                                         <img
                                             src={p.image}
                                             alt=""
@@ -142,7 +142,7 @@ export default function UserOrdersBody() {
                                     </div>
                                 ))}
                                 {o.products.length > 5 && (
-                                    <div className="w-[130px] h-[120px] rounded bg-gray-100 flex items-center justify-center text-gray-700 text-sm">
+                                    <div className="!w-[130px] h-[120px] rounded bg-gray-100 flex items-center justify-center text-gray-700 text-sm">
                                         +{o.products.length - 5}
                                     </div>
                                 )}

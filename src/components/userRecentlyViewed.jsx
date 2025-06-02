@@ -37,8 +37,8 @@ const initialWishlist =  images.map((img, idx) => ({
     reviews: 121,
   }))
 
-export default function WishlistPage() {
-    const [activeTab, setActiveTab] = useState('Wish Lists');
+export default function RecentlyViewedBody() {
+    const [activeTab, setActiveTab] = useState('Recently viewed');
     const [wishlist, setWishlist] = useState(initialWishlist)
     const [page, setPage] = useState(1)
     const perPage = 8
@@ -60,35 +60,14 @@ export default function WishlistPage() {
     return (
         <div className="max-w-6xl mx-auto px-6 py-10 mt-36">
             <AccountTabs activeTab={activeTab} onTabChange={setActiveTab} />
-            <div className="flex flex-col md:flex-row gap-y-3 justify-between md:items-center mb-8 mt-10">
+            <div className="flex justify-between items-center mb-8 mt-10">
                 <div>
-                    <h1 className="text-2xl font-bold">My Wishlist</h1>
-                    <p className="text-gray-500">{wishlist.length} items</p>
-                </div>
-                <div className="relative w-[70%] md:w-auto">
-                    <input
-                        type="text"
-                        placeholder="Search…"
-                        className="!border border-[#3333334D] w-full bg-[#F6F6F6] rounded-[6px] text-[#8B909A] pl-4 pr-10 py-2 focus:outline-none"
-                    />
-                    <svg
-                        className="w-5 h-5 absolute right-3 top-2.5 text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M21 21l-4.35-4.35M17 10.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
-                        />
-                    </svg>
+                    <h1 className="text-2xl font-bold">Products You Recently Viewed</h1>
                 </div>
             </div>
 
             {/* Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {paged.map(item => (
                     <div
                         key={item.id}
@@ -107,7 +86,7 @@ export default function WishlistPage() {
                             />
                         </div>
 
-                        <div className="p-2 md:p-4 space-y-2 text-xs text-[#98A2B3]">
+                        <div className="p-4 space-y-2 text-xs text-[#98A2B3]">
                             <div className="flex justify-between items-center">
                                 <h2 className="font-semibold text-[#344054]">{item.title}</h2>
                                 <span className="font-semibold text-[#344054]">

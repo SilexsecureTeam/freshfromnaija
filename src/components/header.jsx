@@ -4,20 +4,23 @@ import logo from '../assets/logo.png'
 import accountIcon from '../assets/account.png'
 import help from '../assets/help.png'
 import cart from '../assets/cart.png'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 
 export default function Header() {
   const location = useLocation()
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [acctOpen, setAcctOpen] = useState(false)
 
   useEffect(() => {
     setMenuOpen(false)    // Close the mobile menu
     setAcctOpen(false)    // Optional: close account dropdown too
   }, [location.pathname])
 
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [acctOpen, setAcctOpen] = useState(false)
+
+
+
   return (
-    <header className="px-4 md:px-[6%] pt-4 pb-2 md:pb-0 fixed w-[100%] top-0 z-50 bg-[#ffffff] shadow">
+    <header className="px-4 md:px-[6%] pt-4 pb-4 fixed w-[100%] top-0 z-50 bg-[#ffffff] shadow">
       <div className="md:px-6 py-0 flex justify-between items-center">
         <Link to="/">
           <img src={logo} alt="Logo" className='w-[120px] h-auto md:w-auto' />
@@ -36,17 +39,18 @@ export default function Header() {
           <div className="relative">
             <button
               onClick={() => setAcctOpen(o => !o)}
-              className="flex items-center gap-1"
+              className="flex items-center gap-2"
             >
               <img src={accountIcon} alt="Account" className="w-5 h-5" />
               Account
+              <ChevronDownIcon className='text-[#333333] w-4 h-4'/>
             </button>
             {acctOpen && (
-              <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md">
-                <Link to="/login" className="block px-4 py-2 text-sm hover:bg-green-50">
+              <div className="absolute right-0 mt-2 w-30 bg-white shadow-lg rounded-md">
+                <Link to="/user_login" className="block px-4 py-2 text-sm hover:bg-green-50">
                   Login
                 </Link>
-                <Link to="/register" className="block px-4 py-2 text-sm hover:bg-green-50">
+                <Link to="/user_register" className="block px-4 py-2 text-sm hover:bg-green-50">
                   Sign Up
                 </Link>
               </div>
@@ -56,11 +60,13 @@ export default function Header() {
           <div className="flex items-center gap-1">
             <img src={help} alt="Help" className="w-5 h-5" />
             <Link to="/help">Help</Link>
+            <ChevronDownIcon className='text-[#333333] w-4 h-4'/>
           </div>
 
           <Link to="/cart" className="flex items-center gap-1">
             <img src={cart} alt="Cart" className="w-5 h-5" />
             Cart
+            <ChevronDownIcon className='text-[#333333] w-4 h-4'/>
           </Link>
         </div>
 
@@ -89,29 +95,27 @@ export default function Header() {
 
       {/* Mobile Slide-in Menu */}
       <nav
-        className={`md:hidden bg-white overflow-hidden transition-max-height duration-300 ${
-          menuOpen ? 'max-h-screen' : 'max-h-0'
-        }`}
-      >
+        className={`md:hidden bg-white overflow-hidden transition-max-height duration-300 ${menuOpen ? 'max-h-screen' : 'max-h-0'
+          }`}>
         <div className="px-6 py-4 space-y-4">
           <input
             type="search"
             placeholder="Search the products"
             className="block w-full border border-green-500 px-4 py-2 rounded-md"
           />
-          <Link to="/product" className="block text-gray-700">Shop</Link>
+          <Link to="/product" onClick={() => setMenuOpen(false)} className="block text-gray-700">Shop</Link>
           <Link to="/vendors" className="block text-gray-700">Vendors</Link>
           <Link to="/how-it-works" className="block text-gray-700">How it Works</Link>
           <Link to="/resources" className="block text-gray-700">Resources</Link>
           <Link to="/contact" className="block text-gray-700">Contact Us</Link>
           <div className="border-t border-gray-200 pt-4 space-y-3">
-            <Link to="/login" className="block text-gray-700">Login</Link>
-            <Link to="/register" className="block text-gray-700">Sign Up</Link>
+            <Link to="/user_login" className="block text-gray-700">Login</Link>
+            <Link to="/user_register" className="block text-gray-700">Sign Up</Link>
             <Link to="/help" className="block text-gray-700">Help</Link>
             <Link to="/cart" className="block text-gray-700">Cart</Link>
           </div>
         </div>
       </nav>
-    </header>
+    </header >
   )
 }
