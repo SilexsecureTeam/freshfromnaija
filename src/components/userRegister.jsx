@@ -1,43 +1,69 @@
 // src/components/SignUp.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-
-const countries = [
-  { code: 'GB', label: 'England' },
-  { code: 'NG', label: 'Nigeria' },
-  { code: 'US', label: 'United States' },
-  // …add as needed
-];
-
-const statesByCountry = {
-  GB: ['Birmingham','London','Manchester'],
-  NG: ['Lagos','Abuja','Kano'],
-  US: ['California','New York','Texas'],
-  // …
-};
+import { signup } from '../services/api'
+import { useNavigate } from 'react-router-dom';
 
 export default function UserRegister() {
+  const navigate= useNavigate();
   const [form, setForm] = useState({
-    firstName: '',
-    lastName: '',
+    lastname: '',
+    firstname: '',
     country: '',
     state: '',
     phone: '',
     email: '',
     password: '',
-    confirmPassword: ''
-  });
+    password_confirmation: '',
+    register_by: 'email',
+  })
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setForm(f => ({ ...f, [name]: value }));
-  };
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [successMessage, setSuccessMessage] = useState(null)
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    // TODO: send `form` to your API
-    console.log('Submitting:', form);
-  };
+  // Generic change handler:
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
+    setSuccessMessage(null)
+
+    try {
+      const response = await signup(form)
+      // Response example (from your spec):
+      // {
+      //   result: true,
+      //   message: "Successfully logged in",
+      //   access_token: "...",
+      //   token_type: "Bearer",
+      //   expires_at: null,
+      //   user: { id: 15, name: "Caleb Sho", email: "...", ... }
+      // }
+
+      if (response.data.result) {
+        // Save token somewhere (localStorage / context / redux)
+        localStorage.setItem('ffn_token', response.data.access_token)
+
+        // Show a success message
+        setSuccessMessage(response.data.message)
+        navigate('/user_dashboard')
+      } else {
+        setError('Signup failed: ' + response.data.message)
+      }
+    } catch (err) {
+      console.error(err)
+      setError(err?.response?.data?.message || 'An unexpected error occurred')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 mt-16">
@@ -46,6 +72,8 @@ export default function UserRegister() {
         className="w-full max-w-4xl p-8 rounded"
       >
         <h2 className="text-2xl font-bold text-[#333333] !mb-6">New account</h2>
+        {error && <div className="text-red-600 mb-2">{error}</div>}
+        {successMessage && <div className="text-green-600 mb-2">{successMessage}</div>}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8">
           {/* First Name */}
@@ -55,8 +83,8 @@ export default function UserRegister() {
             </label>
             <input
               type="text"
-              name="firstName"
-              value={form.firstName}
+              name="firstname"
+              value={form.firstname}
               onChange={handleChange}
               required
               className="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-green-500 focus:border-green-500"
@@ -70,8 +98,8 @@ export default function UserRegister() {
             </label>
             <input
               type="text"
-              name="lastName"
-              value={form.lastName}
+              name="lastname"
+              value={form.lastname}
               onChange={handleChange}
               required
               className="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-green-500 focus:border-green-500"
@@ -83,23 +111,13 @@ export default function UserRegister() {
             <label className="block text-sm font-semibold text-[#333333]">
               Select Country <span className="text-red-500">*</span>
             </label>
-            <select
+            <input
               name="country"
               value={form.country}
-              onChange={e => {
-                handleChange(e);
-                setForm(f => ({ ...f, state: '' }));
-              }}
+              onChange={handleChange}
+              className="mt-1 block w-full border rounded p-2"
               required
-              className="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-green-500 focus:border-green-500"
-            >
-              <option value="">Choose country</option>
-              {countries.map(c => (
-                <option key={c.code} value={c.code}>
-                  {c.label}
-                </option>
-              ))}
-            </select>
+            />
           </div>
 
           {/* State */}
@@ -107,21 +125,13 @@ export default function UserRegister() {
             <label className="block text-sm font-semibold text-[#333333]">
               Select State <span className="text-red-500">*</span>
             </label>
-            <select
+            <input
               name="state"
               value={form.state}
               onChange={handleChange}
+              className="mt-1 block w-full border rounded p-2"
               required
-              disabled={!form.country}
-              className="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-green-500 focus:border-green-500 disabled:opacity-50"
-            >
-              <option value="">Choose state</option>
-              {(statesByCountry[form.country] || []).map(s => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
+            />
           </div>
 
           {/* Phone */}
@@ -177,9 +187,9 @@ export default function UserRegister() {
               Confirm password <span className="text-red-500">*</span>
             </label>
             <input
+              name="password_confirmation"
               type="password"
-              name="confirmPassword"
-              value={form.confirmPassword}
+              value={form.password_confirmation}
               onChange={handleChange}
               required
               className="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-green-500 focus:border-green-500"
@@ -187,16 +197,20 @@ export default function UserRegister() {
           </div>
         </div>
 
-        <div className="mt-8">
-            <Link to='/user_login' className='w-full'>
-          <button
-            type="submit"
-            className="w-full md:w-auto bg-[#009144] hover:bg-green-700 text-white font-semibold px-6 py-2 rounded"
-          >
-            Create account
-          </button>
-          </Link>
-        </div>
+        {/* Hidden/select for "register_by": */}
+        <input
+          type="hidden"
+          name="register_by"
+          value={form.register_by}
+        />
+
+        <button
+          type="submit"
+          className="px-10 bg-green-600 text-white py-2 rounded hover:bg-green-700 mt-8 font-semibold"
+          disabled={loading}
+        >
+          {loading ? 'Signing up…' : 'Sign Up'}
+        </button>
       </form>
     </div>
   );
