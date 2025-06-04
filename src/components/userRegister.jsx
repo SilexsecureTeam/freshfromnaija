@@ -53,7 +53,7 @@ export default function UserRegister() {
 
         // Show a success message
         setSuccessMessage(response.data.message)
-        navigate('/user_dashboard')
+        navigate('/user_orders')
       } else {
         setError('Signup failed: ' + response.data.message)
       }
