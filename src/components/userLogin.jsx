@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import google from '../assets/google-b.png';
 import apple from '../assets/apple-b.png';
-import { login } from '../services/api'   
+import { login } from '../services/api';
+import { toast } from "react-toastify";  
 
 const countries = [
   { code: 'GB', label: 'England' },
@@ -59,20 +60,20 @@ export default function UserLoginBody() {
 
       if (response.data.result) {
         // 1) Save the token (and optionally user data) in localStorage / context / redux
-        localStorage.setItem('ffn_token', response.data.access_token)
-        localStorage.setItem('ffn_user', JSON.stringify(response.data.user))
-
+        localStorage.setItem('token', response.data.access_token)
+        localStorage.setItem('user', JSON.stringify(response.data.user))
+        toast.success('Login Successful')
         // 2) Redirect to another page, e.g. dashboard or orders
         navigate('/user_orders')
       } else {
         // Non-200 response with result: false
-        setError(response.data.message || 'Login failed')
+        toast.error(response.data.message || 'Login failed');
       }
     } catch (err) {
       console.error(err)
       // If the server returned a 4xx/5xx error, show that message if available
       const msg = err?.response?.data?.message || 'An unexpected error occurred'
-      setError(msg)
+      toast.error(msg)
     } finally {
       setLoading(false)
     }
@@ -85,10 +86,6 @@ export default function UserLoginBody() {
         className="w-full md:max-w-3xl p-8 rounded bg-white shadow"
       >
         <h2 className="text-3xl font-bold text-[#333333] !mb-6">Log in</h2>
-
-        {error && (
-          <div className="mb-4 text-red-600 font-medium">{error}</div>
-        )}
 
         <div className="grid grid-cols-1 gap-y-6 gap-x-8">
           {/* Email */}

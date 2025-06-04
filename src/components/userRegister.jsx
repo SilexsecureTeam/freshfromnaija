@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { signup } from '../services/api'
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 export default function UserRegister() {
   const navigate= useNavigate();
@@ -52,14 +53,14 @@ export default function UserRegister() {
         localStorage.setItem('ffn_token', response.data.access_token)
 
         // Show a success message
-        setSuccessMessage(response.data.message)
+        toast.success(response.data.message)
         navigate('/user_orders')
       } else {
-        setError('Signup failed: ' + response.data.message)
+        toast.error('Signup failed: ' + response.data.message)
       }
     } catch (err) {
       console.error(err)
-      setError(err?.response?.data?.message || 'An unexpected error occurred')
+      toast.error(err?.response?.data?.message || 'An unexpected error occurred')
     } finally {
       setLoading(false)
     }
