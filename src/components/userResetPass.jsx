@@ -1,24 +1,21 @@
-// src/pages/UserOtpPage.jsx
-import React, { useState, useEffect, useRef } from 'react'
+// src/pages/ResetPasswordPage.jsx
+import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { confirmCode, resendCode } from '../services/api'
+import { confirmPasswordReset, resendPasswordCode } from '../services/api'
 
-export default function UserOtpPage() {
+export default function ResetPasswordPage() {
   const navigate = useNavigate()
+  const storedEmail = localStorage.getItem('reset_email') || ''
+  const [emailOrPhone] = useState(storedEmail)
 
-  // 1) Read the saved user object from localStorage (set during signup)
-  const storedUser = localStorage.getItem('user')
-  const user = storedUser ? JSON.parse(storedUser) : null
-  const userId = user?.id
-
-  // 2) State: store each digit in an array of length 4
+  // OTP as four separate digits
   const [codeDigits, setCodeDigits] = useState(['', '', '', ''])
+  const [newPassword, setNewPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [resendLoading, setResendLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  // 3) Refs for each input box to manage focus
   const inputRefs = [
     useRef(null),
     useRef(null),
@@ -26,62 +23,21 @@ export default function UserOtpPage() {
     useRef(null),
   ]
 
-  // Redirect if no userId
-  useEffect(() => {
-    if (!userId) {
-      toast.error('No user found. Please sign up first.')
-      navigate('/user_register')
-    }
-  }, [userId, navigate])
-
-  // Automatically resend code on mount
-  useEffect(() => {
-    if (userId) {
-      sendResendCode()
-    }
-  }, [userId])
-
-  // Resend code logic
-  const sendResendCode = async () => {
-    if (!userId) return
-    setResendLoading(true)
-    setError(null)
-
-    try {
-      const response = await resendCode(userId)
-      if (response.data.result) {
-        toast.success('Verification code has been sent.')
-      } else {
-        toast.error(response.data.message || 'Unable to send verification code')
-      }
-    } catch (err) {
-      console.error(err)
-      const msg = err?.response?.data?.message || 'Error sending verification code'
-      toast.error(msg)
-    } finally {
-      setResendLoading(false)
-    }
-  }
-
-  // Handle individual digit change
+  // Handle entering a digit
   const handleDigitChange = (e, idx) => {
     const val = e.target.value
-    if (!/^[0-9]?$/.test(val)) return // allow only single digit or empty
-
+    if (!/^[0-9]?$/.test(val)) return
     const newDigits = [...codeDigits]
     newDigits[idx] = val
     setCodeDigits(newDigits)
-
-    // If user typed a digit and it's not the last box, move focus to next
-    if (val && idx < inputRefs.length - 1) {
+    if (val && idx < 3) {
       inputRefs[idx + 1].current.focus()
     }
   }
 
-  // Handle keyDown for backspace to go to previous input
+  // Handle backspace navigation
   const handleKeyDown = (e, idx) => {
     if (e.key === 'Backspace' && !codeDigits[idx] && idx > 0) {
-      // If current box is empty and Backspace pressed, move to previous
       inputRefs[idx - 1].current.focus()
       const newDigits = [...codeDigits]
       newDigits[idx - 1] = ''
@@ -89,12 +45,11 @@ export default function UserOtpPage() {
     }
   }
 
-  // Handle paste: distribute up to 4 digits starting from first box
+  // Handle paste into first box
   const handlePaste = (e) => {
     e.preventDefault()
     const pasteData = e.clipboardData.getData('text').trim()
-    if (!/^\d+$/.test(pasteData)) return // ignore non-digits
-
+    if (!/^\d+$/.test(pasteData)) return
     const pasteDigits = pasteData.split('').slice(0, 4)
     const newDigits = [...codeDigits]
     pasteDigits.forEach((d, i) => {
@@ -104,17 +59,20 @@ export default function UserOtpPage() {
       }
     })
     setCodeDigits(newDigits)
-    // Focus the box after the last pasted digit (or the last box)
     const nextIndex = pasteDigits.length < 4 ? pasteDigits.length : 3
     inputRefs[nextIndex].current.focus()
   }
 
-  // Confirm code on form submit
+  // Handle “Reset Password” form submit
   const handleConfirm = async (e) => {
     e.preventDefault()
     const code = codeDigits.join('')
     if (code.length < 4) {
-      setError('Please enter the 4-digit verification code.')
+      setError('Please enter the 4-digit code.')
+      return
+    }
+    if (!newPassword.trim()) {
+      setError('Please enter a new password.')
       return
     }
 
@@ -122,43 +80,62 @@ export default function UserOtpPage() {
     setError(null)
 
     try {
-      const response = await confirmCode(userId, code)
-
+      const response = await confirmPasswordReset(code, newPassword.trim())
+      // Response example: { result: true, message: "Password reset successful" }
       if (response.data.result) {
-        toast.success('Email verified successfully!')
-        navigate('/user_orders')
+        toast.success(response.data.message || 'Password has been reset!')
+        navigate('/user_login')
       } else {
-        setError(response.data.message || 'Invalid code. Please try again.')
-        toast.error(error)
+        setError(response.data.message || 'Failed to reset password.')
       }
     } catch (err) {
       console.error(err)
       const msg = err?.response?.data?.message || 'An unexpected error occurred'
       setError(msg)
-      toast.error(msg)
     } finally {
       setLoading(false)
     }
   }
 
-  // Manual “Resend Code” click
+  // Handle “Resend Code” click
   const handleResendClick = async () => {
-    sendResendCode()
+    if (!emailOrPhone) return
+    setResendLoading(true)
+    setError(null)
+
+    try {
+      const response = await resendPasswordCode(emailOrPhone)
+      if (response.data.result) {
+        toast.success(response.data.message || 'Code resent.')
+      } else {
+        setError(response.data.message || 'Unable to resend code.')
+      }
+    } catch (err) {
+      console.error(err)
+      const msg = err?.response?.data?.message || 'Error resending code'
+      setError(msg)
+    } finally {
+      setResendLoading(false)
+    }
   }
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 mt-16">
       <div className="w-full max-w-md p-8 bg-white rounded shadow">
         <h2 className="text-2xl font-bold text-[#333333] !mb-6">
-          Verify Your Email
+          Reset Password
         </h2>
 
-        {error && <div className="text-red-600 mb-2">{error}</div>}
+        <p className="text-sm !mb-4 text-gray-600">
+          We have sent a 4-digit code to <strong>{emailOrPhone}</strong>. Enter it below along with your new password.
+        </p>
 
-        <form onSubmit={handleConfirm} className="!space-y-6">
+        {error && <div className="text-red-600 !mb-2">{error}</div>}
+
+        <form onSubmit={handleConfirm} className="!space-y-4">
           <div>
-            <label className="block text-sm font-semibold text-[#333333] mb-4">
-              Enter Verification Code <span className="text-red-500">*</span>
+            <label className="block text-sm font-semibold text-[#333333] !mb-2">
+              Verification Code <span className="text-red-500">*</span>
             </label>
             <div className="flex justify-between gap-2">
               {codeDigits.map((digit, idx) => (
@@ -171,10 +148,24 @@ export default function UserOtpPage() {
                   onChange={(e) => handleDigitChange(e, idx)}
                   onKeyDown={(e) => handleKeyDown(e, idx)}
                   onPaste={idx === 0 ? handlePaste : undefined}
-                  className="w-16 h-16 text-center text-xl border border-gray-300 rounded focus:ring-green-500 focus:border-green-500"
+                  className="w-12 h-12 text-center text-xl border border-gray-300 rounded focus:ring-green-500 focus:border-green-500"
                 />
               ))}
             </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-[#333333] mb-2">
+              New Password <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="password"
+              name="new_password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+              className="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-green-500 focus:border-green-500"
+            />
           </div>
 
           <button
@@ -182,7 +173,7 @@ export default function UserOtpPage() {
             disabled={loading}
             className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold px-14 py-2 rounded"
           >
-            {loading ? 'Verifying…' : 'Confirm Code'}
+            {loading ? 'Resetting…' : 'Reset Password'}
           </button>
         </form>
 

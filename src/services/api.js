@@ -63,6 +63,37 @@ export function confirmCode(userId, verificationCode) {
     })
 }
 
+
+export function forgetPasswordRequest(emailOrPhone) {
+    return apiClient.post('/auth/password/forget_request', {
+      email_or_phone: emailOrPhone,
+      send_code_by: 'email',
+    })
+  }
+  
+  /**
+   * Resend the reset code.
+   * POST /auth/password/resend_code
+   * body: { email_or_phone, verify_by:"email" }
+   */
+  export function resendPasswordCode(emailOrPhone) {
+    return apiClient.post('/auth/password/resend_code', {
+      email_or_phone: emailOrPhone,
+      verify_by: 'email',
+    })
+  }
+  
+  /**
+   * Confirm the reset (OTP + new password).
+   * POST /auth/password/confirm_reset
+   * body: { verification_code, password }
+   */
+  export function confirmPasswordReset(verificationCode, newPassword) {
+    return apiClient.post('/auth/password/confirm_reset', {
+      verification_code: verificationCode,
+      password: newPassword,
+    })
+  }
 // 4) (Optional) You can add more endpoints here later, e.g.:
 // export function fetchProfile(token) {
 //   return apiClient.get('/user/profile', {

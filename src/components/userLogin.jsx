@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import google from '../assets/google-b.png';
 import apple from '../assets/apple-b.png';
 import { login } from '../services/api';
-import { toast } from "react-toastify";  
+import { toast } from "react-toastify";
 
 const countries = [
   { code: 'GB', label: 'England' },
@@ -125,7 +125,9 @@ export default function UserLoginBody() {
               <p>Keep me logged in</p>
             </div>
             <div className="flex gap-2 items-center text-[#F8931F] w-fit p-0">
-              <p className="underline w-fit">Forgot your password?</p>
+              <Link to='/user_forgot_pass' className='w-fit'>
+                <p className="underline w-fit">Forgot your password?</p>
+              </Link>
             </div>
           </div>
         </div>

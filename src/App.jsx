@@ -39,6 +39,8 @@ import UserWishList from "./pages/UserWishlist";
 import UserRecentlyViewed from "./pages/UserRecentlyViewed";
 import UserAccountSettings from "./pages/UserAccountSettings";
 import UserOTP from "./pages/UserOTP";
+import UserForgotPass from "./pages/UserForgotPass";
+import UserResetPass from "./pages/UserResetPass";
 
 // ScrollToTop logic directly in App.jsx
 function ScrollToTop() {
@@ -98,6 +100,8 @@ function App() {
         <Route path="/user_recently-viewed" element={<UserRecentlyViewed />} />
         <Route path="/user_account-settings" element={<UserAccountSettings />} />
         <Route path="/user_otp" element={<UserOTP />} />
+        <Route path="/user_forgot_pass" element={<UserForgotPass />} />
+        <Route path="/user_reset_pass" element={<UserResetPass />} />
       </Routes>
     </Router>
   );
