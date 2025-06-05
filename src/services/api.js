@@ -94,6 +94,17 @@ export function forgetPasswordRequest(emailOrPhone) {
       password: newPassword,
     })
   }
+
+  export function getUserInfo() {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      return Promise.reject(new Error('No token stored'))
+    }
+    return apiClient.post('/auth/info', {
+      access_token: token,
+    })
+  }
+  
 // 4) (Optional) You can add more endpoints here later, e.g.:
 // export function fetchProfile(token) {
 //   return apiClient.get('/user/profile', {

@@ -21,7 +21,7 @@ export default function AccountTabs() {
         On small screens: flex container is scrollable (overflow-x-auto + whitespace-nowrap).
         On md+ screens: it looks like a normal static flex row.
       */}
-      <div className="flex space-x-8 py-4 text-[14.5px] -mt-14 md:mt-0 font-medium
+      <div className="flex space-x-8 py-4 text-[14.5px] -mt-14 md:mt-0 !font-semibold
                       overflow-x-auto whitespace-nowrap
                       md:overflow-visible md:whitespace-normal
                       px-0 md:px-0 w-[90%]">
@@ -32,9 +32,9 @@ export default function AccountTabs() {
             end
             className={({ isActive }) =>
               classNames(
-                'inline-block pb-1',
+                'inline-block pb-1 !font-semibold',
                 isActive
-                  ? 'text-[#009144] border-b-2 border-[#009144]'
+                  ? 'text-[#009144] border-b-3 border-[#009144]'
                   : 'text-[#333333]'
               )
             }
