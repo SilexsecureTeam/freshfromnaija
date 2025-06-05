@@ -50,11 +50,12 @@ export default function UserRegister() {
 
       if (response.data.result) {
         // Save token somewhere (localStorage / context / redux)
-        localStorage.setItem('ffn_token', response.data.access_token)
+        localStorage.setItem('token', response.data.access_token)
+        localStorage.setItem('user', JSON.stringify(response.data.user))
 
         // Show a success message
         toast.success(response.data.message)
-        navigate('/user_orders')
+        navigate('/user_otp')
       } else {
         toast.error('Signup failed: ' + response.data.message)
       }

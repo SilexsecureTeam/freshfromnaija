@@ -1,13 +1,29 @@
 // src/services/api.js
 import axios from 'axios';
 
+
 // 1) Create a single Axios instance with your base URL:
 const apiClient = axios.create({
     baseURL: 'https://api.freshfromnaija.com/api/v1',
     headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
     },
 })
+
+
+apiClient.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token')
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`
+        }
+        return config
+    },
+    (error) => {
+        return Promise.reject(error)
+    }
+)
 
 // 2) Export the signup function you already have:
 export function signup(userData) {
@@ -27,6 +43,24 @@ export function logout() {
     return apiClient.get('/auth/logout', {
         headers: { Authorization: `Bearer ${token}` },
     });
+}
+
+
+export function resendCode(userId) {
+    return apiClient.get('/auth/resend_code', {
+        params: {
+            user_id: userId,
+            register_by: 'email',
+        },
+    })
+}
+
+
+export function confirmCode(userId, verificationCode) {
+    return apiClient.post('/auth/confirm_code', {
+        user_id: userId,
+        verification_code: verificationCode,
+    })
 }
 
 // 4) (Optional) You can add more endpoints here later, e.g.:
