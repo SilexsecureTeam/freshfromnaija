@@ -63,21 +63,33 @@ export default function UserLoginBody() {
     }
   }
 
+
   // const handleGoogleLogin = async () => {
   //   setSocialLoading(true)
-  //   try {
-  //     const response = await getGoogleSocialLoginUrl()
+  //   setError(null)
 
-  //     // Example 1: if backend returns final token + user data:
+  //   try {
+  //     // 1) Grab the full URL from api.js
+  //     const url = getGoogleSocialLoginUrl()
+
+  //     // 2) Call it with axios.get (since it returns JSON)
+  //     const response = await axios.get(url)
+
+  //     // 3) Expecting response.data to be:
+  //     // {
+  //     //   result: true,
+  //     //   message: "Successfully logged in",
+  //     //   access_token: "...",
+  //     //   token_type: "Bearer",
+  //     //   expires_at: null,
+  //     //   user: { id: 16, type: "customer", name: "...", email: "...", ... }
+  //     // }
   //     if (response.data.result) {
-  //       localStorage.setItem('token', response.data.access_token)
-  //       localStorage.setItem('user', JSON.stringify(response.data.user))
+  //       const { access_token, user } = response.data
+  //       localStorage.setItem('token', access_token)
+  //       localStorage.setItem('user', JSON.stringify(user))
   //       toast.success('Google login successful')
   //       navigate('/user_orders')
-  //     }
-  //     // Example 2: if backend returns a redirect URL for Google OAuth:
-  //     else if (response.data.redirect_url) {
-  //       window.location.href = response.data.redirect_url
   //     } else {
   //       toast.error(response.data.message || 'Google login failed')
   //     }
@@ -90,44 +102,11 @@ export default function UserLoginBody() {
   //   }
   // }
 
-  const handleGoogleLogin = async () => {
+  const handleGoogleLogin = () => {
     setSocialLoading(true)
-    setError(null)
-
-    try {
-      // 1) Grab the full URL from api.js
-      const url = getGoogleSocialLoginUrl()
-
-      // 2) Call it with axios.get (since it returns JSON)
-      const response = await axios.get(url)
-
-      // 3) Expecting response.data to be:
-      // {
-      //   result: true,
-      //   message: "Successfully logged in",
-      //   access_token: "...",
-      //   token_type: "Bearer",
-      //   expires_at: null,
-      //   user: { id: 16, type: "customer", name: "...", email: "...", ... }
-      // }
-      if (response.data.result) {
-        const { access_token, user } = response.data
-        localStorage.setItem('token', access_token)
-        localStorage.setItem('user', JSON.stringify(user))
-        toast.success('Google login successful')
-        navigate('/user_orders')
-      } else {
-        toast.error(response.data.message || 'Google login failed')
-      }
-    } catch (err) {
-      console.error(err)
-      const msg = err?.response?.data?.message || 'Google login error'
-      toast.error(msg)
-    } finally {
-      setSocialLoading(false)
-    }
+    // Perform a full-page redirect to the social-login URL:
+    window.location.href = getGoogleSocialLoginUrl()
   }
-
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 mt-16">

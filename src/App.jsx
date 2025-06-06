@@ -41,6 +41,7 @@ import UserAccountSettings from "./pages/UserAccountSettings";
 import UserOTP from "./pages/UserOTP";
 import UserForgotPass from "./pages/UserForgotPass";
 import UserResetPass from "./pages/UserResetPass";
+import GoogleCallback from "./pages/GoogleCallback";
 
 // ScrollToTop logic directly in App.jsx
 function ScrollToTop() {
@@ -102,6 +103,7 @@ function App() {
         <Route path="/user_otp" element={<UserOTP />} />
         <Route path="/user_forgot_pass" element={<UserForgotPass />} />
         <Route path="/user_reset_pass" element={<UserResetPass />} />
+        <Route path="/google-callback" element={<GoogleCallback />} />
       </Routes>
     </Router>
   );
