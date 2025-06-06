@@ -4,7 +4,7 @@ import google from '../assets/google-b.png';
 import apple from '../assets/apple-b.png';
 import { login, getGoogleSocialLoginUrl } from '../services/api'
 import { toast } from "react-toastify";
-
+import axios from 'axios';
 
 export default function UserLoginBody() {
   const navigate = useNavigate()
@@ -90,11 +90,44 @@ export default function UserLoginBody() {
   //   }
   // }
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
     setSocialLoading(true)
-    // Perform a full-page redirect to the social-login URL:
-    window.location.href = getGoogleSocialLoginUrl()
+    setError(null)
+
+    try {
+      // 1) Grab the full URL from api.js
+      const url = getGoogleSocialLoginUrl()
+
+      // 2) Call it with axios.get (since it returns JSON)
+      const response = await axios.get(url)
+
+      // 3) Expecting response.data to be:
+      // {
+      //   result: true,
+      //   message: "Successfully logged in",
+      //   access_token: "...",
+      //   token_type: "Bearer",
+      //   expires_at: null,
+      //   user: { id: 16, type: "customer", name: "...", email: "...", ... }
+      // }
+      if (response.data.result) {
+        const { access_token, user } = response.data
+        localStorage.setItem('token', access_token)
+        localStorage.setItem('user', JSON.stringify(user))
+        toast.success('Google login successful')
+        navigate('/user_orders')
+      } else {
+        toast.error(response.data.message || 'Google login failed')
+      }
+    } catch (err) {
+      console.error(err)
+      const msg = err?.response?.data?.message || 'Google login error'
+      toast.error(msg)
+    } finally {
+      setSocialLoading(false)
+    }
   }
+
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 mt-16">
