@@ -105,6 +105,11 @@ export function forgetPasswordRequest(emailOrPhone) {
     })
   }
   
+  export function getGoogleSocialLoginUrl() {
+    // If you ever change baseURL in axios, update this accordingly.
+    return `${apiClient.defaults.baseURL}/auth/social-login/google`
+  }
+  
 // 4) (Optional) You can add more endpoints here later, e.g.:
 // export function fetchProfile(token) {
 //   return apiClient.get('/user/profile', {

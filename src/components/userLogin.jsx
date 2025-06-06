@@ -1,33 +1,17 @@
-// src/components/SignUp.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import google from '../assets/google-b.png';
 import apple from '../assets/apple-b.png';
-import { login } from '../services/api';
+import { login, getGoogleSocialLoginUrl } from '../services/api'
 import { toast } from "react-toastify";
 
-const countries = [
-  { code: 'GB', label: 'England' },
-  { code: 'NG', label: 'Nigeria' },
-  { code: 'US', label: 'United States' },
-  // …add as needed
-];
-
-const statesByCountry = {
-  GB: ['Birmingham', 'London', 'Manchester'],
-  NG: ['Lagos', 'Abuja', 'Kano'],
-  US: ['California', 'New York', 'Texas'],
-  // …
-};
 
 export default function UserLoginBody() {
   const navigate = useNavigate()
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-  });
+  const [form, setForm] = useState({ email: '', password: '' })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [socialLoading, setSocialLoading] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -77,6 +61,39 @@ export default function UserLoginBody() {
     } finally {
       setLoading(false)
     }
+  }
+
+  // const handleGoogleLogin = async () => {
+  //   setSocialLoading(true)
+  //   try {
+  //     const response = await getGoogleSocialLoginUrl()
+
+  //     // Example 1: if backend returns final token + user data:
+  //     if (response.data.result) {
+  //       localStorage.setItem('token', response.data.access_token)
+  //       localStorage.setItem('user', JSON.stringify(response.data.user))
+  //       toast.success('Google login successful')
+  //       navigate('/user_orders')
+  //     }
+  //     // Example 2: if backend returns a redirect URL for Google OAuth:
+  //     else if (response.data.redirect_url) {
+  //       window.location.href = response.data.redirect_url
+  //     } else {
+  //       toast.error(response.data.message || 'Google login failed')
+  //     }
+  //   } catch (err) {
+  //     console.error(err)
+  //     const msg = err?.response?.data?.message || 'Google login error'
+  //     toast.error(msg)
+  //   } finally {
+  //     setSocialLoading(false)
+  //   }
+  // }
+
+  const handleGoogleLogin = () => {
+    setSocialLoading(true)
+    // Perform a full-page redirect to the social-login URL:
+    window.location.href = getGoogleSocialLoginUrl()
   }
 
   return (
@@ -143,8 +160,16 @@ export default function UserLoginBody() {
         </div>
 
         <div className="flex justify-center gap-2 mt-4">
-          <img src={google} alt="Login with Google" className="w-[35px] h-[35px]" />
-          <img src={apple} alt="Login with Apple" className="w-[35px] h-[35px]" />
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            disabled={socialLoading}
+          >
+            <img src={google} alt="Login with Google" className="w-[35px] h-[35px]" />
+          </button>
+          <button type="button" disabled>
+            <img src={apple} alt="Login with Apple" className="w-[35px] h-[35px]" />
+          </button>
         </div>
 
         <p className="text-[#009144E5] text-sm font-medium mx-auto mt-4 w-fit">
