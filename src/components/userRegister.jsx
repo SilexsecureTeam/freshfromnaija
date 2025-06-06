@@ -1,16 +1,32 @@
 // src/components/SignUp.jsx
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react'
+import Select from 'react-select'
 import { signup } from '../services/api'
-import { useNavigate } from 'react-router-dom';
-import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
+// ── “Database” of countries & their states ─────────────────────────────
+const countryOptions = [
+  { value: 'GB', label: 'England' },
+  { value: 'NG', label: 'Nigeria' },
+  { value: 'US', label: 'United States' },
+  // …add more countries here if needed
+]
+
+const statesByCountry = {
+  GB: ['Birmingham', 'London', 'Manchester'],
+  NG: ['Lagos', 'Abuja', 'Kano'],
+  US: ['California', 'New York', 'Texas'],
+  // …add more mappings here
+}
 
 export default function UserRegister() {
-  const navigate= useNavigate();
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     lastname: '',
     firstname: '',
-    country: '',
-    state: '',
+    country: '', // will hold e.g. 'NG'
+    state: '',   // will hold e.g. 'Lagos'
     phone: '',
     email: '',
     password: '',
@@ -20,40 +36,57 @@ export default function UserRegister() {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-  const [successMessage, setSuccessMessage] = useState(null)
 
-  // Generic change handler:
+  // Compute state options based on selected form.country
+  const stateOptions = useMemo(() => {
+    const arr = statesByCountry[form.country] || []
+    return arr.map((s) => ({ value: s, label: s }))
+  }, [form.country])
+
+  // Generic change handler for text inputs
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    })
+    const { name, value } = e.target
+    setForm((f) => ({ ...f, [name]: value }))
+  }
+
+  // When react-select country changes:
+  const handleCountrySelect = (selectedOption) => {
+    const newCountry = selectedOption ? selectedOption.value : ''
+    setForm((f) => ({
+      ...f,
+      country: newCountry,
+      state: '', // reset state whenever country changes
+    }))
+  }
+
+  // When react-select state changes:
+  const handleStateSelect = (selectedOption) => {
+    const newState = selectedOption ? selectedOption.value : ''
+    setForm((f) => ({ ...f, state: newState }))
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
     setError(null)
-    setSuccessMessage(null)
+
+    // Simple front-end validation:
+    if (!form.country) {
+      setError('Please select a country.')
+      setLoading(false)
+      return
+    }
+    if (!form.state) {
+      setError('Please select a state.')
+      setLoading(false)
+      return
+    }
 
     try {
       const response = await signup(form)
-      // Response example (from your spec):
-      // {
-      //   result: true,
-      //   message: "Successfully logged in",
-      //   access_token: "...",
-      //   token_type: "Bearer",
-      //   expires_at: null,
-      //   user: { id: 15, name: "Caleb Sho", email: "...", ... }
-      // }
-
       if (response.data.result) {
-        // Save token somewhere (localStorage / context / redux)
         localStorage.setItem('token', response.data.access_token)
         localStorage.setItem('user', JSON.stringify(response.data.user))
-
-        // Show a success message
         toast.success(response.data.message)
         navigate('/user_otp')
       } else {
@@ -69,13 +102,8 @@ export default function UserRegister() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 mt-16">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-4xl p-8 rounded"
-      >
+      <form onSubmit={handleSubmit} className="w-full max-w-4xl p-8 rounded bg-white shadow">
         <h2 className="text-2xl font-bold text-[#333333] !mb-6">New account</h2>
-        {error && <div className="text-red-600 mb-2">{error}</div>}
-        {successMessage && <div className="text-green-600 mb-2">{successMessage}</div>}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8">
           {/* First Name */}
@@ -88,6 +116,7 @@ export default function UserRegister() {
               name="firstname"
               value={form.firstname}
               onChange={handleChange}
+              placeholder='John'
               required
               className="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-green-500 focus:border-green-500"
             />
@@ -103,36 +132,40 @@ export default function UserRegister() {
               name="lastname"
               value={form.lastname}
               onChange={handleChange}
+              placeholder='Doe'
               required
               className="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-green-500 focus:border-green-500"
             />
           </div>
 
-          {/* Country */}
+          {/* Country (react-select) */}
           <div>
             <label className="block text-sm font-semibold text-[#333333]">
               Select Country <span className="text-red-500">*</span>
             </label>
-            <input
-              name="country"
-              value={form.country}
-              onChange={handleChange}
-              className="mt-1 block w-full border rounded p-2"
-              required
+            <Select
+              options={countryOptions}
+              placeholder="Choose your country..."
+              value={countryOptions.find((opt) => opt.value === form.country) || null}
+              onChange={handleCountrySelect}
+              isClearable
+              className="mt-1"
             />
           </div>
 
-          {/* State */}
+          {/* State (react-select) */}
           <div>
             <label className="block text-sm font-semibold text-[#333333]">
               Select State <span className="text-red-500">*</span>
             </label>
-            <input
-              name="state"
-              value={form.state}
-              onChange={handleChange}
-              className="mt-1 block w-full border rounded p-2"
-              required
+            <Select
+              options={stateOptions}
+              placeholder="Choose your state..."
+              value={stateOptions.find((opt) => opt.value === form.state) || null}
+              onChange={handleStateSelect}
+              isClearable
+              isDisabled={!form.country}
+              className="mt-1"
             />
           </div>
 
@@ -199,12 +232,8 @@ export default function UserRegister() {
           </div>
         </div>
 
-        {/* Hidden/select for "register_by": */}
-        <input
-          type="hidden"
-          name="register_by"
-          value={form.register_by}
-        />
+        {/* Hidden “register_by” field */}
+        <input type="hidden" name="register_by" value={form.register_by} />
 
         <button
           type="submit"
@@ -215,5 +244,5 @@ export default function UserRegister() {
         </button>
       </form>
     </div>
-  );
+  )
 }
