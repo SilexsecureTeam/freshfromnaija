@@ -2,7 +2,7 @@
 import React, { useState, useMemo } from 'react'
 import Select from 'react-select'
 import { signup } from '../services/api'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 // ── “Database” of countries & their states ─────────────────────────────
@@ -242,6 +242,12 @@ export default function UserRegister() {
         >
           {loading ? 'Signing up…' : 'Sign Up'}
         </button>
+        <p className="text-[#009144E5] text-sm font-medium mx-auto !mt-7 w-fit">
+          Already have an account?{' '}
+          <Link to="/user_register" className="text-[#009144] !font-semibold">
+            Log In
+          </Link>
+        </p>
       </form>
     </div>
   )
