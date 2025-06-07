@@ -13,13 +13,15 @@ export default function UserOtpPage() {
   const userId = user?.id
 
   // 2) State: store each digit in an array of length 4
-  const [codeDigits, setCodeDigits] = useState(['', '', '', ''])
+  const [codeDigits, setCodeDigits] = useState(['', '', '', '', '', ''])
   const [loading, setLoading] = useState(false)
   const [resendLoading, setResendLoading] = useState(false)
   const [error, setError] = useState(null)
 
   // 3) Refs for each input box to manage focus
   const inputRefs = [
+    useRef(null),
+    useRef(null),
     useRef(null),
     useRef(null),
     useRef(null),
@@ -95,7 +97,7 @@ export default function UserOtpPage() {
     const pasteData = e.clipboardData.getData('text').trim()
     if (!/^\d+$/.test(pasteData)) return // ignore non-digits
 
-    const pasteDigits = pasteData.split('').slice(0, 4)
+    const pasteDigits = pasteData.split('').slice(0, 6)
     const newDigits = [...codeDigits]
     pasteDigits.forEach((d, i) => {
       newDigits[i] = d
@@ -105,7 +107,7 @@ export default function UserOtpPage() {
     })
     setCodeDigits(newDigits)
     // Focus the box after the last pasted digit (or the last box)
-    const nextIndex = pasteDigits.length < 4 ? pasteDigits.length : 3
+    const nextIndex = pasteDigits.length < 6 ? pasteDigits.length : 5
     inputRefs[nextIndex].current.focus()
   }
 
@@ -113,8 +115,8 @@ export default function UserOtpPage() {
   const handleConfirm = async (e) => {
     e.preventDefault()
     const code = codeDigits.join('')
-    if (code.length < 4) {
-      setError('Please enter the 4-digit verification code.')
+    if (code.length < 6) {
+      setError('Please enter the 6-digit verification code.')
       return
     }
 
@@ -171,7 +173,7 @@ export default function UserOtpPage() {
                   onChange={(e) => handleDigitChange(e, idx)}
                   onKeyDown={(e) => handleKeyDown(e, idx)}
                   onPaste={idx === 0 ? handlePaste : undefined}
-                  className="w-16 h-16 text-center text-xl border border-gray-300 rounded focus:ring-green-500 focus:border-green-500"
+                  className="w-13 h-13 text-center text-xl border border-gray-300 rounded focus:ring-green-500 focus:border-green-500"
                 />
               ))}
             </div>

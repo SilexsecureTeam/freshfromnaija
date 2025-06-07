@@ -102,10 +102,25 @@ export default function UserLoginBody() {
   //   }
   // }
 
-  const handleGoogleLogin = () => {
+  // const handleGoogleLogin = () => {
+  //   setSocialLoading(true)
+  //   window.location.href = getGoogleSocialLoginUrl()
+  // }
+
+  const handleGoogleLogin = async () => {
     setSocialLoading(true)
-    // Perform a full-page redirect to the social-login URL:
-    window.location.href = getGoogleSocialLoginUrl()
+    try {
+      // 1) Call the social-login endpoint and get JSON
+      // const url = getGoogleSocialLoginUrl()
+      window.location.href = getGoogleSocialLoginUrl()
+      
+    } catch (err) {
+      console.error('Google login error:', err)
+      const msg = err?.response?.data?.message || 'An unexpected error occurred'
+      toast.error(msg)
+    } finally {
+      setSocialLoading(false)
+    }
   }
 
   return (
