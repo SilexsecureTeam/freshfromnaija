@@ -244,7 +244,7 @@ export default function UserRegister() {
         </button>
         <p className="text-[#009144E5] text-sm font-medium mx-auto !mt-7 w-fit">
           Already have an account?{' '}
-          <Link to="/user_register" className="text-[#009144] !font-semibold">
+          <Link to="/user_login" className="text-[#009144] !font-semibold">
             Log In
           </Link>
         </p>

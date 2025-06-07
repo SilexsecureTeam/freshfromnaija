@@ -201,7 +201,7 @@ export default function UserLoginBody() {
 
         <p className="text-[#009144E5] text-sm font-medium mx-auto mt-4 w-fit">
           New User?{' '}
-          <Link to="/user_register" className="text-[#009144] font-semibold">
+          <Link to="/user_register" className="text-[#009144] !font-semibold">
             Sign Up
           </Link>
         </p>
