@@ -15,7 +15,7 @@ root.render(
     <ErrorBoundary>
       <App />
       <ToastContainer
-        autoClose={1000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop
         closeOnClick

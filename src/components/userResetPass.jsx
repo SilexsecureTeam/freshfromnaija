@@ -10,13 +10,15 @@ export default function ResetPasswordPage() {
   const [emailOrPhone] = useState(storedEmail)
 
   // OTP as four separate digits
-  const [codeDigits, setCodeDigits] = useState(['', '', '', ''])
+  const [codeDigits, setCodeDigits] = useState(['', '', '', '', '', ''])
   const [newPassword, setNewPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [resendLoading, setResendLoading] = useState(false)
   const [error, setError] = useState(null)
 
   const inputRefs = [
+    useRef(null),
+    useRef(null),
     useRef(null),
     useRef(null),
     useRef(null),
@@ -30,7 +32,7 @@ export default function ResetPasswordPage() {
     const newDigits = [...codeDigits]
     newDigits[idx] = val
     setCodeDigits(newDigits)
-    if (val && idx < 3) {
+    if (val && idx < 5) {
       inputRefs[idx + 1].current.focus()
     }
   }
@@ -50,7 +52,7 @@ export default function ResetPasswordPage() {
     e.preventDefault()
     const pasteData = e.clipboardData.getData('text').trim()
     if (!/^\d+$/.test(pasteData)) return
-    const pasteDigits = pasteData.split('').slice(0, 4)
+    const pasteDigits = pasteData.split('').slice(0, 6)
     const newDigits = [...codeDigits]
     pasteDigits.forEach((d, i) => {
       newDigits[i] = d
@@ -59,7 +61,7 @@ export default function ResetPasswordPage() {
       }
     })
     setCodeDigits(newDigits)
-    const nextIndex = pasteDigits.length < 4 ? pasteDigits.length : 3
+    const nextIndex = pasteDigits.length < 6 ? pasteDigits.length : 5
     inputRefs[nextIndex].current.focus()
   }
 
@@ -67,8 +69,8 @@ export default function ResetPasswordPage() {
   const handleConfirm = async (e) => {
     e.preventDefault()
     const code = codeDigits.join('')
-    if (code.length < 4) {
-      setError('Please enter the 4-digit code.')
+    if (code.length < 6) {
+      setError('Please enter the 6-digit code.')
       return
     }
     if (!newPassword.trim()) {
@@ -127,7 +129,7 @@ export default function ResetPasswordPage() {
         </h2>
 
         <p className="text-sm !mb-4 text-gray-600">
-          We have sent a 4-digit code to <strong>{emailOrPhone}</strong>. Enter it below along with your new password.
+          We have sent a 6-digit code to <strong>{emailOrPhone}</strong>. Enter it below along with your new password.
         </p>
 
         {error && <div className="text-red-600 !mb-2">{error}</div>}

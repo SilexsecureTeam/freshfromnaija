@@ -149,8 +149,20 @@ export default function Header() {
             <Link to="/vendors" className="block text-gray-700">How it works</Link>
             <Link to="/vendors" className="block text-gray-700">Contact us</Link>
             <div className="border-t border-gray-200 pt-4 space-y-3">
-              <Link to="/user_login" className="block text-gray-700">Login</Link>
-              <Link to="/user_register" className="block text-gray-700">Sign Up</Link>
+            <div className="pt-4 space-y-3">
+                  {!loggedIn ? <>
+                    < Link to="/user_login" className="block text-gray-700">
+                      Login
+                    </Link>
+                    <Link to="/user_register" className="block text-gray-700">
+                      Sign Up
+                    </Link>
+                  </>
+                    :
+                    <button className='block text-gray-700'
+                      onClick={logoutFunc}>Logout</button>
+                  }
+                </div>
               <Link to="/help" className="block text-gray-700">Help</Link>
               <Link to="/cart" className="block text-gray-700">Cart</Link>
             </div>

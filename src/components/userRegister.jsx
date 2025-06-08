@@ -1,5 +1,5 @@
 import React, { useState, useContext, useMemo } from 'react'
-import Select from 'react-select'
+// import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
 import { signup } from '../services/api'
 import { countries, cities } from '../services/index'
