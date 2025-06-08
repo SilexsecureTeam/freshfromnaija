@@ -1,24 +1,10 @@
-// src/components/SignUp.jsx
-import React, { useState, useMemo } from 'react'
+import React, { useState, useContext, useMemo } from 'react'
 import Select from 'react-select'
+import AsyncSelect from 'react-select/async'
 import { signup } from '../services/api'
+import { countries, cities } from '../services/index'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-
-// ── “Database” of countries & their states ─────────────────────────────
-const countryOptions = [
-  { value: 'GB', label: 'England' },
-  { value: 'NG', label: 'Nigeria' },
-  { value: 'US', label: 'United States' },
-  // …add more countries here if needed
-]
-
-const statesByCountry = {
-  GB: ['Birmingham', 'London', 'Manchester'],
-  NG: ['Lagos', 'Abuja', 'Kano'],
-  US: ['California', 'New York', 'Texas'],
-  // …add more mappings here
-}
 
 export default function UserRegister() {
   const navigate = useNavigate()
@@ -36,33 +22,49 @@ export default function UserRegister() {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  
+  const countryOptions = useMemo(
+    () => countries.map((c) => ({ value: c.name, label: c.name })),
+    []
+  )
+  const loadCountryOptions = (inputValue, callback) => {
+    // Filter cities by typed input, case-insensitive
+    const filtered = countries
+      .filter((c) =>
+        c.name.toLowerCase().includes(inputValue.toLowerCase())
+      )
+      .map((c) => ({ value: c.name, label: c.name }))
 
-  // Compute state options based on selected form.country
-  const stateOptions = useMemo(() => {
-    const arr = statesByCountry[form.country] || []
-    return arr.map((s) => ({ value: s, label: s }))
-  }, [form.country])
+    callback(filtered)
+  }
 
-  // Generic change handler for text inputs
+  // Handler for country select
+  const handleCountrySelect = (opt) => {
+    setForm((f) => ({ ...f, country: opt?.value || '', state: '' }))
+  }
+
+  // Handler for city select
+  const handleCitySelect = (opt) => {
+    setForm((f) => ({ ...f, state: opt?.value || '' }))
+  }
+
+  // Your existing change handler
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm((f) => ({ ...f, [name]: value }))
   }
 
-  // When react-select country changes:
-  const handleCountrySelect = (selectedOption) => {
-    const newCountry = selectedOption ? selectedOption.value : ''
-    setForm((f) => ({
-      ...f,
-      country: newCountry,
-      state: '', // reset state whenever country changes
-    }))
-  }
+  // Async loader for city options:
+  const loadCityOptions = (inputValue, callback) => {
+    // Filter cities by typed input, case-insensitive
+    const filtered = cities
+      .filter((ct) =>
+        ct.name.toLowerCase().includes(inputValue.toLowerCase())
+      )
+      .slice(0, 100) // limit to top 100 matches
+      .map((ct) => ({ value: ct.name, label: ct.name }))
 
-  // When react-select state changes:
-  const handleStateSelect = (selectedOption) => {
-    const newState = selectedOption ? selectedOption.value : ''
-    setForm((f) => ({ ...f, state: newState }))
+    callback(filtered)
   }
 
   const handleSubmit = async (e) => {
@@ -143,11 +145,12 @@ export default function UserRegister() {
             <label className="block text-sm font-semibold text-[#333333]">
               Select Country <span className="text-red-500">*</span>
             </label>
-            <Select
-              options={countryOptions}
-              placeholder="Choose your country..."
-              value={countryOptions.find((opt) => opt.value === form.country) || null}
+            <AsyncSelect
+              cacheOptions
+              loadOptions={loadCountryOptions}
+              defaultOptions={false}
               onChange={handleCountrySelect}
+              placeholder="Type to search countries..."
               isClearable
               className="mt-1"
             />
@@ -156,15 +159,15 @@ export default function UserRegister() {
           {/* State (react-select) */}
           <div>
             <label className="block text-sm font-semibold text-[#333333]">
-              Select State <span className="text-red-500">*</span>
+              Select City <span className="text-red-500">*</span>
             </label>
-            <Select
-              options={stateOptions}
-              placeholder="Choose your state..."
-              value={stateOptions.find((opt) => opt.value === form.state) || null}
-              onChange={handleStateSelect}
+            <AsyncSelect
+              cacheOptions
+              loadOptions={loadCityOptions}
+              defaultOptions={false}
+              onChange={handleCitySelect}
+              placeholder="Type to search cities..."
               isClearable
-              isDisabled={!form.country}
               className="mt-1"
             />
           </div>
