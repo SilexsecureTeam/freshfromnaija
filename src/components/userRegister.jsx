@@ -2,7 +2,7 @@ import React, { useState, useContext, useMemo } from 'react'
 // import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
 import { signup } from '../services/api'
-import { countries, cities } from '../services/index'
+import { countries, states } from '../services/index'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -27,65 +27,69 @@ export default function UserRegister() {
     () => countries.map((c) => ({ value: c.name, label: c.name })),
     []
   )
-  const loadCountryOptions = (inputValue, callback) => {
-    // Filter cities by typed input, case-insensitive
-    const filtered = countries
-      .filter((c) =>
-        c.name.toLowerCase().includes(inputValue.toLowerCase())
-      )
-      .map((c) => ({ value: c.name, label: c.name }))
 
-    callback(filtered)
-  }
-
-  // Handler for country select
+  // Handler when user picks a country
   const handleCountrySelect = (opt) => {
-    setForm((f) => ({ ...f, country: opt?.value || '', state: '' }))
+    setForm((f) => ({
+      ...f,
+      country: opt?.value || null,
+      state: '',
+    }))
   }
 
-  // Handler for city select
-  const handleCitySelect = (opt) => {
-    setForm((f) => ({ ...f, state: opt?.value || '' }))
+  // Handler when user picks a state
+  const handleStateSelect = (opt) => {
+    setForm((f) => ({
+      ...f,
+      state: opt?.value || '',
+    }))
   }
 
-  // Your existing change handler
+  // Text input handler
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm((f) => ({ ...f, [name]: value }))
   }
 
-  // Async loader for city options:
-  const loadCityOptions = (inputValue, callback) => {
-    // Filter cities by typed input, case-insensitive
-    const filtered = cities
-      .filter((ct) =>
-        ct.name.toLowerCase().includes(inputValue.toLowerCase())
-      )
-      .slice(0, 100) // limit to top 100 matches
-      .map((ct) => ({ value: ct.name, label: ct.name }))
+  // Async loader for states
+  const loadStateOptions = (inputValue, callback) => {
+    // first filter by selected country
+    let filtered = states
+      .filter((s) => s.country_id === form.country)
 
-    callback(filtered)
+    // then text‐search if the user has typed something
+    if (inputValue) {
+      filtered = filtered.filter((s) =>
+        s.name.toLowerCase().includes(inputValue.toLowerCase())
+      )
+    }
+
+    // map into label/value and slice to first 100
+    const options = filtered
+      .slice(0, 100)
+      .map((s) => ({ value: s.name, label: s.name }))
+
+    callback(options)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
-    setError(null)
-
-    // Simple front-end validation:
     if (!form.country) {
       setError('Please select a country.')
-      setLoading(false)
       return
     }
     if (!form.state) {
       setError('Please select a state.')
-      setLoading(false)
       return
     }
 
+    setLoading(true)
     try {
-      const response = await signup(form)
+      const payload = {
+        ...form,
+        country: countries.find((c) => c.id === form.country).name,
+      }
+      const response = await signup(payload)
       if (response.data.result) {
         localStorage.setItem('token', response.data.access_token)
         localStorage.setItem('user', JSON.stringify(response.data.user))
@@ -147,8 +151,16 @@ export default function UserRegister() {
             </label>
             <AsyncSelect
               cacheOptions
-              loadOptions={loadCountryOptions}
-              defaultOptions={false}
+              defaultOptions={countryOptions.slice(0, 10)}
+              loadOptions={(input, cb) =>
+                cb(
+                  countryOptions
+                    .filter((o) =>
+                      o.label.toLowerCase().includes(input.toLowerCase())
+                    )
+                    .slice(0, 50)
+                )
+              }
               onChange={handleCountrySelect}
               placeholder="Type to search countries..."
               isClearable
@@ -159,16 +171,20 @@ export default function UserRegister() {
           {/* State (react-select) */}
           <div>
             <label className="block text-sm font-semibold text-[#333333]">
-              Select City <span className="text-red-500">*</span>
+              Select State <span className="text-red-500">*</span>
             </label>
             <AsyncSelect
               cacheOptions
-              loadOptions={loadCityOptions}
-              defaultOptions={false}
-              onChange={handleCitySelect}
-              placeholder="Type to search cities..."
+              defaultOptions={states
+                .filter((s) => s.country_id === form.country)
+                .slice(0, 10)
+                .map((s) => ({ value: s.name, label: s.name }))}
+              loadOptions={loadStateOptions}
+              onChange={handleStateSelect}
+              placeholder="Type to search states..."
               isClearable
               className="mt-1"
+              isDisabled={!form.country}
             />
           </div>
 
