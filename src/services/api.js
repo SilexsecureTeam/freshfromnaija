@@ -116,6 +116,53 @@ export function forgetPasswordRequest(emailOrPhone) {
   export function getCities() {
     return apiClient.get('/cities');
 }
+
+/**
+ * Create a new shipping address for the logged in user.
+ * POST /auth/user/shipping/create
+ */
+export function createAddress({ address, country_id, state_id, city_id, postal_code, phone }) {
+    const user = JSON.parse(localStorage.getItem('user') || '{}')
+    const user_id = user.id
+    return apiClient.post('/auth/user/shipping/create', {
+      user_id,
+      address,
+      country_id,
+      state_id,
+      city_id,
+      postal_code,
+      phone,
+    })
+  }
+  
+  /**
+   * Get all shipping addresses for the logged in user.
+   * GET /auth/user/shipping/address
+   */
+  export function getAddresses() {
+    return apiClient.get('/auth/user/shipping/address')
+  }
+  
+  /**
+   * Delete a shipping address by its ID.
+   * GET /auth/user/shipping/delete/{id}
+   */
+  export function deleteAddress(addressId) {
+    return apiClient.get(`/auth/user/shipping/delete/${addressId}`)
+  }
+  
+  /**
+   * Update which address is in the cart.
+   * POST /auth/update-address-in-cart
+   */
+  export function updateAddressInCart(address_id) {
+    const user = JSON.parse(localStorage.getItem('user') || '{}')
+    const user_id = user.id
+    return apiClient.post('/auth/update-address-in-cart', {
+      user_id,
+      address_id,
+    })
+  }
   
 // 4) (Optional) You can add more endpoints here later, e.g.:
 // export function fetchProfile(token) {
